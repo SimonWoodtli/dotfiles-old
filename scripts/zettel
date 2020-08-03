@@ -1,0 +1,16 @@
+#!/bin/sh
+
+current_time=$(date "+%Y%m%d%H%M%S")
+echo 'Name your file'
+read who
+echo 'Name your extension'
+read extension
+touch "$who-$current_time.$extension"
+
+#echo "```yml" >> creeated fild
+#echo "id: $current_time" >> created file
+#echo "tag:" >> created file
+#echo "```" >> created file
+
+# find a way to make variable from your filename to add it to your echo
+# lines

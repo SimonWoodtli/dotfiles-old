@@ -1,0 +1,15 @@
+#!/bin/bash
+
+ln -sf $PWD/bashconfig $HOME/.bash_aliases
+ls -l $HOME/.bash_aliases
+
+ln -sf $PWD/dircolors $HOME/.dircolors
+ls -l $HOME/.dircolors
+
+mkdir -p $HOME/.ssh
+ln -sf $PWD/sshconfig $HOME/.ssh/config
+ls -l $HOME/.ssh/config
+
+ln -sf $PWD/imwheelrc $HOME/.imwheelrc
+ls -l $HOME/.imwheelrc
+

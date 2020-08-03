@@ -1,0 +1,217 @@
+" use :so % to reload
+"use :set list to see text formation/structures (:set nolist)
+"to get into the command history (ex) in vim `: and then ctrl-p or ctrl-n`
+
+set number   "turn on line numbers (:set nu/:set nonu)
+"set norelativenumber " turns on relative line numbers, rob uses magic wands and section select instead of relative number.
+
+" force me to set everything explicitly
+let skip_defaults_vim=1
+
+set nocompatible "allow vim-y things
+
+set linebreak "this will wrap `` for long words even if new line is started
+set noshowmatch "no more little pause if you type brackets
+set foldmethod=manual " manual foldingdefault (zf/zd)
+set nofoldenable "disable folding, when paragraphs can be "minimized and maximized with spacebar
+
+set ruler "ruler is on by default, just in case
+"set scrolloff=999 "keep cursor in the middle, or some big other number
+set scrolloff=7 "keep cursor at border of screen
+
+"all these are about indent:
+set expandtab "if you don't like tabs
+set tabstop=2 "settings for your notes and stuff, don't use to code with it
+set softtabstop=2 "related to tabstop
+set shiftwidth=2 "if you want lines to move in like with tabs `3>>` will move 3 lines in
+set smartindent "same as >> but when you wanna do a new line
+set autoindent " you should turn it off when you are pasting
+set smarttab
+" shows info on bottom right
+set showcmd
+"set wrap linebreak nolist "soft wrap only wraps it but not formats it
+set viminfo='20,<1000,s1000 "increase yank buffer size if you want to yank from one file to another
+
+"living dangerous but clean, no more backups and swap files (use :w often!)
+set nobackup
+set nowritebackup
+set noswapfile
+
+"sync terminal title with current file edited
+set icon
+
+"search settings:
+set hlsearch "all the /searchterms get highlighted on your display
+set nohlsearch "to turn the highligted searchterms off :noh
+set incsearch "to find them again `n`
+
+"makes your list characters prettier (set list)
+set listchars=tab:→\ ,eol:↲,nbsp:␣,space:·,trail:·,extends:⟩,precedes:⟨
+
+"colorscheme elflord "the best for high contrast streaming
+"colorscheme delek
+"colorscheme pablo
+let g:molokai_original = 1 "colorscheme from github background
+"let g:rehash256 = 1 " colorscheme molokai 256bit color background
+colorscheme molokai
+set background=dark
+
+set textwidth=73 "enough for line numbers + git gutter and spaces within 80 it forces you to write better code because you are limited by 73 char per line
+"copy & past between 2 files
+set viminfo='20,<1000,s1000 " prevents truncated yanks, deletes, etc.
+"set viminfo=%,<800,'10,/50,:100,h,f0,n~/.vim/cache/.viminfo
+"           | |    |   |   |    | |  + viminfo file path
+"           | |    |   |   |    | + file marks 0-9,A-Z 0=NOT stored
+"           | |    |   |   |    + disable 'hlsearch' loading viminfo
+"           | |    |   |   + command-line history saved
+"           | |    |   + search history saved
+"           | |    + files marks saved
+"           | + lines saved each register (old name for <, vi6.2)
+"           + save/restore buffer list
+
+
+" if you make an empty hyperlinked name in markdown: [searchterm]() and close vi again it will make it searchable on duckduck
+
+
+"low level settings (detailed stuff)
+" Just the defaults, these are changed per filetype by plugins.
+" Most of the utility of all of this has been superceded by the use of
+" modern simplified pandoc for capturing knowledge source instead of
+" arbitrary raw text files.
+
+set formatoptions-=t   " don't auto-wrap text using text width
+set formatoptions+=c   " autowrap comments using textwidth with leader
+set formatoptions-=r   " don't auto-insert comment leader on enter in insert
+set formatoptions-=o   " don't auto-insert comment leader on o/O in normal
+set formatoptions+=q   " allow formatting of comments with gq
+set formatoptions-=w   " don't use trailing whitespace for paragraphs
+set formatoptions-=a   " disable auto-formatting of paragraph changes
+set formatoptions-=n   " don't recognized numbered lists
+set formatoptions+=j   " delete comment prefix when joining
+set formatoptions-=2   " don't use the indent of second paragraph line
+set formatoptions-=v   " don't use broken 'vi-compatible auto-wrapping'
+set formatoptions-=b   " don't use broken 'vi-compatible auto-wrapping'
+set formatoptions+=l   " long lines not broken in insert mode
+set formatoptions+=m   " multi-byte character line break support
+set formatoptions+=M   " don't add space before or after multi-byte char
+set formatoptions-=B   " don't add space between two multi-byte chars in join
+set formatoptions+=1   " don't break a line after a one-letter word
+
+"settings for Plug ferrine/md-img-paste paste cilboard screenshot to vim
+autocmd FileType markdown nmap <buffer><silent> <leader>p :call mdip#MarkdownClipboardImage()<CR>
+" there are some defaults for image directory and image name, you can change them
+let g:mdip_imgdir = '/home/Repos/gitlab.com/xnasero/notes/img'
+" let g:mdip_imgname = 'image'
+"
+if $PLATFORM == 'mac'
+  " required for mac delete to work
+  set backspace=indent,eol,start
+endif
+
+"memory management (x history (: history))
+set history=100
+"stops complaining when switching from buffer with changes
+set hidden
+
+"all the things from here on need syntax
+syntax enable
+
+"allow sensing the filetype
+filetype plugin on
+
+" Install vim-plugin if not already installed
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall
+endif
+" look for .vim if it does not exist download&install plugins
+if filereadable(expand("~/.vim/autoload/plug.vim"))
+  call plug#begin('~/.vimplugins')
+  Plug 'vim-pandoc/vim-pandoc'
+  "Plug 'vim-pandoc/vim-pandoc-syntax'
+  Plug 'https://gitlab.com/rwxrob/vim-pandoc-syntax-simple'
+  "Plug 'cespare/vim-toml'
+  "Plug 'fatih/vim-go'
+  "Plug 'airblade/vim-gitgutter'
+  "Plug 'PProvost/vim-ps1'
+  "Plug 'morhetz/gruvbox'
+  call plug#end()
+  let g:go_fmt_fail_silently = 0 " let me out even with errors
+  let g:go_fmt_command = 'goimports' " autoupdate import
+  let g:go_fmt_autosave = 1
+  "set background=dark
+  "colorscheme gruvbox
+else
+  autocmd vimleavepre *.go !gofmt -w % " backup if fatih fails
+endif
+
+autocmd vimleavepre *.md !perl -p -i -e 's,\[([^\]]+?)\]\(\),[\1](https://duck.com/lite?q=\1),g' %
+" plasticboy/vim-markdown settings
+autocmd FileType markdown set conceallevel=0 " displays markdown syntax
+
+"help you to detect filetypes that are not automatically detected
+au bufnewfile,bufRead bashconfig set filetype=sh
+au bufnewfile,bufRead *.profile set filetype=sh
+au bufnewfile,bufRead *.crontab set filetype=crontab
+au bufnewfile,bufRead *ssh/config set filetype=sshconfig
+au bufnewfile,bufRead *gitconfig set filetype=gitconfig
+au bufnewfile,bufRead /tmp/psql.edit.* set syntax=sql
+
+" start at last place you were editing
+au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+
+"normal! g'\"" | endif "remember where you were and puts you back to it
+au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe
+
+" Automatically delets all trailing whitespace on save.
+autocmd BufWritePre * %s/\s\+$//e
+
+
+" displays all the syntax rules for current position, useful
+" when writing vimscript syntax plugins (F2)
+function! <SID>SynStack()
+	if !exists("*synstack")
+		return
+	endif
+  echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
+endfunc
+
+" no arrow keys (vi muscle memory)
+noremap <up> :echoerr "Umm, use k instead"<CR>
+noremap <down> :echoerr "Umm, use j instead"<CR>
+noremap <left> :echoerr "Umm, use h instead"<CR>
+noremap <right> :echoerr "Umm, use l instead"<CR>
+inoremap <up> <NOP>
+inoremap <down> <NOP>
+inoremap <left> <NOP>
+inoremap <right> <NOP>
+
+" pane switching
+map <C-j> <C-W>j
+map <C-k> <C-W>k
+map <C-h> <C-W>h
+map <C-l> <C-W>l
+
+" functions keys
+map <F1> :set number!<CR> :set relativenumber!<CR>
+nmap <F2> :call <SID>SynStack()<CR>
+set pastetoggle=<F3>
+map <F4> :set list!<CR>
+map <F5> :set cursorline!<CR>
+map <F7> :set spell!<CR>
+map <F12> :set fdm=indent<CR>
+" functions keys
+" map <F1> :set number!<CR> :set relativenumber!<CR>
+" nmap <F2> :call <SID>SynStack()<CR>
+" set pastetoggle=<F3>
+" map <F4> :set list!<CR>
+" map <F5> :set cursorline!<CR>
+" map <F7> :set spell!<CR>
+" map <F12> :set fdm=indent<CR>
+
+" read personal/private vim configuration (keep last to override)
+set rtp^=~/.vimpersonal
+set rtp^=~/.vimprivate
+" makes github colorschemes transparent - needs to be after Plugin stuff
+hi! Normal ctermbg=NONE

@@ -1,0 +1,6 @@
+#!/bin/sh
+
+mkdir -p $HOME/.config/alacritty
+cp $PWD/alacritty.yml $HOME/.config/alacritty/alacritty.yml
+ls -l $HOME/.config/alacritty/alacritty.yml
+
