@@ -2,7 +2,8 @@
 
 ## Installation
 
-**WARNING**: This is work in progress and may be buggy. Use it at your own risk. I suggest you fork this repository first.And then remove the things you may not want or need.
+**WARNING**: This is work in progress and may be buggy. Use it at your own risk. I suggest you fork this repository
+first. And then remove the things you may not want or need.
 
 ## Feedback
 
