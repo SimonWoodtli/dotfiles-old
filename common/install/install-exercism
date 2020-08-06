@@ -1,0 +1,21 @@
+#!/bin/sh
+## create variable for your system
+spruce_type=linux-x86_64
+
+## get correct link with jq
+URL=$(curl -s https://api.github.com/repos/exercism/cli/releases/latest | jq -r ".assets[] | select(.name | test(\"${spruce_type}\")) | .browser_download_url")
+
+## get different versions available
+#curl -s https://api.github.com/repos/exercism/cli/releases/latest | jq -r ".assets[].name"
+
+## download tarball
+curl -LJO -o exercism.tar.gz $URL
+
+## create dir and extract tarball
+mkdir dir
+tar -xvzf ${URL##*/} -C dir
+
+## move script to your scripts
+mv 14 dir/exercism ../../scripts
+rm -r dir/
+rm ${URL##*/}
