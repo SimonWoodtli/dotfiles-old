@@ -15,7 +15,7 @@ curl -LJO -o exercism.tar.gz $URL
 mkdir dir
 tar -xvzf ${URL##*/} -C dir
 
-## move script to your scripts
-mv 14 dir/exercism ../../scripts
+## move program to your local bin
+mv 14 dir/exercism $HOME/.local/bin
 rm -r dir/
 rm ${URL##*/}

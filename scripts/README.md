@@ -1,1 +1,0 @@
-`path`: uses parameter expansion
