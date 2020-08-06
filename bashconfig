@@ -47,6 +47,9 @@ $HOME/.deno/bin:\
 /sbin:\
 /bin
 
+# Ignore duplicates in command history
+export HISTCONTROL=ignoredups
+
 # CD into anywhere!
 # be sure not to remove ./ or stuff gets weird
 export CDPATH=\
