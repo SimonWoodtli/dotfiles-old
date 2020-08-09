@@ -6,15 +6,8 @@ read who
 echo 'Do you want to add some tags?'
 read tags
 touch "$who-$current_time.md"
-echo '```yml
+echo "\`\`\`yml
 id: $current_time
-tag: code, css, reference from another note (visible)
-```' >> $who-$current_time.md
+tag: $tags
+\`\`\`" >> $who-$current_time.md
 
-#echo "```yml" >> creeated fild
-#echo "id: $current_time" >> created file
-#echo "tag:" >> created file
-#echo "```" >> created file
-
-# find a way to make variable from your filename to add it to your echo
-# lines
