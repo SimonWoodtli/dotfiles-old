@@ -1,11 +1,15 @@
 #!/bin/sh
 
 current_time=$(date "+%Y%m%d%H%M%S")
-echo 'Name your file'
+echo "What's the files name?"
 read who
-echo 'Name your extension'
-read extension
-touch "$who-$current_time.$extension"
+echo 'Do you want to add some tags?'
+read tags
+touch "$who-$current_time.md"
+echo '```yml
+id: $current_time
+tag: code, css, reference from another note (visible)
+```' >> $who-$current_time.md
 
 #echo "```yml" >> creeated fild
 #echo "id: $current_time" >> created file
