@@ -1,0 +1,21 @@
+#!/bin/sh
+## create variable for your system
+## not the best option with 2 variables but good enough for now
+spruce_type=amd64
+x=hyperfine_
+
+## get correct link with jq (goal find a way to only use 1 variable)
+#URL=$(curl -s https://api.github.com/repos/sharkdp/hyperfine/releases/latest | jq -r ".assets[] | select(.name | test(\"${spruce_type}\")) | .browser_download_url")
+## get correct link with jq, with 2 variables
+URL=$(curl -s https://api.github.com/repos/sharkdp/hyperfine/releases/latest | jq -r ".assets[] | select(.name | test(\"${spruce_type}\")) | select(.name | test(\"${x}\")) | .browser_download_url")
+
+
+## download deb-package
+curl -LJO -o hyperfine.deb $URL
+package=$(ls *amd64*)
+
+## install deb-package
+sudo dpkg -i $package
+
+## remove deb-package
+rm $package
