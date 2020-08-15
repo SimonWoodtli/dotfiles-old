@@ -19,6 +19,8 @@ alias fgrep='fgrep -i --colour=auto'
 
 export REPOS=$HOME/Repos
 export DOWNLOADS=$HOME/Downloads
+# used for `pdf` script
+export PDFDIR=$HOME/Repos/gitlab.com/xnasero/books/work/essentials
 VERSION=v12.18.1
 DISTRO=linux-x64
 export PATH=/usr/local/lib/nodejs/node-$VERSION-/bin:$PATH
@@ -46,7 +48,8 @@ $HOME/.deno/bin:\
 /snap/bin:\
 /sbin:\
 /bin
-
+# stops python from producing annoying cache files
+export PYTHONDONTWRITEBYTECODE=1
 # Ignore duplicates in command history
 export HISTCONTROL=ignoredups
 
