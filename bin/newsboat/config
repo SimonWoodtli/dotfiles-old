@@ -3,7 +3,7 @@
 # activated)
 auto-reload yes
 
-# see pics in url-viewer
+# see pics via urlscan in sxiv press U to get menu
 external-url-viewer "urlscan -dc -r 'linkhandler {}'"
 
 # vim bindings
