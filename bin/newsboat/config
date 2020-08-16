@@ -1,7 +1,7 @@
 #show-read-feeds no
 # always loads rss when newsboat opened (deactivate if cronjob is
 # activated)
-auto-reload yes
+#auto-reload yes
 
 # see pics via urlscan in sxiv press U to get menu
 external-url-viewer "urlscan -dc -r 'linkhandler {}'"

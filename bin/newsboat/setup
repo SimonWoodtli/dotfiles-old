@@ -12,6 +12,7 @@ if type newsboat; then
   ln -sf "$PWD/urls" "$HOME/.newsboat/urls"
   ls -l $HOME/.newsboat/config
   ls -l $HOME/.newsboat/urls
+  (crontab -l ; echo "*/20 * * * * /usr/bin/newsboat -x reload") | crontab -
 else
   echo  "Newsboat not installed. Skipping setup."
 fi
