@@ -1,8 +1,12 @@
 #show-read-feeds no
+# always loads rss when newsboat opened (deactivate if cronjob is
+# activated)
 auto-reload yes
 
+# see pics in url-viewer
 external-url-viewer "urlscan -dc -r 'linkhandler {}'"
 
+# vim bindings
 bind-key j down
 bind-key k up
 bind-key j next articlelist
@@ -22,13 +26,16 @@ bind-key D pb-download
 bind-key U show-urls
 bind-key x pb-delete
 
-color listnormal cyan default
-color listfocus black yellow standout bold
-color listnormal_unread blue default
-color listfocus_unread yellow default bold
-color info red black bold
-color article white default bold
+# colortheme
+color background         default   default
+color listnormal         default   default
+color listnormal_unread  default   default
+color listfocus          black     cyan
+color listfocus_unread   black     cyan
+color info               cyan      black
+color article            default   default
 
+# shortcuts to open links in other browser use: ,w for lynx
 browser linkhandler
 macro , open-in-browser
 macro t set browser "qndl" ; open-in-browser ; set browser linkhandler
@@ -39,6 +46,7 @@ macro p set browser "dmenuhandler" ; open-in-browser ; set browser linkhandler
 macro c set browser "xsel -b <<<" ; open-in-browser ; set browser linkhandler
 macro C set browser "youtube-viewer --comments=%u" ; open-in-browser ; set browser linkhandler
 
+# hightlighting when reading article
 highlight all "---.*---" yellow
 highlight feedlist ".*(0/0))" black
 highlight article "(^Feed:.*|^Title:.*|^Author:.*)" cyan default bold
