@@ -45,6 +45,7 @@ set hlsearch "all the /searchterms get highlighted on your display
 set nohlsearch "to turn the highligted searchterms off :noh
 set incsearch "to find them again `n`
 
+
 "makes your list characters prettier (set list)
 set listchars=tab:→\ ,eol:↲,nbsp:␣,space:·,trail:·,extends:⟩,precedes:⟨
 
@@ -166,6 +167,8 @@ au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe
 
 " Automatically delets all trailing whitespace on save.
 autocmd BufWritePre * %s/\s\+$//e
+" change leader to: ,
+let mapleader =","
 
 
 " displays all the syntax rules for current position, useful
@@ -186,6 +189,9 @@ inoremap <up> <NOP>
 inoremap <down> <NOP>
 inoremap <left> <NOP>
 inoremap <right> <NOP>
+
+"get urlscan menu in vim
+noremap <leader>u :w<Home>silent <End> !urlscan<CR>
 
 " pane switching
 map <C-j> <C-W>j
