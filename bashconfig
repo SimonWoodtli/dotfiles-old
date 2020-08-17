@@ -30,7 +30,6 @@ havecmd git && export GITUSER="$(git config --global user.name)"
 # be sure NOT to add ./ cuz it's unsafe
 export PATH=\
 $REPOS/gitlab.com/$GITUSER/dotfiles/scripts:\
-#$REPOS/github.com/$GITUSER/dotfiles/scripts:\
 $REPOS/gitlab.com/$GITUSER/dotfiles/scripts_private:\
 $HOME/.local/bin:\
 $HOME/.local/go/bin:\
