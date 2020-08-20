@@ -1,0 +1,18 @@
+#!/bin/sh
+## install dependencies
+sudo apt-get install dirmngr gpg-agent apt-transport-https
+
+## get distro codename
+distro=$(lsb_release -c | grep -oE '[^[:space:]]+$')
+
+## add weechat to sources
+echo "deb https://weechat.org/ubuntu $distro main" | sudo tee /etc/apt/sources.list.d/weechat.list
+echo "deb-src https://weechat.org/ubuntu $distro main" | sudo tee -a /etc/apt/sources.list.d/weechat.list
+
+## install weechat
+sudo apt-get update
+sudo apt-get install weechat-curses weechat-plugins weechat-python weechat-perl
+
+
+
+
