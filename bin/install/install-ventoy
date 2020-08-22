@@ -1,0 +1,17 @@
+#!/bin/sh
+
+## create variable for your system
+spruce_type=linux
+
+## get correct link with jq
+URL=$(curl -s https://api.github.com/repos/ventoy/Ventoy/releases/latest | jq -r ".assets[] | select(.name | test(\"${spruce_type}\")) | .browser_download_url")
+
+## download tarball
+curl -LJO -o ventoy.tar.gz $URL
+
+## create dir and extract tarball
+mkdir dir
+tar -xvzf ${URL##*/} -C dir
+
+## rm tarball
+rm ${URL##*/}
