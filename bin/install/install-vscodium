@@ -1,0 +1,15 @@
+#!/bin/sh
+## create variable to target correct version
+spruce_type=amd64.deb
+
+## get correct link with jq
+URL=$(curl -s https://api.github.com/repos/VSCodium/vscodium/releases/latest | jq -r ".assets[] | select(.name | test(\"${spruce_type}\")) | .browser_download_url")
+
+## download deb
+curl -L -o vscodium.deb $URL
+
+## install deb
+sudo dpkg -i vscodium.deb
+
+## rm deb
+rm vscodium.deb
