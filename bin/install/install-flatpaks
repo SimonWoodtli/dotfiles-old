@@ -1,0 +1,3 @@
+#!/bin/sh
+## install yubikey-auth
+flatpak install flathub com.yubico.yubioath
