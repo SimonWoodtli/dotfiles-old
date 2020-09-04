@@ -1,4 +1,4 @@
 #!/bin/sh
 ## sxiv and urlscan needed for `linkhandler` to display pics and get urlmenu in terminal apps
 sudo apt update
-sudo apt install vim tmux lynx jq virtualbox sxiv urlscan xclip flameshot imagemagick
+sudo apt install vim tmux lynx jq virtualbox sxiv urlscan xclip flameshot imagemagick tipp10
