@@ -2,7 +2,7 @@
 ## install dependencies
 sudo apt install -y xorg-dev freeglut3-dev
 ## create dir
-cd ~/Repos
+cd ~/Repos/github.com
   mkdir git.ghostscript.com
   cd git.ghostscript.com
 ## clone recursively (including all submodules)
