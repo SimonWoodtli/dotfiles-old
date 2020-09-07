@@ -9,8 +9,7 @@ URL=$(curl -s https://api.github.com/repos/torakiki/pdfsam/releases/latest | jq 
 curl -LJO $URL
 
 ## install deb
-#sudo dpkg -i ${URL##*/}
+sudo dpkg -i ${URL##*/}
 
 ## remove deb
 #rm ${URL##*/}
-echo ${URL##*/}
