@@ -7,7 +7,6 @@
 "" Basic Setup
 "*****************************************************************************
 
-
 set number   "turn on line numbers (:set nu/:set nonu)
 "set norelativenumber " turns on relative line numbers, rob uses magic wands and section select instead of relative number.
 
@@ -116,6 +115,7 @@ set hidden
 "*****************************************************************************
 "" ALL THE THINGS FROM HERE ON NEED SYNTAX ON
 "*****************************************************************************
+
 syntax enable
 
 
@@ -139,12 +139,16 @@ if filereadable(expand("~/.vim/autoload/plug.vim"))
   "Plug 'airblade/vim-gitgutter'
   "Plug 'PProvost/vim-ps1'
   "Plug 'morhetz/gruvbox'
+  Plug 'tomasr/molokai'
   call plug#end()
   let g:go_fmt_fail_silently = 0 " let me out even with errors
   let g:go_fmt_command = 'goimports' " autoupdate import
   let g:go_fmt_autosave = 1
   "set background=dark
   "colorscheme gruvbox
+  let g:molokai_original = 1 "colorscheme from github background
+  "let g:rehash256 = 1 " colorscheme molokai 256bit color background
+  colorscheme molokai
 else
   autocmd vimleavepre *.go !gofmt -w % " backup if fatih fails
 endif
@@ -222,6 +226,7 @@ map <F12> :set fdm=indent<CR>
 set rtp^=~/.vimpersonal
 set rtp^=~/.vimprivate
 
+
 "*****************************************************************************
 "" Visual Settings
 "*****************************************************************************
@@ -229,9 +234,6 @@ set rtp^=~/.vimprivate
 "colorscheme elflord "the best for high contrast streaming
 "colorscheme delek
 "colorscheme pablo
-let g:molokai_original = 1 "colorscheme from github background
-"let g:rehash256 = 1 " colorscheme molokai 256bit color background
-colorscheme molokai
 set background=dark
 "" makes github colorschemes transparent - needs to be after Plugin stuff
 hi! Normal ctermbg=NONE
