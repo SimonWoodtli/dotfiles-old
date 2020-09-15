@@ -2,6 +2,12 @@
 "use :set list to see text formation/structures (:set nolist)
 "to get into the command history (ex) in vim `: and then ctrl-p or ctrl-n`
 
+
+"*****************************************************************************
+"" Basic Setup
+"*****************************************************************************
+
+
 set number   "turn on line numbers (:set nu/:set nonu)
 "set norelativenumber " turns on relative line numbers, rob uses magic wands and section select instead of relative number.
 
@@ -48,14 +54,6 @@ set incsearch "to find them again `n`
 
 "makes your list characters prettier (set list)
 set listchars=tab:→\ ,eol:↲,nbsp:␣,space:·,trail:·,extends:⟩,precedes:⟨
-
-"colorscheme elflord "the best for high contrast streaming
-"colorscheme delek
-"colorscheme pablo
-let g:molokai_original = 1 "colorscheme from github background
-"let g:rehash256 = 1 " colorscheme molokai 256bit color background
-colorscheme molokai
-set background=dark
 
 set textwidth=73 "enough for line numbers + git gutter and spaces within 80 it forces you to write better code because you are limited by 73 char per line
 "copy & past between 2 files
@@ -114,8 +112,12 @@ set history=100
 "stops complaining when switching from buffer with changes
 set hidden
 
-"all the things from here on need syntax
+
+"*****************************************************************************
+"" ALL THE THINGS FROM HERE ON NEED SYNTAX ON
+"*****************************************************************************
 syntax enable
+
 
 "allow sensing the filetype
 filetype plugin on
@@ -219,5 +221,22 @@ map <F12> :set fdm=indent<CR>
 " read personal/private vim configuration (keep last to override)
 set rtp^=~/.vimpersonal
 set rtp^=~/.vimprivate
-" makes github colorschemes transparent - needs to be after Plugin stuff
+
+"*****************************************************************************
+"" Visual Settings
+"*****************************************************************************
+
+"colorscheme elflord "the best for high contrast streaming
+"colorscheme delek
+"colorscheme pablo
+let g:molokai_original = 1 "colorscheme from github background
+"let g:rehash256 = 1 " colorscheme molokai 256bit color background
+colorscheme molokai
+set background=dark
+"" makes github colorschemes transparent - needs to be after Plugin stuff
 hi! Normal ctermbg=NONE
+"" makes visual mode highlighting blue
+highlight Visual cterm=bold ctermbg=Blue ctermfg=NONE
+"" visual effect on F5 cursor line changed to underline
+hi clear CursorLine
+highlight CursorLine gui=underline cterm=underline
