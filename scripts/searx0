@@ -1,2 +1,2 @@
 #!/bin/sh
-lynx "searx.pofilo.fr/?q=$*"
+lynx "https://searx.gnu.style/?q=$*"
