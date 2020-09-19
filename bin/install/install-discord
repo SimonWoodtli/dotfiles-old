@@ -1,0 +1,13 @@
+#!/bin/sh
+
+## discord link
+URL=https://discord.com/api/download?platform=linux&format=deb
+
+## download deb
+echo "Downloading $URL"
+curl -sL "$URL" -o "/tmp/${URL##*/}"
+
+## install deb
+echo "Installing /tmp/${URL##*/}"
+sudo dpkg -i "/tmp/${URL##*/}"
+
