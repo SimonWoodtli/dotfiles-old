@@ -16,6 +16,7 @@ alias ls='ls -h --color=auto'
 alias grep='grep -i --colour=auto'
 alias egrep='egrep -i --colour=auto'
 alias fgrep='fgrep -i --colour=auto'
+alias doc='libreoffice'
 
 export REPOS=$HOME/Repos
 export DOWNLOADS=$HOME/Downloads
