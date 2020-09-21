@@ -1,0 +1,16 @@
+#!/usr/bin/python3
+from feedgen.feed import FeedGenerator
+import sys
+fg = FeedGenerator()
+fg.id('https://robs.io/')
+fg.title('rwxrob - Blog')
+fg.author( {'name':'Rob Muhlestein','email':'rwxrob@protonmail.com'} )
+fg.link( href='http://example.com', rel='alternate' )
+fg.logo('http://ex.com/logo.jpg')
+fg.subtitle('This is a cool feed!')
+fg.link( href='https://robs.io/', rel='self' )
+fg.language('en')
+rssfeed  = fg.rss_str(pretty=True) # Get the RSS feed as string
+
+x = rssfeed.decode("utf-8")
+sys.stdout.write(x)
