@@ -1,4 +1,10 @@
 #!/usr/bin/python3
+## import os, do a find on: h2 id=" and find title like that, then loop over them
+## you also need to curl whole html first to read from it.
+
+
+## the feedgenerator only creates the xml template. the search part needs to be done by me
+## currently this doesn't work: why? not send xml to stdout with print? or xml head has '' instead of "",
 from feedgen.feed import FeedGenerator
 import sys
 fg = FeedGenerator()
@@ -12,5 +18,5 @@ fg.link( href='https://robs.io/', rel='self' )
 fg.language('en')
 rssfeed  = fg.rss_str(pretty=True) # Get the RSS feed as string
 
-x = rssfeed.decode("utf-8")
-sys.stdout.write(x)
+print(rssfeed.decode("utf-8"))
+#sys.stdout.write(x)
