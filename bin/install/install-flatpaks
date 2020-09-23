@@ -1,3 +1,3 @@
 #!/bin/sh
 ## install yubikey-auth
-flatpak install flathub com.yubico.yubioath flatpak run net.ankiweb.Anki com.bitwarden.desktop com.vscodium.codium com.skype.Client org.audacityteam.Audacity org.kde.kdenlive io.github.Hexchat
+flatpak install flathub com.yubico.yubioath flatpak run net.ankiweb.Anki com.bitwarden.desktop com.vscodium.codium com.skype.Client org.audacityteam.Audacity org.kde.kdenlive io.github.Hexchat org.telegram.desktop
