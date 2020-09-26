@@ -13,6 +13,5 @@ ls -l $HOME/.ssh/config
 ln -sf $PWD/imwheelrc $HOME/.imwheelrc
 ls -l $HOME/.imwheelrc
 
-## maybe symlink not enough and hardlink required for this script
-ln -sf $PWD/scripts/havecmd $HOME/.local/bin/havecmd
+cp $PWD/scripts/havecmd $HOME/.local/bin/havecmd
 ls -l $HOME/.local/bin/havecmd
