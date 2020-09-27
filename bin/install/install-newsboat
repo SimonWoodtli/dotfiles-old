@@ -1,0 +1,4 @@
+#!/bin/sh
+## sxiv and urlscan needed for `linkhandler` to display pics and get urlmenu in terminal apps
+sudo apt update
+sudo apt install newsboat sxiv urlscan
