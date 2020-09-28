@@ -7,7 +7,7 @@
 "" Basic Setup
 "*****************************************************************************
 
-set number   "turn on line numbers (:set nu/:set nonu)
+set relativenumber   "turn on line numbers (:set nu/:set nonu)
 "set norelativenumber " turns on relative line numbers, rob uses magic wands and section select instead of relative number.
 
 " force me to set everything explicitly
@@ -206,7 +206,8 @@ map <C-h> <C-W>h
 map <C-l> <C-W>l
 
 " functions keys
-map <F1> :set number!<CR> :set relativenumber!<CR>
+"" can I cycle trough 3 commands with map? I want to add :set number! too
+map <F1> :set relativenumber!<CR> :set nonumber<CR>
 nmap <F2> :call <SID>SynStack()<CR>
 set pastetoggle=<F3>
 map <F4> :set list!<CR>
