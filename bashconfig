@@ -52,6 +52,8 @@ $HOME/.deno/bin:\
 export PYTHONDONTWRITEBYTECODE=1
 # Ignore duplicates in command history
 export HISTCONTROL=ignoredups
+# increase default 500 commands to 1000 in history
+export HISTSIZE=1000
 
 # CD into anywhere!
 # be sure not to remove ./ or stuff gets weird
