@@ -211,6 +211,7 @@ map <F1> :set relativenumber!<CR> :set nonumber<CR>
 nmap <F2> :call <SID>SynStack()<CR>
 set pastetoggle=<F3>
 map <F4> :set list!<CR>
+map <F6> :set number!<CR> :set relativenumber!<CR>
 map <F5> :set cursorline!<CR>
 map <F7> :set spell!<CR>
 map <F12> :set fdm=indent<CR>
