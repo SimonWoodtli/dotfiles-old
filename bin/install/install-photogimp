@@ -1,0 +1,20 @@
+#!/bin/sh
+## create variable for your system
+spruce_type=Flatpak
+
+## get correct link with jq
+URL=$(curl -s https://api.github.com/repos/Diolinux/PhotoGIMP/releases/latest | jq -r ".assets[] | select(.name | test(\"${spruce_type}\")) | .browser_download_url")
+
+## download zip
+echo "Downloading $URL"
+curl -sL "$URL" -o "/tmp/${URL##*/}"
+
+## unzipping
+echo "Installing /tmp/${URL##*/}"
+unzip "/tmp/${URL##*/}" -d $HOME
+
+## moving files
+rm -r $HOME/.var/app/org.gimp.GIMP/
+mv $HOME/"PhotoGIMP by Diolinux v2020 for Flatpak"/.var/app/org.gimp.GIMP/ $HOME/.var/app/
+mv $HOME/"PhotoGIMP by Diolinux v2020 for Flatpak"/.icons/* $HOME/.icons/
+mv $HOME/"PhotoGIMP by Diolinux v2020 for Flatpak"/.local/share/applications/* $HOME/.local/share/applications/
