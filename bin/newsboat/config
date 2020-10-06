@@ -47,15 +47,17 @@ macro c set browser "xsel -b <<<" ; open-in-browser ; set browser linkhandler
 macro C set browser "youtube-viewer --comments=%u" ; open-in-browser ; set browser linkhandler
 
 # hightlighting when reading article
-highlight all "---.*---" yellow
-highlight feedlist ".*(0/0))" black
-highlight article "(^Feed:.*|^Title:.*|^Author:.*)" cyan default bold
-highlight article "(^Link:.*|^Date:.*)" default default
-highlight article "https?://[^ ]+" green default
-highlight article "^(Title):.*$" blue default
-highlight article "\\[[0-9][0-9]*\\]" magenta default bold
-highlight article "\\[image\\ [0-9]+\\]" green default bold
-highlight article "\\[embedded flash: [0-9][0-9]*\\]" green default bold
-highlight article ":.*\\(link\\)$" cyan default
-highlight article ":.*\\(image\\)$" blue default
-highlight article ":.*\\(embedded flash\\)$" magenta default
+highlight article "^Feed:.*" color5 color234
+highlight article "^Title:.*" color3 color234 bold
+highlight article "^Author:.*" color2 color234
+highlight article "^Date:.*" color223 color234
+highlight article "^Link:.*" color32 color234
+highlight article "^Flags:.*" color9 color234
+highlight article "\\[[0-9][0-9]*\\]" color66 default bold
+highlight article "\\[image [0-9][0-9]*\\]" color109 default bold
+highlight article "\\[embedded flash: [0-9][0-9]*\\]" color66 default bold
+
+# Podboat items
+download-path "~/Downloads/%h/%n"
+max-downloads 3
+player "mpd"
