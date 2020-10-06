@@ -1,4 +1,4 @@
-# vi-mode for shell
+## vi-mode for shell
 set -o vi
 
 unalias -a
@@ -20,15 +20,15 @@ alias doc='libreoffice'
 
 export REPOS=$HOME/Repos
 export DOWNLOADS=$HOME/Downloads
-# used for `pdf` script
+## used for `pdf` script
 export PDFDIR=$HOME/Repos/gitlab.com/xnasero/books/work/essentials
 VERSION=v12.18.1
 DISTRO=linux-x64
 export PATH=/usr/local/lib/nodejs/node-$VERSION-/bin:$PATH
-# define GITUSER
+## define GITUSER
 havecmd git && export GITUSER="$(git config --global user.name)"
-# export PATH
-# be sure NOT to add ./ cuz it's unsafe
+## export PATH
+## be sure NOT to add ./ cuz it's unsafe
 export PATH=\
 $REPOS/gitlab.com/$GITUSER/dotfiles/scripts:\
 $REPOS/gitlab.com/$GITUSER/dotfiles/scripts_private:\
@@ -48,15 +48,15 @@ $HOME/.deno/bin:\
 /snap/bin:\
 /sbin:\
 /bin
-# stops python from producing annoying cache files
+## stops python from producing annoying cache files
 export PYTHONDONTWRITEBYTECODE=1
-# Ignore duplicates in command history
+## Ignore duplicates in command history
 export HISTCONTROL=ignoredups
-# increase default 500 commands to 1000 in history
+## increase default 500 commands to 1000 in history
 export HISTSIZE=1000
 
-# CD into anywhere!
-# be sure not to remove ./ or stuff gets weird
+## CD into anywhere!
+## be sure not to remove ./ or stuff gets weird
 export CDPATH=\
 ./:\
 $REPOS/gitlab.com/$GITUSER:\
@@ -72,7 +72,7 @@ $REPOS:\
 /media/$USER:\
 $HOME
 
-# Dircolors from Rob
+## Dircolors from Rob
 if havecmd dircolors; then
   if [ -r ~/.dircolors ]; then
     eval "$(dircolors -b ~/.dircolors)"
@@ -99,7 +99,7 @@ alias lr='ll -AR'      #  Recursive simple ls.
 alias lm='ls |more'    #  Pipe through 'more'
 alias lmr='lr |more'   #  Pipe through 'more'
 
-# CMD-prompt colors
+## CMD-prompt colors
 export glypharrow=$'\ue0b0'
 export glyphflames=$'\ue0c0'
 export glyphrounded=$'\ue0b4'
@@ -120,25 +120,35 @@ if [[ $EUID == 0 ]]; then
 else
   export PS1='\[$PS1u\]\u\[$PS1a\]@\[$PS1h\]\h\[$PS1c\]:\[$PS1w\]\w\[$PS1p\]$\[\033[00m\] '
 fi
-# IBUS/FCITX Config for chinese pinyin input either use fcitx or ibus
+## IBUS/FCITX Config for chinese pinyin input either use fcitx or ibus
 export GTK_IM_MODULE=IBUS
 export XMODIFIERS=@im=IBUS
 export QT_IM_MODULE=IBUS
 
-# open executable file wherever it is with "vic"
+## open executable file wherever it is with "vic"
 vic () {
   vi $(which $1);
 }
 
-# vim to vi alias
+## vim to vi alias
 which vim &>/dev/null && alias vi=vim
-# glovestar (ls **filename includes subdirectories)
+## glovestar (ls **filename includes subdirectories)
 shopt -s globstar
-# dotglob (the star (*) by default ignores the dot, with this setting the dot gets listed)
+## dotglob (the star (*) by default ignores the dot, with this setting the dot gets listed)
 shopt -s dotglob
 
+## no more `sudo ...` just `please ...` if you forgot sudo you can just
+## run `please`
+please() {
+	if [ "$1" ]; then
+		sudo $@
+	else
+		sudo "$BASH" -c "$(history -p !!)"
+	fi
+}
 
-# Detection of major operating systems.
+
+## Detection of major operating systems.
 [ -z "$OS" ] && export OS=`uname`
 case "$OS" in
   Linux)          export PLATFORM=linux ;;
