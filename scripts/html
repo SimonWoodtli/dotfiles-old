@@ -10,6 +10,15 @@ echo "<!DOCTYPE html>
     <link rel="stylesheet" href="css/style.css">
   </head>
   <body>
-    <h1>$title</h1>
+    <header>
+      <nav></nav>
+      <h1>$title</h1>
+      <h3>August 24&ndash;26th &mdash; Chicago, IL</h3>
+    </header>
+    <section class="hero container">
+    </section>
+    <footer>
+      <small>&copy; 2020 Simon Donald Woodtli. All rights reserved.</small>
+    </footer>
   </body>
 </html>"
