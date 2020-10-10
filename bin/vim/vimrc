@@ -207,6 +207,8 @@ map <C-l> <C-W>l
 
 " functions keys
 "" can I cycle trough 3 commands with map? I want to add :set number! too
+"" F8 turns off auto-indent, if just pasted from another source use:
+"" `:set paste` past it and `:set nopaste`
 map <F1> :set relativenumber!<CR> :set nonumber<CR>
 nmap <F2> :call <SID>SynStack()<CR>
 set pastetoggle=<F3>
@@ -214,6 +216,7 @@ map <F4> :set list!<CR>
 map <F6> :set number!<CR> :set relativenumber!<CR>
 map <F5> :set cursorline!<CR>
 map <F7> :set spell!<CR>
+nnoremap <F8> :setl noai nocin nosi inde=<CR>
 map <F12> :set fdm=indent<CR>
 " functions keys
 " map <F1> :set number!<CR> :set relativenumber!<CR>
