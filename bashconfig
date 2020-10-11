@@ -18,6 +18,7 @@ alias egrep='egrep -i --colour=auto'
 alias fgrep='fgrep -i --colour=auto'
 alias doc='libreoffice'
 
+export BROWSER=/usr/bin/lynx
 export REPOS=$HOME/Repos
 export DOWNLOADS=$HOME/Downloads
 ## used for `pdf` script
@@ -146,6 +147,24 @@ please() {
 		sudo "$BASH" -c "$(history -p !!)"
 	fi
 }
+
+rcom() {
+  reddio print comments/$1 | less
+}
+
+rtop() {
+  reddio print -f '$num. $id $title $url$nl' -l 10 -t month r/$1/top |
+boxes -d dog | less
+}
+rtopw() {
+  reddio print -f '$num. $id $title $url$nl' -l 10 -t week r/$1/top |
+boxes -d dog | less
+}
+
+rnew() {
+  reddio print -l 10 r/$1 | boxes -d dog | less
+}
+
 
 
 ## Detection of major operating systems.
