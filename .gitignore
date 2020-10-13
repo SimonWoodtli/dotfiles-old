@@ -2,3 +2,4 @@ scripts_private/
 bin/mutt/
 sshconfig
 bin/newsboat/urls
+gitconfig
