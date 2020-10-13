@@ -1,6 +1,10 @@
 #!/bin/sh
 
-# WARNING: Do *not* use Node unless you absolutely must.
+## WARNING: Do *not* use Node unless you absolutely must.
+## alternative:
+## 1. $ curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.36.0/install.sh | bash
+## 2. put the path displayed at end of script in your bashrc
+## 3. $ nvm install node (for the latest) or LTS-version: $ nvm install --lts
 
 rel=v13.12.0
 
