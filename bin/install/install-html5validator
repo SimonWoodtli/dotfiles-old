@@ -1,0 +1,4 @@
+#!/bin/sh
+## github.com/svenkreiss/html5validator
+## needs openjdk8
+pip3 install html5validator
