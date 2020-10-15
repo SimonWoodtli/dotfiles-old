@@ -17,7 +17,7 @@ alias grep='grep -i --colour=auto'
 alias egrep='egrep -i --colour=auto'
 alias fgrep='fgrep -i --colour=auto'
 alias doc='libreoffice'
-alias rall='reddio | boxes -d dog | less'
+alias ra='reddio | boxes -d dog | less'
 alias template='git clone git@gitlab.com:xnasero-private/www-template.git .'
 ## unintentionally pushed files to gitlab, 1. add to .gitignore 2. try
 ## `git rm -r` or `gri` to remove from entire commit history
@@ -153,21 +153,29 @@ please() {
 	fi
 }
 
-rcom() {
+rc() {
   reddio print comments/$1 | less
 }
 
-rtop() {
+rtm() {
   reddio print -f '$num. $id $title $url$nl' -l 10 -t month r/$1/top |
 boxes -d dog | less
 }
-rtopw() {
+rtw() {
   reddio print -f '$num. $id $title $url$nl' -l 10 -t week r/$1/top |
 boxes -d dog | less
 }
 
-rnew() {
+rn() {
   reddio print -l 10 r/$1 | boxes -d dog | less
+}
+
+htmlcheck() {
+  html5validator --root --show-warnings $3
+}
+
+csscheck() {
+  html5validator --root --show-warnings $1 --skip-non-css
 }
 
 
