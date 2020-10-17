@@ -28,6 +28,7 @@ export REPOS=$HOME/Repos
 export DOWNLOADS=$HOME/Downloads
 ## used for `pdf` script
 export PDFDIR=$HOME/Repos/gitlab.com/xnasero/books/work/essentials
+complete -C pdf pdf ## needed to make pdf script work
 VERSION=v12.18.1
 DISTRO=linux-x64
 export PATH=/usr/local/lib/nodejs/node-$VERSION-/bin:$PATH
