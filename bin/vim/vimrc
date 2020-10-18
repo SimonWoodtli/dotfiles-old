@@ -1,3 +1,9 @@
+" _    ___
+" | |  / (_)___ ___  __________
+" | | / / / __ `__ \/ ___/ ___/
+" | |/ / / / / / / / /  / /__
+" |___/_/_/ /_/ /_/_/   \___/
+"
 " use :so % to reload
 "use :set list to see text formation/structures (:set nolist)
 "to get into the command history (ex) in vim `: and then ctrl-p or ctrl-n`
@@ -7,13 +13,18 @@
 "" Basic Setup
 "*****************************************************************************
 
-set relativenumber   "turn on line numbers (:set nu/:set nonu)
-"set norelativenumber " turns on relative line numbers, rob uses magic wands and section select instead of relative number.
+"" Encoding
+set encoding=utf-8
+set fileencoding=utf-8
+set fileencodings=utf-8
+
+set number relativenumber   "hybrid numbers
 
 " force me to set everything explicitly
 let skip_defaults_vim=1
 
 set nocompatible "allow vim-y things
+
 
 set linebreak "this will wrap `` for long words even if new line is started
 set noshowmatch "no more little pause if you type brackets
@@ -111,8 +122,35 @@ set history=100
 "stops complaining when switching from buffer with changes
 set hidden
 
+"" Copy/Paste/Cut with system clipboard not just vim buffer
+if has('unnamedplus')
+  set clipboard=unnamed,unnamedplus
+endif
+"" Vmap for maintain Visual Mode after shifting > and <
+vmap < <gv
+vmap > >gv
+" Search mappings: These will make it so that going to the next one in a
+" search will center on the line it's found in.
+nnoremap n nzzzv
+nnoremap N Nzzzv
 
 "*****************************************************************************
+"" Abbreviations
+"*****************************************************************************
+"" no one is really happy until you have this shortcuts
+cnoreabbrev W! w!
+cnoreabbrev Q! q!
+cnoreabbrev Qall! qall!
+cnoreabbrev Wq wq
+cnoreabbrev Wa wa
+cnoreabbrev wQ wq
+cnoreabbrev WQ wq
+cnoreabbrev W w
+cnoreabbrev Q q
+cnoreabbrev Qall qall
+
+
+""*****************************************************************************
 "" ALL THE THINGS FROM HERE ON NEED SYNTAX ON
 "*****************************************************************************
 
@@ -133,12 +171,18 @@ if filereadable(expand("~/.vim/autoload/plug.vim"))
   Plug 'vim-pandoc/vim-pandoc'
   "Plug 'vim-pandoc/vim-pandoc-syntax'
   Plug 'https://gitlab.com/rwxrob/vim-pandoc-syntax-simple'
+  Plug 'vim-airline/vim-airline' "info footer
+  Plug 'preservim/nerdtree'
+  Plug 'airblade/vim-gitgutter'
+  Plug 'jiangmiao/auto-pairs' "auto parenthesis
+  Plug 'tpope/vim-surround' "auto parenthesis
+  Plug 'alvan/vim-closetag' "html close tags
+  "Plug 'tpope/vim-fugitive'
   "Plug 'cespare/vim-toml'
   "Plug 'fatih/vim-go'
-  "Plug 'airblade/vim-gitgutter'
   "Plug 'PProvost/vim-ps1'
   "Plug 'morhetz/gruvbox'
-  Plug 'tomasr/molokai'
+  Plug 'tomasr/molokai' "color scheme
   call plug#end()
   let g:go_fmt_fail_silently = 0 " let me out even with errors
   let g:go_fmt_command = 'goimports' " autoupdate import
@@ -172,7 +216,7 @@ au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe
 
 " Automatically delets all trailing whitespace on save.
 autocmd BufWritePre * %s/\s\+$//e
-" change leader to: ,
+" change mapleader to: ,
 let mapleader =","
 
 
@@ -205,14 +249,13 @@ map <C-h> <C-W>h
 map <C-l> <C-W>l
 
 " functions keys
-"" can I cycle trough 3 commands with map? I want to add :set number! too
-map <F1> :set relativenumber!<CR> :set nonumber<CR>
+map <F1> :set number! relativenumber!<CR>
 nmap <F2> :call <SID>SynStack()<CR>
 set pastetoggle=<F3> "" toggle autoindent on/off (:set paste, :set nopaste)
 map <F4> :set list!<CR>
-map <F6> :set number!<CR> :set relativenumber!<CR>
 map <F5> :set cursorline!<CR>
 map <F7> :set spell!<CR>
+map <F8> :NERDTreeToggle<CR>
 map <F12> :set fdm=indent<CR>
 
 " read personal/private vim configuration (keep last to override)
@@ -222,6 +265,9 @@ set rtp^=~/.vimprivate
 "*****************************************************************************
 "" Visual Settings
 "*****************************************************************************
+
+" set  256bit color mode
+set t_Co=256
 
 "colorscheme elflord "the best for high contrast streaming
 "colorscheme delek
