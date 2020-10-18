@@ -1,4 +1,5 @@
 scripts_private/
+bin/install/install-private/
 bin/mutt/
 sshconfig
 bin/newsboat/urls
