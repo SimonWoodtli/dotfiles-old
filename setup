@@ -16,5 +16,8 @@ ls -l $HOME/.imwheelrc
 ln -sf $PWD/gitconfig $HOME/.gitconfig
 ls -l $HOME/.gitconfig
 
+ln -sf $PWD/inputrc $HOME/.inputrc
+ls -l $HOME/.inputrc
+
 cp $PWD/scripts/havecmd $HOME/.local/bin/havecmd
 ls -l $HOME/.local/bin/havecmd
