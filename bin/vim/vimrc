@@ -181,17 +181,17 @@ if filereadable(expand("~/.vim/autoload/plug.vim"))
   "Plug 'cespare/vim-toml'
   "Plug 'fatih/vim-go'
   "Plug 'PProvost/vim-ps1'
-  "Plug 'morhetz/gruvbox'
-  Plug 'tomasr/molokai' "color scheme
+  Plug 'morhetz/gruvbox' "color scheme
+  "Plug 'tomasr/molokai' "color scheme
   call plug#end()
   let g:go_fmt_fail_silently = 0 " let me out even with errors
   let g:go_fmt_command = 'goimports' " autoupdate import
   let g:go_fmt_autosave = 1
   "set background=dark
-  "colorscheme gruvbox
-  let g:molokai_original = 1 "colorscheme from github background
+  colorscheme gruvbox
+  "let g:molokai_original = 1 "colorscheme from github background
   "let g:rehash256 = 1 " colorscheme molokai 256bit color background
-  colorscheme molokai
+  "colorscheme molokai
 else
   autocmd vimleavepre *.go !gofmt -w % " backup if fatih fails
 endif
@@ -242,6 +242,10 @@ inoremap <right> <NOP>
 "get urlscan menu in vim
 noremap <leader>u :w<Home>silent <End> !urlscan<CR>
 
+" xclip copy/paste from X11 clipboard
+vmap <leader>xyy :!xclip -f -sel clip<CR>
+map <leader>xpp mz: -1r !xclip -o -sel clip<CR>`z
+
 " pane switching
 map <C-j> <C-W>j
 map <C-k> <C-W>k
@@ -268,6 +272,7 @@ set rtp^=~/.vimprivate
 
 " set  256bit color mode
 set t_Co=256
+set termguicolors
 
 "colorscheme elflord "the best for high contrast streaming
 "colorscheme delek
