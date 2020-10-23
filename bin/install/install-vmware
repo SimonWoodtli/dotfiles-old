@@ -1,0 +1,5 @@
+#!/bin/sh
+curl -LJ -o /tmp/vmware.bundle https://www.vmware.com/go/getworkstation-linux
+cd /tmp
+sudo chmod u+x vmware.bundle
+sudo ./vmware.bundle
