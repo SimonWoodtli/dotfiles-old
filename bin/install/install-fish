@@ -1,0 +1,12 @@
+#!/bin/sh
+## install dependencies
+sudo apt-get install libncurses5-dev libncursesw5-dev
+## there might be more needed check the error log next time you reinstall a distro
+sudo cpan App::cpanminus
+cpanm Curses::Window
+cpanm Term::Animation
+
+## get fish script
+curl -LJ -o $HOME/.local/bin/fish https://robobunny.com/projects/asciiquarium/asciiquarium
+## chmod it
+chmod u+x $HOME/.local/bin/fish
