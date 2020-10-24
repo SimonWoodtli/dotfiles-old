@@ -11,19 +11,17 @@ alias ?=searx0
 alias mupdf='mupdf -I'
 alias mutt=neomutt
 alias vlc='flatpak run org.videolan.VLC'
-alias steam="/usr/games/steam"
 alias ls='ls -h --color=auto'
 alias grep='grep -i --colour=auto'
 alias egrep='egrep -i --colour=auto'
 alias fgrep='fgrep -i --colour=auto'
 alias doc='libreoffice'
 alias ra='reddio | boxes -d dog | less'
-alias template='git clone git@gitlab.com:xnasero-private/www-template.git .'
 
 ## Git
 ## unintentionally pushed files to gitlab, 1. add to .gitignore 2. try
 ## `git rm -r` or `gri` to remove from entire commit history
-alias gri="git ls-files --ignored --exclude-standard | xargs -0 git rm -r" # if $git rm -r is not enough
+alias gri='git ls-files --ignored --exclude-standard | xargs -0 git rm -r' # if $git rm -r is not enough
 alias ga='git add'
 alias gs='git status'
 alias gpl='git pull'
@@ -188,6 +186,12 @@ htmlcheck() {
 csscheck() {
   html5validator --root --show-warnings $1 --skip-non-css
 }
+
+template() {
+  git clone git@gitlab.com:xnasero-private/www-template.git www && cd $_
+  rm -rf .git
+}
+
 
 
 
