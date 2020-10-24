@@ -1,0 +1,15 @@
+#!/bin/bash
+## install dependencies
+sudo apt install -y xorg-dev freeglut3-dev
+## create dir
+cd ~/Repos/github.com
+  mkdir git.ghostscript.com
+  cd git.ghostscript.com
+## clone recursively (including all submodules)
+git clone --recursive git://git.ghostscript.com/mupdf
+## force submodules to update too
+cd mupdf
+  git submodule update --init
+## install
+sudo make prefix=/usr/local install
+
