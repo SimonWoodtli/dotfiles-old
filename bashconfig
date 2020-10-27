@@ -167,12 +167,10 @@ rc() {
 }
 
 rtm() {
-  reddio print -f '$num. $id $title $url$nl' -l 10 -t month r/$1/top |
-boxes -d dog | less
+  reddio print -l 10 -t month r/$1/top | boxes -d dog | less
 }
 rtw() {
-  reddio print -f '$num. $id $title $url$nl' -l 10 -t week r/$1/top |
-boxes -d dog | less
+  reddio print -l 10 -t week r/$1/top | boxes -d dog | less
 }
 
 rn() {
