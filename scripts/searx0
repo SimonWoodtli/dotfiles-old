@@ -1,2 +1,2 @@
 #!/bin/sh
-lynx "https://searx.gnu.style/?q=$*"
+lynx "https://searx.lukesmith.xyz/?q=$*"
