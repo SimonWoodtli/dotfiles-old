@@ -11,6 +11,7 @@ alias ?=searx0
 alias mupdf='mupdf -I'
 alias mutt=neomutt
 alias vlc='flatpak run org.videolan.VLC'
+alias browsersync='browser-sync start --server --files "*.html, css/*.css"'
 alias ls='ls -h --color=auto'
 alias grep='grep -i --colour=auto'
 alias egrep='egrep -i --colour=auto'
