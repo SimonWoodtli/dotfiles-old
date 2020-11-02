@@ -220,7 +220,13 @@ au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe
 autocmd BufWritePre * %s/\s\+$//e
 
 " change mapleader to: ,
-let mapleader =","
+let mapleader ="\<Space>"
+
+"" needed for spacebar leader, to avoid character move with spacebar
+nnoremap <SPACE> <Nop>
+" xclip copy/paste from X11 clipboard
+vmap <Leader>yy :!xclip -f -sel clip<CR>
+map <leader>pp mz: -1r !xclip -o -sel clip<CR>`z
 
 " displays all the syntax rules for current position, useful
 " when writing vimscript syntax plugins (F2)
@@ -252,9 +258,6 @@ inoremap <right> <NOP>
 "get urlscan menu in vim
 noremap <leader>u :w<Home>silent <End> !urlscan<CR>
 
-" xclip copy/paste from X11 clipboard
-vmap <leader>yy :!xclip -f -sel clip<CR>
-map <leader>pp mz: -1r !xclip -o -sel clip<CR>`z
 
 " pane switching
 map <C-j> <C-W>j
