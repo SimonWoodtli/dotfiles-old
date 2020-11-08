@@ -1,2 +1,2 @@
 #!/bin/sh
-flatpak install flathub net.ankiweb.Anki com.vscodium.codium com.skype.Client org.audacityteam.Audacity org.kde.kdenlive io.github.Hexchat org.gimp.GIMP io.lbry.lbry-app
+flatpak install flathub net.ankiweb.Anki com.vscodium.codium com.skype.Client org.audacityteam.Audacity org.kde.kdenlive io.github.Hexchat org.gimp.GIMP io.lbry.lbry-app org.videolan.VLC
