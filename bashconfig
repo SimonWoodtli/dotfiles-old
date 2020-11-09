@@ -9,6 +9,7 @@ alias mv="mv -n" # sets noclobber for mv so you don't delete file when moving th
 alias top=htop
 alias ?=searx0
 alias mupdf='mupdf -I'
+alias emacs='emacs -nw'
 alias mutt=neomutt
 alias vlc='flatpak run org.videolan.VLC'
 alias browsersync='browser-sync start --server --files "*.html, css/*.css"'
