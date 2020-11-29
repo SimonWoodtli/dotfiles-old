@@ -305,3 +305,5 @@ hi clear CursorLine
 highlight CursorLine gui=underline cterm=underline
 "" makes github colorschemes transparent - needs to be after Plugin stuff
 hi Normal ctermbg=NONE
+hi! NonText ctermbg=NONE guibg=NONE
+hi! Normal ctermbg=NONE guibg=NONE
