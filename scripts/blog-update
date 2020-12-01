@@ -1,0 +1,6 @@
+#!/bin/bash
+
+place=$HOME/Repos/gitlab.com/$GITUSER/webdev/www-simondev/
+
+insert=$(grep "<li>" "$place/blogindex.html" | sed 5q | tr -d '\n' | sed -e 's/[\/&]/\\&/g')
+sed -i "s/<!-- blog -->.*/<!-- blog -->$insert/g" $place/index.html

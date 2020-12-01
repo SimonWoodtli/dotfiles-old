@@ -1,0 +1,6 @@
+#!/bin/sh
+from=$(lastpic)
+to="$PWD/$1"
+mv "$from" "$to"
+telln "*From:* ***$from***\n*To:   **$to**"
+
