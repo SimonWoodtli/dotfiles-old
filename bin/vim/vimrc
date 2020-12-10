@@ -169,38 +169,49 @@ endif
 if filereadable(expand("~/.vim/autoload/plug.vim"))
   call plug#begin('~/.vimplugins')
   Plug 'vim-pandoc/vim-pandoc'
-  "Plug 'vim-pandoc/vim-pandoc-syntax'
+  "Plug 'neoclide/coc.nvim', {'branch': 'release'} "powerful autocomplete
   Plug 'https://gitlab.com/rwxrob/vim-pandoc-syntax-simple'
   Plug 'vim-airline/vim-airline' "info footer
   Plug 'preservim/nerdtree'
-  Plug 'flazz/vim-colorschemes' "lots of colorschemes
   Plug 'gko/vim-coloresque' " css picked color have color-box preview
   Plug 'ctrlpvim/ctrlp.vim' " C-p to search and open files within vim
   Plug 'prettier/vim-prettier' "auto wrapper to format code nice
   Plug 'vim-scripts/UltiSnips' "auto complete
   Plug 'tpope/vim-surround' "change single to double quotes: cs'\"
-
   "Plug 'airblade/vim-gitgutter' "shows changed/added lines from git
-  "Plug 'prettier/vim-prettier' "format code js, html, css
   "make sure to add js eslint as well
-  "Plug 'jiangmiao/auto-pairs' "auto parenthesis
-  Plug 'tpope/vim-surround' "auto parenthesis
   Plug 'alvan/vim-closetag' "html close tags
+  Plug 'sheerun/vim-polyglot' " better syntax highlighting for many lang
+
+  " colorschemes
+  Plug 'morhetz/gruvbox' "color scheme
+  Plug 'HerringtonDarkholme/yats.vim' " correct syntax hightlight for gruvbox
+  "Plug 'tomasr/molokai' "color scheme
+  "Plug 'flazz/vim-colorschemes' "lots of colorschemes
+
   "Plug 'tpope/vim-fugitive'
   "Plug 'cespare/vim-toml'
   "Plug 'fatih/vim-go'
   "Plug 'PProvost/vim-ps1'
-  Plug 'morhetz/gruvbox' "color scheme
-  "Plug 'tomasr/molokai' "color scheme
   call plug#end()
+  set nocompatible "needed for vim-polygot
+  colorscheme gruvbox
+  "set background=dark
+  "colorscheme molokai
+  "let g:molokai_original = 1 "colorscheme from github background
+  "let g:rehash256 = 1 " colorscheme molokai 256bit color background
   let g:go_fmt_fail_silently = 0 " let me out even with errors
   let g:go_fmt_command = 'goimports' " autoupdate import
   let g:go_fmt_autosave = 1
-  "set background=dark
-  "colorscheme molokai
-  colorscheme gruvbox
-  "let g:molokai_original = 1 "colorscheme from github background
-  "let g:rehash256 = 1 " colorscheme molokai 256bit color background
+
+  " coc autocomplete config
+  " let g:coc_global_extensions = [
+  " \ 'coc-snippets',
+  " \ 'coc-tsserver',
+  " \ 'coc-eslint',
+  " \ 'coc-prettier',
+  " \ 'coc-json',
+  " \ ]
 else
   autocmd vimleavepre *.go !gofmt -w % " backup if fatih fails
 endif
