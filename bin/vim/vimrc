@@ -20,6 +20,7 @@ set fileencodings=utf-8
 
 set number relativenumber   "hybrid numbers
 
+set ignorecase "ignore case of letters (easier to search)
 " force me to set everything explicitly
 let skip_defaults_vim=1
 
@@ -52,6 +53,10 @@ set viminfo='20,<1000,s1000 "increase yank buffer size if you want to yank from 
 set nobackup
 set nowritebackup
 set noswapfile
+
+"autocompletion for ex commands with tabs *super useful*
+set wildmode=longest,list,full
+
 
 "sync terminal title with current file edited
 set icon
@@ -246,6 +251,9 @@ nnoremap <SPACE> <Nop>
 vmap <Leader>yy :!xclip -f -sel clip<CR>
 map <leader>pp mz: -1r !xclip -o -sel clip<CR>`z
 
+"vertically center document when entering insert mode
+autocmd InsertEnter * norm zz
+
 " displays all the syntax rules for current position, useful
 " when writing vimscript syntax plugins (F2)
 function! <SID>SynStack()
@@ -293,6 +301,13 @@ map <F7> :set spell!<CR>
 map <F8> :NERDTreeToggle<CR>
 map <F12> :set fdm=indent<CR>
 
+" enable and disable auto comment
+map <leader>c formatoptions-=cro<CR>
+map <leader>C formatoptions=cro<CR>
+
+" search and replace [foo] to [foo1] globally
+nnoremap S :%s//gI<Left><Left><Left>
+
 " read personal/private vim configuration (keep last to override)
 set rtp^=~/.vimpersonal
 set rtp^=~/.vimprivate
@@ -313,7 +328,12 @@ set background=dark
 highlight Visual cterm=bold ctermbg=Blue ctermfg=NONE
 "" visual effect on F5 cursor line changed to underline
 hi clear CursorLine
-highlight CursorLine gui=underline cterm=underline
+"highlight CursorLine gui=underline cterm=underline
+set cursorline
+set cursorcolumn
+highlight CursorLine ctermbg=Yellow cterm=bold guibg=#2b2b2b
+highlight CursorColumn ctermbg=Yellow cterm=bold guibg=#2b2b2b
+
 "" makes github colorschemes transparent - needs to be after Plugin stuff
 hi Normal ctermbg=NONE
 hi! NonText ctermbg=NONE guibg=NONE
