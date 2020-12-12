@@ -26,7 +26,6 @@ let skip_defaults_vim=1
 
 set nocompatible "allow vim-y things
 
-
 set linebreak "this will wrap `` for long words even if new line is started
 set noshowmatch "no more little pause if you type brackets
 set foldmethod=manual " manual foldingdefault (zf/zd)
@@ -57,15 +56,13 @@ set noswapfile
 "autocompletion for ex commands with tabs *super useful*
 set wildmode=longest,list,full
 
-
 "sync terminal title with current file edited
 set icon
 
 "search settings:
 set hlsearch "all the /searchterms get highlighted on your display
 set nohlsearch "to turn the highligted searchterms off :noh
-set incsearch "to find them again `n`
-
+set incsearch "to loop through all the searched elements with `n/N`
 
 "makes your list characters prettier (set list)
 set listchars=tab:→\ ,eol:↲,nbsp:␣,space:·,trail:·,extends:⟩,precedes:⟨
@@ -86,13 +83,11 @@ set viminfo='20,<1000,s1000 " prevents truncated yanks, deletes, etc.
 
 " if you make an empty hyperlinked name in markdown: [searchterm]() and close vi again it will make it searchable on duckduck
 
-
 "low level settings (detailed stuff)
 " Just the defaults, these are changed per filetype by plugins.
 " Most of the utility of all of this has been superceded by the use of
 " modern simplified pandoc for capturing knowledge source instead of
 " arbitrary raw text files.
-
 set formatoptions-=t   " don't auto-wrap text using text width
 set formatoptions+=c   " autowrap comments using textwidth with leader
 set formatoptions-=r   " don't auto-insert comment leader on enter in insert
@@ -116,7 +111,6 @@ autocmd FileType markdown nmap <buffer><silent> <leader>p :call mdip#MarkdownCli
 " there are some defaults for image directory and image name, you can change them
 let g:mdip_imgdir = '/home/Repos/gitlab.com/xnasero/notes/img'
 " let g:mdip_imgname = 'image'
-"
 if $PLATFORM == 'mac'
   " required for mac delete to work
   set backspace=indent,eol,start
@@ -284,7 +278,6 @@ inoremap <right> <NOP>
 "get urlscan menu in vim
 noremap <leader>u :w<Home>silent <End> !urlscan<CR>
 
-
 " pane switching
 map <C-j> <C-W>j
 map <C-k> <C-W>k
@@ -294,16 +287,12 @@ map <C-l> <C-W>l
 " functions keys
 map <F1> :set number! relativenumber!<CR>
 nmap <F2> :call <SID>SynStack()<CR>
-set pastetoggle=<F3> "" toggle autoindent on/off (:set paste, :set nopaste)
+set pastetoggle=<F3> "" toggle autoindent+autocomment on/off (:set paste, :set nopaste)
 map <F4> :set list!<CR>
-map <F5> :set cursorline!<CR>
+map <F5> :set cursorline! cursorcolumn!<CR>
 map <F7> :set spell!<CR>
 map <F8> :NERDTreeToggle<CR>
 map <F12> :set fdm=indent<CR>
-
-" enable and disable auto comment
-map <leader>c formatoptions-=cro<CR>
-map <leader>C formatoptions=cro<CR>
 
 " search and replace [foo] to [foo1] globally
 nnoremap S :%s//gI<Left><Left><Left>
@@ -311,6 +300,12 @@ nnoremap S :%s//gI<Left><Left><Left>
 " read personal/private vim configuration (keep last to override)
 set rtp^=~/.vimpersonal
 set rtp^=~/.vimprivate
+
+
+" ctrlp ignores these files
+let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
+" no cache performance fix
+let g:ctrlp_use_caching = 0
 
 "*****************************************************************************
 "" Visual Settings
