@@ -132,10 +132,21 @@ export PS1p=$'\033[38;2;218;165;32m'
 export PS1P=$'\033[38;2;255;0;0m'
 export PS1U=$PS1P
 
+## emoji array
+emojis=(🤖 👾 🤮 🤑 🤡 💩 👽 🥳 🤩 🤣 🤔 🖖 🙏 🧘 🛹 🛶 🥊 🎿 🎸  🤹  🐶 🐹 🐰 🦊 🐻 🐼 🐨 🐯 🦁
+🐷 🐸 🐔 🐧 🐄 🦘 🦭 🤌 🐤🦔 🐣 🦖 🦬  🦝 🦨 🐉 🦤  🍄 🐁 🦫  🍁 🐙 🦑 🐞 🪰 🐌  🐛 🦄 🐍 🐢 🐇 🦧 🦓 🦣 🐓 🌈 🥑 🥦 🍎 🥝 🍍 🍣)
+
+
+## emoji function to grab and print random emoji
+emojiPicker() {
+  grabEmoji=${emojis[$RANDOM % ${#emojis[@]}]};
+  echo $grabEmoji;
+}
+
 if [[ $EUID == 0 ]]; then
-  export PS1='\[$PS1U\]\u\[$PS1a\]@\[$PS1h\]\h\[$PS1c\]:\[$PS1w\]\w\[$PS1P\]#\[\033[00m\] '
+  export PS1='$(emojiPicker) \[$PS1U\]\u\[$PS1a\]@\[$PS1h\]\h\[$PS1c\]:\[$PS1w\]\w\[$PS1P\]#\[\033[00m\] '
 else
-  export PS1='\[$PS1u\]\u\[$PS1a\]@\[$PS1h\]\h\[$PS1c\]:\[$PS1w\]\w\[$PS1p\]$\[\033[00m\] '
+  export PS1='$(emojiPicker) \[$PS1u\]\u\[$PS1a\]@\[$PS1h\]\h\[$PS1c\]:\[$PS1w\]\w\[$PS1p\]$\[\033[00m\] '
 fi
 ## IBUS/FCITX Config for chinese pinyin input either use fcitx or ibus
 export GTK_IM_MODULE=IBUS
