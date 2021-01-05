@@ -19,5 +19,10 @@ ls -l $HOME/.gitconfig
 ln -sf $PWD/inputrc $HOME/.inputrc
 ls -l $HOME/.inputrc
 
-cp $PWD/scripts/havecmd $HOME/.local/bin/havecmd
+if [ -d $HOME/.local/bin/ ]; then
+    cp $PWD/scripts/havecmd $HOME/.local/bin/havecmd
+else
+    mkdir $HOME/.local/bin/
+    cp $PWD/scripts/havecmd $HOME/.local/bin/havecmd
+fi
 ls -l $HOME/.local/bin/havecmd
