@@ -175,13 +175,11 @@ if filereadable(expand("~/.vim/autoload/plug.vim"))
   Plug 'https://gitlab.com/rwxrob/vim-pandoc-syntax-simple'
   Plug 'vim-airline/vim-airline' "info footer
   Plug 'preservim/nerdtree'
-  Plug 'gko/vim-coloresque' " css picked color have color-box preview
+  "Plug 'gko/vim-coloresque' " css picked color have color-box preview
   Plug 'ctrlpvim/ctrlp.vim' " C-p to search and open files within vim
   Plug 'vim-scripts/UltiSnips' "auto complete
-  Plug 'prettier/vim-prettier', { 'do': 'npm install' }
+  "Plug 'prettier/vim-prettier', { 'do': 'npm install' }
   Plug 'tpope/vim-surround' "change single to double quotes: cs'\"
-  "Plug 'airblade/vim-gitgutter' "shows changed/added lines from git
-  "make sure to add js eslint as well
   Plug 'alvan/vim-closetag' "html close tags
   Plug 'sheerun/vim-polyglot' " better syntax highlighting for many lang
 
