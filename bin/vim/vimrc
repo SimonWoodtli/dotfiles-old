@@ -327,7 +327,7 @@ hi clear CursorLine
 "highlight CursorLine gui=underline cterm=underline
 set cursorline
 set cursorcolumn
-highlight CursorLine ctermbg=Yellow cterm=bold guibg=#2b2b2b
+highlight CursorLine ctermbg=Yellow guibg=#2b2b2b
 highlight CursorColumn ctermbg=Yellow cterm=bold guibg=#2b2b2b
 
 "" makes github colorschemes transparent - needs to be after Plugin stuff
