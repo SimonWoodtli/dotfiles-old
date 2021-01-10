@@ -174,7 +174,21 @@ if filereadable(expand("~/.vim/autoload/plug.vim"))
   "Plug 'neoclide/coc.nvim', {'branch': 'release'} "powerful autocomplete
   Plug 'https://gitlab.com/rwxrob/vim-pandoc-syntax-simple'
   Plug 'vim-airline/vim-airline' "info footer
+  Plug 'vim-airline/vim-airline-themes'
   Plug 'preservim/nerdtree'
+  Plug 'Xuyuanp/nerdtree-git-plugin'
+  let g:NERDTreeGitStatusIndicatorMapCustom = {
+                \ 'Modified'  :'✹',
+                \ 'Staged'    :'✚',
+                \ 'Untracked' :'✭',
+                \ 'Renamed'   :'➜',
+                \ 'Unmerged'  :'═',
+                \ 'Deleted'   :'✖',
+                \ 'Dirty'     :'✗',
+                \ 'Ignored'   :'☒',
+                \ 'Clean'     :'✔︎',
+                \ 'Unknown'   :'?',
+                \ }
   "Plug 'gko/vim-coloresque' " css picked color have color-box preview
   Plug 'ctrlpvim/ctrlp.vim' " C-p to search and open files within vim
   Plug 'vim-scripts/UltiSnips' "auto complete
@@ -182,6 +196,11 @@ if filereadable(expand("~/.vim/autoload/plug.vim"))
   Plug 'tpope/vim-surround' "change single to double quotes: cs'\"
   Plug 'alvan/vim-closetag' "html close tags
   Plug 'sheerun/vim-polyglot' " better syntax highlighting for many lang
+  Plug 'dense-analysis/ale' "JS linter :ALEToggle
+  Plug 'elzr/vim-json' "better syntax for json
+  "Plug '/MaxMEllon/vim-jsx-pretty' "react syntax highlighting
+  "Plug 'xolox/vim-easytags' "Ctag automater
+  "Plug 'majutsushi/tagbar' "tags in memory
 
   " colorschemes
   Plug 'morhetz/gruvbox' "color scheme
@@ -294,6 +313,17 @@ map <F5> :set cursorline! cursorcolumn!<CR>
 map <F7> :set spell!<CR>
 map <F8> :NERDTreeToggle<CR>
 map <F12> :set fdm=indent<CR>
+
+"" NERDTree configuration
+let g:NERDTreeChDirMode=2
+let g:NERDTreeIgnore=['\.rbc$', '\~$', '\.pyc$', '\.db$', '\.sqlite$', '__pycache__']
+let g:NERDTreeSortOrder=['^__\.py$', '\/$', '*', '\.swp$', '\.bak$', '\~$']
+let g:NERDTreeShowBookmarks=1
+let g:nerdtree_tabs_focus_on_files=1
+" let g:NERDTreeMapOpenInTab='<ENTER>'
+let g:NERDTreeMapOpenInTabSilent = '<RightMouse>'
+let g:NERDTreeWinSize = 50
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.pyc,*.db,*.sqlite
 
 " search and replace [foo] to [foo1] globally
 nnoremap S :%s//gI<Left><Left><Left>
