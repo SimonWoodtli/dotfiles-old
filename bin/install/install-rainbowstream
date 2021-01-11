@@ -1,0 +1,3 @@
+#!/bin/sh
+sudo apt install python-dev python-pip3 libjpeg-dev libfreetype6 libfreetype6-dev zlib1g-dev
+sudo pip3 install rainbowstream
