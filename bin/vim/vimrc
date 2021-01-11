@@ -200,13 +200,35 @@ if filereadable(expand("~/.vim/autoload/plug.vim"))
   Plug 'elzr/vim-json' "better syntax for json
   "Plug '/MaxMEllon/vim-jsx-pretty' "react syntax highlighting
   "Plug 'xolox/vim-easytags' "Ctag automater
-  "Plug 'majutsushi/tagbar' "tags in memory
+  Plug 'majutsushi/tagbar' "tags in memory
 
-  " colorschemes
+  "" colorschemes
   Plug 'morhetz/gruvbox' "color scheme
   Plug 'HerringtonDarkholme/yats.vim' " correct syntax hightlight for gruvbox
   "Plug 'tomasr/molokai' "color scheme
   "Plug 'flazz/vim-colorschemes' "lots of colorschemes
+
+
+  "" Javascript Bundle
+  "Plug 'jelera/vim-javascript-syntax'
+
+  " C
+  "Plug 'vim-scripts/c.vim', {'for': ['c', 'cpp']}
+  "Plug 'ludwig/split-manpage.vim'
+
+
+  " python
+  "" Python Bundle
+  "Plug 'davidhalter/jedi-vim'
+  "Plug 'raimon49/requirements.txt.vim', {'for': 'requirements'}
+  "Plug 'plytophogy/vim-virtualenv'
+  " Plug 'python-mode/python-mode'
+
+  " html
+  "Plug 'hail2u/vim-css3-syntax'
+  "Plug 'gorodinskiy/vim-coloresque'
+  "Plug 'tpope/vim-haml'
+  "Plug 'mattn/emmet-vim'
 
   "Plug 'tpope/vim-fugitive'
   "Plug 'cespare/vim-toml'
@@ -298,11 +320,38 @@ inoremap <right> <NOP>
 "get urlscan menu in vim
 noremap <leader>u :w<Home>silent <End> !urlscan<CR>
 
-" pane switching
+"" pane switching
 map <C-j> <C-W>j
 map <C-k> <C-W>k
 map <C-h> <C-W>h
 map <C-l> <C-W>l
+
+"" Git
+noremap <Leader>ga :Gwrite<CR>
+noremap <Leader>gc :Gcommit<CR>
+noremap <Leader>gsh :Gpush<CR>
+noremap <Leader>gll :Gpull<CR>
+noremap <Leader>gs :Gstatus<CR>
+noremap <Leader>gb :Gblame<CR>
+noremap <Leader>gd :Gvdiff<CR>
+noremap <Leader>gr :Gremove<CR>
+
+" Ale
+let g:ale_linters = {
+\	'python': ['flake8', 'pylint'],
+\   'javascript': ['eslint'],
+\   'typescript': ['tslint'],
+\   'html': ['tidy']
+\}
+let g:airline#extensions#ale#enabled = 1
+let g:ale_echo_msg_format = '[%linter%] %...code...% >> %s [%severity%]'
+let g:ale_lint_delay = 500
+let g:ale_fixers = {
+\	'python': ['autopep8', 'yapf']
+\}
+" nmap <silent> <C-k> <Plug>(ale_previous_wrap)
+" nmap <silent> <C-j> <Plug>(ale_next_wrap)
+
 
 " functions keys
 map <F1> :set number! relativenumber!<CR>
@@ -313,6 +362,10 @@ map <F5> :set cursorline! cursorcolumn!<CR>
 map <F7> :set spell!<CR>
 map <F8> :NERDTreeToggle<CR>
 map <F12> :set fdm=indent<CR>
+" nmap <silent> <F4> :TagbarToggle<CR>
+" nmap <F4> :TagbarToggle<CR>
+nmap <F9> :TagbarToggle<CR>
+let g:tagbar_autofocus = 1
 
 "" NERDTree configuration
 let g:NERDTreeChDirMode=2
@@ -341,6 +394,44 @@ let g:ctrlp_use_caching = 0
 "*****************************************************************************
 "" Visual Settings
 "*****************************************************************************
+"
+" vim-airline
+let g:airline#extensions#virtualenv#enabled = 1
+
+if !exists('g:airline_symbols')
+  let g:airline_symbols = {}
+endif
+
+if !exists('g:airline_powerline_fonts')
+  let g:airline#extensions#tabline#left_sep = ' '
+  let g:airline#extensions#tabline#left_alt_sep = '|'
+  let g:airline_left_sep          = '▶'
+  let g:airline_left_alt_sep      = '»'
+  let g:airline_right_sep         = '◀'
+  let g:airline_right_alt_sep     = '«'
+  let g:airline#extensions#branch#prefix     = '⤴' "➔, ➥, ⎇
+  let g:airline#extensions#readonly#symbol   = '⊘'
+  let g:airline#extensions#linecolumn#prefix = '¶'
+  let g:airline#extensions#paste#symbol      = 'ρ'
+  let g:airline_symbols.linenr    = '␊'
+  let g:airline_symbols.branch    = '⎇'
+  let g:airline_symbols.paste     = 'ρ'
+  let g:airline_symbols.paste     = 'Þ'
+  let g:airline_symbols.paste     = '∥'
+  let g:airline_symbols.whitespace = 'Ξ'
+else
+  let g:airline#extensions#tabline#left_sep = ''
+  let g:airline#extensions#tabline#left_alt_sep = ''
+
+  " powerline symbols
+  let g:airline_left_sep = ''
+  let g:airline_left_alt_sep = ''
+  let g:airline_right_sep = ''
+  let g:airline_right_alt_sep = ''
+  let g:airline_symbols.branch = ''
+  let g:airline_symbols.readonly = ''
+  let g:airline_symbols.linenr = ''
+endif
 
 " set  256bit color mode
 set t_Co=256
