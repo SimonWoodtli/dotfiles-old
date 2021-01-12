@@ -7,7 +7,8 @@ alias ll="ls -la"
 alias ??=stackexchange
 alias mv="mv -n" # sets noclobber for mv so you don't delete file when moving them to existing place
 alias top=htop
-alias ?=searx0
+alias s=searx0
+alias ?=duck
 alias mupdf='mupdf -I'
 alias emacs='emacs -nw'
 alias mutt=neomutt
@@ -20,6 +21,7 @@ alias fgrep='fgrep -i --colour=auto'
 alias doc='libreoffice'
 alias ra='reddio | boxes -d dog | less'
 alias rec='asciinema rec'
+#alias com='complete -W "$(tldr 2>/dev/null --list)"'
 
 ## Git
 ## unintentionally pushed files to gitlab, 1. add to .gitignore 2. try
@@ -204,6 +206,7 @@ template() {
   rm -rf .git
 }
 
+## man pages nice colors
 man() {
     env \
     LESS_TERMCAP_mb="$(printf "\e[1;31m")" \
@@ -216,7 +219,12 @@ man() {
     man "${@}"
 }
 
-
+## tldr nice colors
+export TLDR_HEADER='magenta bold underline'
+export TLDR_QUOTE='italic'
+export TLDR_DESCRIPTION='default'
+export TLDR_CODE='red'
+export TLDR_PARAM='blue'
 
 ## Detection of major operating systems.
 [ -z "$OS" ] && export OS=`uname`
