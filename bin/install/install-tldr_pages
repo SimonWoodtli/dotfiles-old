@@ -1,6 +1,0 @@
-#!/bin/sh
-## alternative: npm install -g tldr
-mkdir $HOME/Repos/github.com/avih
-git clone https://github.com/avih/tldr-fmt.git $HOME/Repos/github.com/avih/tldr
-ln -sf $HOME/Repos/github.com/avih/tldr/ttldr $HOME/.local/bin/tldr
-ln -sf $HOME/Repos/github.com/avih/tldr/ttldr $HOME/.local/bin/tldr-fmt
