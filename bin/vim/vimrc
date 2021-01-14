@@ -283,7 +283,7 @@ let mapleader ="\<Space>"
 
 "" needed for spacebar leader, to avoid character move with spacebar
 nnoremap <SPACE> <Nop>
-" xclip copy/paste from X11 clipboard
+" xclip copy/paste from X11 clipboard / ctrl-v select text first
 vmap <Leader>yy :!xclip -f -sel clip<CR>
 map <leader>pp mz: -1r !xclip -o -sel clip<CR>`z
 
@@ -367,6 +367,7 @@ map <F12> :set fdm=indent<CR>
 nmap <F9> :TagbarToggle<CR>
 let g:tagbar_autofocus = 1
 
+
 "" NERDTree configuration
 let g:NERDTreeChDirMode=2
 let g:NERDTreeIgnore=['\.rbc$', '\~$', '\.pyc$', '\.db$', '\.sqlite$', '__pycache__']
@@ -449,7 +450,7 @@ hi clear CursorLine
 set cursorline
 set cursorcolumn
 highlight CursorLine ctermbg=Yellow guibg=#2b2b2b
-highlight CursorColumn ctermbg=Yellow cterm=bold guibg=#2b2b2b
+highlight CursorColumn ctermbg=Yellow guibg=#2b2b2b
 
 "" makes github colorschemes transparent - needs to be after Plugin stuff
 hi Normal ctermbg=NONE
