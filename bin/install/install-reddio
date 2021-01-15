@@ -9,5 +9,5 @@ mkdir $HOME/Repos/gitlab.com/aaronNG
 cd $HOME/Repos/gitlab.com/aaronNG
 git clone git@gitlab.com:aaronNG/reddio.git
 cd reddio/
-make install
+sudo make install
 
