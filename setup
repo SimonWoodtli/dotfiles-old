@@ -13,6 +13,9 @@ ls -l $HOME/.ssh/config
 ln -sf $PWD/imwheelrc $HOME/.imwheelrc
 ls -l $HOME/.imwheelrc
 
+ln -sf $PWD/imwheel.desktop $HOME/.config/autostart/imwheel.desktop
+ls -l $HOME/.config/autostart/imwheel.desktop
+
 ln -sf $PWD/gitconfig $HOME/.gitconfig
 ls -l $HOME/.gitconfig
 
