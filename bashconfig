@@ -22,6 +22,7 @@ alias doc='libreoffice'
 alias ra='reddio | boxes -d dog | less'
 alias rec='asciinema rec'
 #alias com='complete -W "$(tldr 2>/dev/null --list)"'
+alias spotify="LD_PRELOAD=/usr/local/lib/spotify-adblock.so flatpak run com.spotify.Client &"
 
 ## Git
 ## unintentionally pushed files to gitlab, 1. add to .gitignore 2. try
