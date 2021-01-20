@@ -1,6 +1,7 @@
 #!/bin/sh
 ## bash-version: https://github.com/raylee/tldr-sh-client
 ## alternative: npm install -g tldr
+rm $HOME/Repos/gitlab.com/xnasero/dotfiles/scripts/tldr
 curl -o $HOME/Repos/gitlab.com/xnasero/dotfiles/scripts/tldr https://raw.githubusercontent.com/raylee/tldr/master/tldr
 chmod u+x $HOME/Repos/gitlab.com/xnasero/dotfiles/scripts/tldr
 ## autocomplete: complete -W "$(tldr 2>/dev/null --list)" tldr
