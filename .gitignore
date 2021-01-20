@@ -1,4 +1,5 @@
-# Everytime you add something here also add it to `restore` script!
+## Everytime you add something here also add it to the switch statement in
+## the `restore` script!
 scripts_private/
 bin/install/install-private/
 bin/mutt/
