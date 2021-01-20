@@ -1,0 +1,5 @@
+#!/bin/sh
+
+rm $HOME/Repos/gitlab.com/xnasero/dotfiles/scripts/yt
+curl -o $HOME/Repos/gitlab.com/xnasero/dotfiles/scripts/tldr https://raw.githubusercontent.com/sayan01/scripts/master/yt
+chmod u+x $HOME/Repos/gitlab.com/xnasero/dotfiles/scripts/yt

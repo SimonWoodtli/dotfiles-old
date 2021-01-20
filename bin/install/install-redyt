@@ -1,0 +1,5 @@
+#!/bin/sh
+
+rm $HOME/Repos/gitlab.com/xnasero/dotfiles/scripts/redyt
+curl -o $HOME/Repos/gitlab.com/xnasero/dotfiles/scripts/tldr https://raw.githubusercontent.com/Bugswriter/redyt/master/redyt
+chmod u+x $HOME/Repos/gitlab.com/xnasero/dotfiles/scripts/redyt
