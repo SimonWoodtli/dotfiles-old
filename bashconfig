@@ -40,6 +40,7 @@ alias gc='git commit'
 alias gg='git graph'
 alias gd='git diff'
 alias gsu='git stash && git pull && git stash pop'
+alias gdl='git log --diff-filter=D --summary | grep delete'
 
 export BROWSER=/usr/bin/lynx
 export REPOS=$HOME/Repos
@@ -174,13 +175,30 @@ shopt -s globstar
 shopt -s dotglob
 
 ## no more `sudo ...` just `please ...` if you forgot sudo you can just
-## run `please`
+## run `please` or just run `sudo !!` as a default bash option
 please() {
 	if [ "$1" ]; then
 		sudo $@
 	else
 		sudo "$BASH" -c "$(history -p !!)"
 	fi
+}
+
+## list all current files in git repo by size
+glist() {
+  git rev-list --objects --all \
+| git cat-file --batch-check='%(objecttype) %(objectname) %(objectsize) %(rest)' \
+| awk '/^blob/ {print substr($0,6)}' \
+| sort --numeric-sort --key=2 \
+| cut --complement --characters=13-40 \
+| numfmt --field=2 --to=iec-i --suffix=B --padding=7 --round=nearest
+}
+
+## 1. run `gdl` list path of all deleted files
+## 2. `gshowdl` -> list all commits that have a deleted file, $1=<path-to-deleted-file>
+## 3. `git show <commit-id> -- <path-to-deleted-file>` -> for details
+gshowdl() {
+  git log --all -- "$1"
 }
 
 rc() {
