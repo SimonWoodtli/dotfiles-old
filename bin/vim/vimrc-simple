@@ -1,0 +1,31 @@
+syntax on
+
+set noerrorbells
+set tabstop=4 softtabstop=4
+set shiftwidth=4
+set expandtab
+set smartindent
+set nu
+set nowrap
+set smartcase
+set noswapfile
+set nobackup
+set incsearch
+
+set colorcolumn=80
+highlight ColorColumn ctermbg=0 guibg=lightgrey
+
+
+if filereadable(expand("~/.vim/autoload/plug.vim"))
+  call plug#begin('~/.vimplugins')
+  Plug 'morhetz/gruvbox' "color scheme
+
+  call plug#end()
+  colorscheme gruvbox
+
+else
+  autocmd vimleavepre *.go !gofmt -w % " backup if fatih fails
+endif
+
+set background=dark
+let mapleader = ""
