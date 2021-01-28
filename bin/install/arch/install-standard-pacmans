@@ -1,0 +1,2 @@
+#!/bin/sh
+sudo pacman -S xdg-utils imwheel flatpak linux-headers rsync alacritty

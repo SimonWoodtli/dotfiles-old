@@ -24,6 +24,7 @@ alias rec='asciinema rec'
 #alias com='complete -W "$(tldr 2>/dev/null --list)"'
 alias spotify="LD_PRELOAD=/usr/local/lib/spotify-adblock.so flatpak run com.spotify.Client &"
 alias surf="surf -F -z 1.5 duckduckgo.com & disown"
+alias sudo='sudo '
 
 ## theme
 theme gruvbox-original-dark-medium
@@ -47,6 +48,7 @@ export REPOS=$HOME/Repos
 export DOWNLOADS=$HOME/Downloads
 ## used for `pdf` script
 export PDFDIR=$HOME/Repos/gitlab.com/xnasero/books/work/essentials
+export DISPLAY=:0
 complete -C pdf pdf ## needed to make pdf script work
 VERSION=v12.18.1
 DISTRO=linux-x64
@@ -259,6 +261,6 @@ case "$OS" in
 esac
 
 
-export EDITOR=vi
-export VISUAL=vi
-export EDITOR_PREFIX=vi
+export EDITOR=vim
+export VISUAL=vim
+export EDITOR_PREFIX=vim

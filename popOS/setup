@@ -1,7 +1,7 @@
 #!/bin/bash
 
-ln -sf $PWD/bashconfig $HOME/.bashrc
-ls -l $HOME/.bashrc
+ln -sf $PWD/bashconfig $HOME/.bash_aliases
+ls -l $HOME/.bash_aliases
 
 ln -sf $PWD/dircolors $HOME/.dircolors
 ls -l $HOME/.dircolors
@@ -10,11 +10,11 @@ mkdir -p $HOME/.ssh
 ln -sf $PWD/sshconfig $HOME/.ssh/config
 ls -l $HOME/.ssh/config
 
-## config speedy mouse scroll
 ln -sf $PWD/imwheelrc $HOME/.imwheelrc
 ls -l $HOME/.imwheelrc
-[[ ! -d $HOME/.config/autostart ]] && mkdir $HOME/.config/autostart
+
 ln -sf $PWD/imwheel.desktop $HOME/.config/autostart/imwheel.desktop
+ls -l $HOME/.config/autostart/imwheel.desktop
 
 ln -sf $PWD/gitconfig $HOME/.gitconfig
 ls -l $HOME/.gitconfig
@@ -24,6 +24,5 @@ ls -l $HOME/.inputrc
 
 sudo ln -sf $PWD/scripts/havecmd /usr/local/bin/havecmd
 ls -l /usr/local/bin/havecmd
-
 
 #curl -LJ -o ubuntu.ttf https://github.com/ryanoasis/nerd-fonts/blob/master/patched-fonts/UbuntuMono/Regular/complete/Ubuntu%20Mono%20Nerd%20Font%20Complete%20Mono.ttf
