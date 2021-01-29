@@ -1,2 +1,61 @@
 #!/bin/sh
-sudo pacman -S xdg-utils imwheel flatpak linux-headers rsync alacritty
+sudo pacman -S xdg-utils reflector imwheel netctl flatpak linux-headers linux-lts linux-lts-headers rsync base-devel weechat diffutils mesa
+## remember after flatpak install it needs a reboot!!
+
+## fun
+sudo pacman -S lolcat asciiquarium cowsay figlet steam
+## media
+sudo pacman -S mpv streamlink onionshare imagemagick mpd asciinema sxiv
+# sudo pacman -S dvd+rw-tools udftools ddrescue dd_rescue cdrtools cdrdao
+# dvdauthor
+## office
+sudo pacman -S mupdf p7zip unrar
+## internet tools
+sudo pacman -S youtube-dl
+## maintenance
+sudo pacman -S pacman-contrib
+# checkout features: https://github.com/kyrias/pacman-contrib
+
+## gaming: https://christitus.com/ultimate-linux-gaming-guide/
+#sudo pacman -S lib32-gnutls lib32-libldap lib32-libgpg-error lib32-sqlite lib32-libpulse lib32-mesa vulkan-radeon lib32-vulkan-radeon vulkan-icd-loader lib32-vulkan-icd-loader -y
+## wine
+#sudo pacman -S wine-staging giflib lib32-giflib libpng lib32-libpng libldap lib32-libldap gnutls lib32-gnutls mpg123 lib32-mpg123 openal lib32-openal v4l-utils lib32-v4l-utils libpulse lib32-libpulse libgpg-error lib32-libgpg-error alsa-plugins lib32-alsa-plugins alsa-lib lib32-alsa-lib libjpeg-turbo lib32-libjpeg-turbo sqlite lib32-sqlite libxcomposite lib32-libxcomposite libxinerama lib32-libgcrypt libgcrypt lib32-libxinerama ncurses lib32-ncurses opencl-icd-loader lib32-opencl-icd-loader libxslt lib32-libxslt libva lib32-libva gtk3 lib32-gtk3 gst-plugins-base-libs lib32-gst-plugins-base-libs vulkan-icd-loader lib32-vulkan-icd-loader lutris -y
+
+## dev tools
+sudo pacman -S jdk-openjdk nodejs-lts-fermium npm pandoc go perl docker jq ctags
+# sudo pacman -S meld
+## admin tools
+sudo pacman -S htop neofetch tree alacritty lynx tmux xclip nmap fzf dmenu
+# sudo pacman -S logrotate
+## benchmark
+sudo pacman -S hardinfo hyperfine
+## neomutt
+sudo pacman -S neomutt msmtp abook pass isync
+## newsboat
+sudo pacman -S newsboat sxiv urlscan
+## install dependency
+sudo pacman -S pcsclite -y
+## pentesting
+sudo pacman -S s-nail -y
+## network
+sudo pacman -S net-tools wget
+# sudo pacman -S bind vsftpd
+## fonts
+
+sudo pacman -S --needed ttf-ubuntu-font-family ttf-dejavu ttf-bitstream-vera ttf-liberation noto-fonts ttf-roboto ttf-opensans opendesktop-fonts cantarell-fonts freetype2 papirus-icon-theme
+
+## security
+# pacman -S ufw bleachbit
+
+#######################################################
+## interesting packages: dhcpcd = networkmanager alternative
+# sudo pacman -S dhcpcd
+# systemctl enable dhcpcd.service
+# systemctl start dhcpcd.service
+
+## xorg stuff
+#sudo pacman -S xorg-apps xorg-drivers xorg-xkill xorg-xinit
+
+
+## more random data for /dev/random
+# sudo pacman -S haveged

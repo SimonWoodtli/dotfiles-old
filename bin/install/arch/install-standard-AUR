@@ -1,0 +1,2 @@
+#!/bin/sh
+paru -S brave-bin appimagelauncher balena-etcher drawio-desktop glow surf nerd-fonts-ubuntu-mono boxes toilet dxvk-bin
