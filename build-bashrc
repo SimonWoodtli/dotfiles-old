@@ -1,0 +1,26 @@
+#!/bin/sh
+
+cat \
+  bin/shell/disclaimer.sh    \
+  bin/shell/detection.sh    \
+  bin/shell/git.sh    \
+  bin/shell/export.sh    \
+  bin/shell/path.sh    \
+  bin/shell/settings.sh    \
+  bin/shell/cmd-prompt.sh   \
+  bin/shell/vim.sh    \
+  bin/shell/python.sh    \
+  bin/shell/subprocs-suck.sh    \
+  bin/shell/dircolors.sh    \
+  bin/shell/trap.sh    \
+  bin/shell/completion.sh    \
+  bin/shell/gruvbox-colors.sh    \
+  bin/shell/colors-basic.sh    \
+  bin/shell/termcap-colors.sh    \
+  bin/shell/tldr-colors.sh   \
+  bin/shell/golang.sh    \
+  bin/shell/source-local.sh    \
+  bin/shell/alias.sh    \
+  bin/shell/functions.sh    \
+  bin/shell/emoji.sh    \
+>| bashrc
