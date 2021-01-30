@@ -3,7 +3,7 @@
 ln -sf $PWD/bashrc $HOME/.bashrc
 ls -l $HOME/.bashrc
 
-ln -sf $PWD/dircolors $HOME/.dircolors
+ln -sf $PWD/dircolors/dircolors $HOME/.dircolors
 ls -l $HOME/.dircolors
 
 mkdir -p $HOME/.ssh
