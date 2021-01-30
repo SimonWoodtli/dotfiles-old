@@ -147,7 +147,7 @@ $HOME
 #set -o noclobber            # paranoid? use >| for everything
 shopt -s checkwinsize
 shopt -s expand_aliases
-shopt -s nullglob
+#shopt -s nullglob # creates bug FIX ME
 
 ## glovestar: (ls **filename includes subdirectories):
 shopt -s globstar
@@ -164,7 +164,7 @@ HISTCONTROL=ignoreboth
 HISTSIZE=5000
 HISTFILESIZE=10000
 
-setxkbmap -option ctrl:ctrl_modifier # map capslock to control
+#setxkbmap -option ctrl:ctrl_modifier # map capslock to control
 
 export HRULEWIDTH=73
 
@@ -518,7 +518,7 @@ alias more='less -R'
 alias c='clear'
 ## sets noclobber for mv so you don't delete file when moving them to
 ## existing place
-alias mv="mv -n"
+alias mv='mv -n'
 
 alias grep='grep -i --colour=auto'
 alias egrep='egrep -i --colour=auto'
@@ -528,7 +528,7 @@ alias curl='curl -L'
 alias sudo='sudo '
 alias visudo='EDITOR=/usr/bin/vim visudo'
 
-alias ssh-keygen="ssh-keygen -t ed25519"
+alias ssh-keygen='ssh-keygen -t ed25519'
 
 alias s=searx0
 alias ?=duck
@@ -543,17 +543,18 @@ alias syserrors="sudo journalctl -p 3 -xb"
 alias sysderrors="sudo systemctl --failed"
 alias chmox="chmod u+x"
 
+alias vi='vim'
 alias emacs='emacs -nw'
 alias mutt='neomutt'
 alias doc='libreoffice'
 alias mupdf='mupdf -I'
 alias top='htop'
 alias vlc='flatpak run org.videolan.VLC'
-alias browsersync='browser-sync start --server --files "*.html,
-css/*.css"'
+alias browsersync='browser-sync start --server --files "*.html, \
+  css/*.css"'
 alias ra='reddio | boxes -d dog | less'
-alias spotify="LD_PRELOAD=/usr/local/lib/spotify-adblock.so flatpak run
-com.spotify.Client &"
+alias spotify="LD_PRELOAD=/usr/local/lib/spotify-adblock.so flatpak run \
+  com.spotify.Client &"
 alias rec='asciinema rec'
 alias surf="surf -F -z 1.5 duckduckgo.com & disown"
 

@@ -4,7 +4,7 @@
 #set -o noclobber            # paranoid? use >| for everything
 shopt -s checkwinsize
 shopt -s expand_aliases
-shopt -s nullglob
+#shopt -s nullglob # creates bug FIX ME
 
 ## glovestar: (ls **filename includes subdirectories):
 shopt -s globstar
@@ -21,7 +21,7 @@ HISTCONTROL=ignoreboth
 HISTSIZE=5000
 HISTFILESIZE=10000
 
-setxkbmap -option ctrl:ctrl_modifier # map capslock to control
+#setxkbmap -option ctrl:ctrl_modifier # map capslock to control
 
 export HRULEWIDTH=73
 
