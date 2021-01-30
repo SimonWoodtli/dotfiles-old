@@ -1,6 +1,6 @@
 #!/bin/bash
 
-ln -sf $PWD/bashconfig $HOME/.bashrc
+ln -sf $PWD/bashrc $HOME/.bashrc
 ls -l $HOME/.bashrc
 
 ln -sf $PWD/dircolors $HOME/.dircolors
@@ -22,5 +22,5 @@ ls -l $HOME/.gitconfig
 ln -sf $PWD/inputrc $HOME/.inputrc
 ls -l $HOME/.inputrc
 
-sudo ln -sf $PWD/scripts/havecmd /usr/local/bin/havecmd
-ls -l /usr/local/bin/havecmd
+#sudo ln -sf $PWD/scripts/havecmd /usr/local/bin/havecmd
+#ls -l /usr/local/bin/havecmd

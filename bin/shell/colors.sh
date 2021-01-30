@@ -115,7 +115,7 @@ export solb0=$'\033['$_B'm';  export base0=$solb0
 export solb1=$'\033['$_C'm';  export base1=$solb1
 export solb2=$'\033['$_w'm';  export base2=$solb2
 export solb3=$'\033['$_W'm';  export base3=$solb3
- 
+
 export solY=$'\033['$_yb'm'; export bgyellow=$solY
 export solO=$'\033['$_Rb'm'; export bgorange=$solO
 export solR=$'\033['$_rb'm'; export bgred=$solR
@@ -201,7 +201,7 @@ sols () {
   printf $reset
   for back in ${solbases[@]} ${solcolors[@]};do
     declare b=sol${back^^}
-    printf "$reset\n %-4s%s" ${back^^} ${!b} 
+    printf "$reset\n %-4s%s" ${back^^} ${!b}
     for fore in ${solbases[@]} ${solcolors[@]};do
       declare f=sol${fore}
       printf "%s%s%-4s" ${!b} ${!f} sol
@@ -513,13 +513,3 @@ export whitebg=$'\033[48;2;255;255;255m'
 export whitesmokebg=$'\033[48;2;245;245;245m'
 export yellowbg=$'\033[48;2;255;255;0m'
 export yellowgreenbg=$'\033[48;2;139;205;50m'
-
-# Here's your colored man pages right here.
-
-export LESS_TERMCAP_mb=$magen
-export LESS_TERMCAP_md=$yellow
-export LESS_TERMCAP_me=$reset
-export LESS_TERMCAP_se=$reset
-export LESS_TERMCAP_so=$blue
-export LESS_TERMCAP_ue=$reset
-export LESS_TERMCAP_us=$violet
