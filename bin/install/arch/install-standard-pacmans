@@ -1,5 +1,5 @@
 #!/bin/sh
-sudo pacman -S xdg-utils reflector imwheel netctl flatpak linux-headers linux-lts linux-lts-headers rsync base-devel weechat diffutils mesa
+sudo pacman -S xdg-utils reflector imwheel netctl flatpak linux-headers linux-lts linux-lts-headers rsync base-devel weechat diffutils mesa lesspipe
 ## remember after flatpak install it needs a reboot!!
 
 ## fun
