@@ -1,2 +1,4 @@
 #!/bin/sh
-paru -S brave-bin appimagelauncher balena-etcher drawio-desktop glow surf nerd-fonts-ubuntu-mono boxes toilet dxvk-bin
+paru -S brave-bin appimagelauncher balena-etcher drawio-desktop glow \
+  surf nerd-fonts-complete ttf-ms-fonts boxes \
+  toilet dxvk-bin
