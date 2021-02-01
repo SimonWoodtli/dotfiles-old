@@ -700,6 +700,13 @@ template() {
   rm -rf .git
 }
 
+################################# ARCH ##################################
+
+cleanup() {
+  sudo pacman -Rsn $(pacman -Qdtq) # removes orphant packages
+  sudo pacman -Sc # removes all uninstalled packages from cache
+}
+
 ##################################### EMOJI #############################
 
 ## emoji array

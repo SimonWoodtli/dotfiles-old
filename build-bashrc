@@ -22,5 +22,6 @@ cat \
   bin/shell/source-local.sh    \
   bin/shell/alias.sh    \
   bin/shell/functions.sh    \
+  bin/shell/arch.sh    \
   bin/shell/emoji.sh    \
 >| bashrc
