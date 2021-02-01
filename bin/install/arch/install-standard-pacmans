@@ -14,6 +14,7 @@ sudo pacman -S --needed mpv streamlink onionshare imagemagick mpd
 asciinema sxiv -y
 # sudo pacman -S dvd+rw-tools udftools ddrescue dd_rescue cdrtools cdrdao
 # dvdauthor
+
 ## office
 sudo pacman -S --needed mupdf p7zip unrar -y
 ## internet tools
@@ -31,10 +32,12 @@ sudo pacman -S --needed pacman-contrib -y
 sudo pacman -S --needed jdk-openjdk nodejs-lts-fermium npm pandoc go \
   perl docker jq ctags
 # sudo pacman -S meld
+
 ## admin tools
 sudo pacman -S --needed htop neofetch tree alacritty lynx tmux xclip \
-  nmap fzf dmenu -y
+  fzf dmenu -y
 # sudo pacman -S logrotate
+
 ## benchmark
 sudo pacman -S --needed hardinfo hyperfine -y
 ## neomutt
@@ -44,14 +47,14 @@ sudo pacman -S --needed newsboat sxiv urlscan -y
 ## install dependency
 sudo pacman -S --needed pcsclite -y
 ## pentesting
-sudo pacman -S --needed s-nail -y
+sudo pacman -S --needed s-nail mtr nmap -y
 ## network
-sudo pacman -S --needed net-tools wget -y
+sudo pacman -S --needed net-tools curl wget -y
 # sudo pacman -S bind vsftpd
-## fonts
 
-sudo pacman -S --needed ttf-ubuntu-font-family ttf-dejavu \
-  ttf-bitstream-vera ttf-liberation noto-fonts ttf-roboto ttf-opensans \
+## fonts
+sudo pacman -S --needed ttf-linux-libertine ttf-bitstream-vera \
+  ttf-liberation noto-fonts ttf-roboto ttf-opensans \
   opendesktop-fonts cantarell-fonts freetype2 papirus-icon-theme -y
 
 ## security
