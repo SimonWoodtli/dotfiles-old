@@ -1,5 +1,5 @@
 #!/bin/sh
-sudo flatpak install flathub net.ankiweb.Anki org.audacityteam.Audacity org.kde.kdenlive org.gimp.GIMP io.lbry.lbry-app org.videolan.VLC fr.handbrake.ghb com.spotify.Client io.freetubeapp.FreeTube org.mozilla.firefox com.discordapp.Discord com.obsproject.Studio org.qbittorrent.qBittorrent org.flameshot.Flameshot com.github.muriloventuroso.pdftricks com.gitlab.tipp10.tipp10 run org.kde.okular com.uploadedlobster.peek
+sudo flatpak install flathub net.ankiweb.Anki org.audacityteam.Audacity org.kde.kdenlive org.gimp.GIMP io.lbry.lbry-app org.videolan.VLC fr.handbrake.ghb com.spotify.Client io.freetubeapp.FreeTube com.discordapp.Discord com.obsproject.Studio org.qbittorrent.qBittorrent org.flameshot.Flameshot com.github.muriloventuroso.pdftricks com.gitlab.tipp10.tipp10 run org.kde.okular com.uploadedlobster.peek
 
 ## to consider
 # com.skype.Client
