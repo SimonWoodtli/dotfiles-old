@@ -22,5 +22,10 @@ ls -l $HOME/.gitconfig
 ln -sf $PWD/inputrc $HOME/.inputrc
 ls -l $HOME/.inputrc
 
+## if you only plan on using one window-manager//desk env you don't need
+## a display manager simply use the xorg xinit package
+ln -sf $PWD/xinitrc $HOME/.xinitrc
+ls -l $HOME/.xinitrc
+
 #sudo ln -sf $PWD/scripts/havecmd /usr/local/bin/havecmd
 #ls -l /usr/local/bin/havecmd
