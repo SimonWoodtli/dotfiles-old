@@ -2,7 +2,7 @@
 ## admin
 paru -S downgrade
 ## basic apps
-paru -S brave-bin appimagelauncher balena-etcher drawio-desktop glow
+paru -S brave-bin librewolf-bin appimagelauncher balena-etcher drawio-desktop glow
 ## fonts
 paru -S nerd-fonts-complete ttf-ms-fonts
 ## fun
