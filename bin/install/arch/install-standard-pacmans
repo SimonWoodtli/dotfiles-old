@@ -18,7 +18,7 @@ asciinema sxiv -y
 ## office
 sudo pacman -S --needed mupdf p7zip unrar -y
 ## internet tools
-sudo pacman -S --needed firefox youtube-dl -y
+sudo pacman -S --needed youtube-dl -y
 ## maintenance
 sudo pacman -S --needed pacman-contrib -y
 # checkout features: https://github.com/kyrias/pacman-contrib
