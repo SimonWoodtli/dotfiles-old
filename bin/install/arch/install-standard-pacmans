@@ -30,7 +30,7 @@ sudo pacman -S --needed pacman-contrib -y
 
 ## dev tools
 sudo pacman -S --needed jdk-openjdk nodejs-lts-fermium npm pandoc go \
-  perl docker jq ctags
+  perl docker jq ctags python3 python-pip
 # sudo pacman -S meld
 
 ## admin tools

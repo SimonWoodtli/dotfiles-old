@@ -7,3 +7,6 @@ cleanup() {
 }
 
 paclog() { tail -n"$1" /var/log/pacman.log ;} # check the log
+
+## list all installed AUR packages
+# pacman -Qtm
