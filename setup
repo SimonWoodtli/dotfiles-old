@@ -27,5 +27,9 @@ ls -l $HOME/.inputrc
 ln -sf $PWD/xinitrc $HOME/.xinitrc
 ls -l $HOME/.xinitrc
 
+## auto-launch into gui -> no display manager
+ln -sf $PWD/bash_profile $HOME/.bash_profile
+ls -l $HOME/.bash_profile
+
 #sudo ln -sf $PWD/scripts/havecmd /usr/local/bin/havecmd
 #ls -l /usr/local/bin/havecmd
