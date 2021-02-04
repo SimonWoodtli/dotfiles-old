@@ -21,4 +21,4 @@ gruv () {
 }
 
 ## theme
-theme gruvbox-original-dark-medium
+#theme gruvbox-original-dark-medium
