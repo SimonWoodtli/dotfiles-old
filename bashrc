@@ -459,7 +459,7 @@ gruv () {
 }
 
 ## theme
-theme gruvbox-original-dark-medium
+#theme gruvbox-original-dark-medium
 
 ############################ FOREGROUND-COLORS ############################
 
@@ -472,15 +472,35 @@ export magenta=$'\033[35m'
 export cyan=$'\033[36m'
 export white=$'\033[37m'
 
+########################## Terminal ANSI Escapes ########################
+
+export escape=$'\033'
+export reset=$'\033[0m'
+export bold=$'\033[1m'
+export underline=$'\033[4m'
+export blinkon=$'\033[5m'
+export blinkoff=$'\033[25m'
+export inverse=$'\033[7m'
+export inverseoff=$'\033[27m'
+export normal=$'\033[39m'
+export normalbg=$'\033[49m'
+
 ############################## MANPAGES COLORS ##########################
 
-export LESS_TERMCAP_mb=$magen
+export LESS_TERMCAP_mb=$magenta
 export LESS_TERMCAP_md=$yellow
 export LESS_TERMCAP_me=$reset
 export LESS_TERMCAP_se=$reset
 export LESS_TERMCAP_so=$blue
 export LESS_TERMCAP_ue=$reset
-export LESS_TERMCAP_us=$'\033[4m'
+export LESS_TERMCAP_us=$underline
+
+#export LESS_TERMCAP_mr=$yellow
+#export LESS_TERMCAP_mh=$yellow
+#export LESS_TERMCAP_ZN=$yellow
+#export LESS_TERMCAP_ZV=$yellow
+#export LESS_TERMCAP_ZO=$yellow
+#export LESS_TERMCAP_ZW=$yellow
 
 ################################ TLDR-COLORS ############################
 
@@ -526,7 +546,7 @@ gocd () {
 ############################## All Aliases ##############################
 unalias -a
 alias more='less -R'
-alias c='clear'
+alias c="printf  $'\033[2J\033[;H'" # clear
 ## sets noclobber for mv so you don't delete file when moving them to
 ## existing place
 alias mv='mv -n'
@@ -554,6 +574,7 @@ alias syserrors="sudo journalctl -p 3 -xb"
 alias sysderrors="sudo systemctl --failed"
 alias chmox="chmod u+x"
 
+alias du='dust'
 alias vi='vim'
 alias emacs='emacs -nw'
 alias mutt='neomutt'
@@ -706,6 +727,11 @@ cleanup() {
   sudo pacman -Rsn $(pacman -Qdtq) # removes orphant packages
   sudo pacman -Sc # removes all uninstalled packages from cache
 }
+
+paclog() { tail -n"$1" /var/log/pacman.log ;} # check the log
+
+## list all installed AUR packages
+# pacman -Qtm
 
 ##################################### EMOJI #############################
 
