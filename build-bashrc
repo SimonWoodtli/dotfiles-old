@@ -16,6 +16,7 @@ cat \
   bin/shell/completion.sh    \
   bin/shell/gruvbox-colors.sh    \
   bin/shell/colors-basic.sh    \
+  bin/shell/ansi-escapes.sh    \
   bin/shell/termcap-colors.sh    \
   bin/shell/tldr-colors.sh   \
   bin/shell/golang.sh    \
