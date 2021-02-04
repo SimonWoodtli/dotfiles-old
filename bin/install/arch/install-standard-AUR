@@ -1,11 +1,13 @@
 #!/bin/sh
 ## admin
-paru -S downgrade
+paru -S downgrade dust
 ## basic apps
 paru -S brave-bin librewolf-bin appimagelauncher balena-etcher drawio-desktop glow
 ## fonts
-paru -S nerd-fonts-complete ttf-ms-fonts
+paru -S nerd-fonts-ubuntu-mono ttf-ms-fonts
 ## fun
 paru -S boxes toilet
 ## graphics
 paru -S dxvk-bin
+## desk env//popOS window tiler
+paru -S gnome-shell-extension-pop-shell
