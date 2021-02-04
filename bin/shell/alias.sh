@@ -2,7 +2,7 @@
 ############################## All Aliases ##############################
 unalias -a
 alias more='less -R'
-alias c='clear'
+alias c="printf  $'\033[2J\033[;H'" # clear
 ## sets noclobber for mv so you don't delete file when moving them to
 ## existing place
 alias mv='mv -n'
@@ -30,6 +30,7 @@ alias syserrors="sudo journalctl -p 3 -xb"
 alias sysderrors="sudo systemctl --failed"
 alias chmox="chmod u+x"
 
+alias du='dust'
 alias vi='vim'
 alias emacs='emacs -nw'
 alias mutt='neomutt'
