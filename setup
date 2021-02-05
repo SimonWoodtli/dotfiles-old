@@ -32,12 +32,6 @@ ln -sf $PWD/profile $HOME/.bash_profile
 ls -l $HOME/.bash_profile
 
 
-
-# https://gitlab.com/jenslody/gnome-shell-extension-openweather
-# https://github.com/kgshank/gse-sound-output-device-chooser
-# https://gitlab.com/arcmenu/ArcMenu
-# https://github.com/mpdeimos/gnome-shell-remove-dropdown-arrows
-
 read -p "Do you run arch?
 1) arch/gnome
 2) arch/dwm
@@ -48,35 +42,51 @@ read -p "Do you run arch?
 case $userinput in
   ## check the UUID in the metadata.json = name of folder
   1) [[ -d $HOME/.local/share/gnome-shell-extensions ]] || mkdir -p $HOME/.local/share/gnome-shell/extensions
-     cd $HOME/Repos/github.com/
-     mkdir gnome-extensions ; cd gnome-extensions
+     [[ -d $HOME/Repos/github.com/gnome-extensions ]] || mkdir -p $HOME/Repos/github.com/gnome-extensions
+     cd $HOME/Repos/github.com/gnome-extensions
+
      git clone https://github.com/ubuntu/gnome-shell-extension-appindicator
      ln -sf $PWD/gnome-shell-extension-appindicator \
         $HOME/.local/share/gnome-shell/extensions/appindicatorsupport@rgcjonas.gmail.com
      gnome-extensions enable appindicatorsupport@rgcjonas.gmail.com
 
-     cd $HOME/Repos/github.com/gnome-extensions
      git clone https://github.com/pop-os/gnome-shell-extension-always-show-workspaces
      ln -sf $PWD/gnome-shell-extension-always-show-workspaces \
         $HOME/.local/share/gnome-shell/extensions/always-show-workspaces@system76.com
      gnome-extensions enable always-show-workspaces@system76.com
 
-     cd $HOME/Repos/github.com/gnome-extensions
-     git clone https://github.com/pop-os/gnome-shell-extension-alt-tab-raise-first-window
-     ln -sf $PWD/gnome-shell-extension-alt-tab-raise-first-window \
-        $HOME/.local/share/gnome-shell/extensions/alt-tab-raise-first-window@system76.com
-     gnome-extensions enable alt-tab-raise-first-window@system76.com
 
+     git clone https://github.com/kgshank/gse-sound-output-device-chooser
+     ln -sf $PWD/gse-sound-output-device-chooser/sound-output-device-chooser@kgshank.net \
+        $HOME/.local/share/gnome-shell/extensions/sound-output-device-chooser@kgshank.net
+     gnome-extensions enable sound-output-device-chooser@kgshank.net
+
+     git clone https://github.com/mpdeimos/gnome-shell-remove-dropdown-arrows
+     ln -sf $PWD/gnome-shell-remove-dropdown-arrows \
+        $HOME/.local/share/gnome-shell/extensions/remove-dropdown-arrows-dev@mpdeimos.com
+     gnome-extensions enable remove-dropdown-arrows-dev@mpdeimos.com
+
+     git clone https://github.com/fmstrat/wintile
+     ln -sf $PWD/wintile \
+        $HOME/.local/share/gnome-shell/extensions/wintile@nowsci.com
+     gnome-extensions enable wintile@nowsci.com
+
+     git clone https://gitlab.com/jenslody/gnome-shell-extension-openweather
+     cd gnome-shell-extension-openweather
+     ./autogen.sh && make local-install
+
+     #cd $HOME/Repos/github.com/gnome-extensions
+     #git clone https://github.com/pop-os/gnome-shell-extension-alt-tab-raise-first-window
+     #ln -sf $PWD/gnome-shell-extension-alt-tab-raise-first-window \
+     #   $HOME/.local/share/gnome-shell/extensions/alt-tab-raise-first-window@system76.com
+     #gnome-extensions enable alt-tab-raise-first-window@system76.com
      ;;
-
   2) ## if you only plan on using one window-manager//desk env you don't need
      ## a display manager simply use the xorg xinit package
      ln -sf $PWD/xinitrc $HOME/.xinitrc
      ls -l $HOME/.xinitrc ;;
-
   3) exit 1 ;;
   *) echo "give valid input [1-3]"
 esac
-
 #sudo ln -sf $PWD/scripts/havecmd /usr/local/bin/havecmd
 #ls -l /usr/local/bin/havecmd
