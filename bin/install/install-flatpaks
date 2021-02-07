@@ -1,6 +1,21 @@
 #!/bin/sh
-sudo flatpak install flathub net.ankiweb.Anki org.audacityteam.Audacity org.kde.kdenlive org.gimp.GIMP io.lbry.lbry-app org.videolan.VLC fr.handbrake.ghb com.spotify.Client io.freetubeapp.FreeTube com.discordapp.Discord com.obsproject.Studio org.qbittorrent.qBittorrent org.flameshot.Flameshot com.github.muriloventuroso.pdftricks com.gitlab.tipp10.tipp10 run org.kde.okular com.uploadedlobster.peek
-
+sudo flatpak install flathub com.spotify.Client
+sudo flatpak install flathub flathub net.ankiweb.Anki 
+sudo flatpak install flathub org.audacityteam.Audacity
+sudo flatpak install flathub org.kde.kdenlive 
+sudo flatpak install flathub org.gimp.GIMP
+sudo flatpak install flathub io.lbry.lbry-app 
+sudo flatpak install flathub org.videolan.VLC
+sudo flatpak install flathub fr.handbrake.ghb
+sudo flatpak install flathub io.freetubeapp.FreeTube
+sudo flatpak install flathub com.discordapp.Discord
+sudo flatpak install flathub com.obsproject.Studio
+sudo flatpak install flathub org.qbittorrent.qBittorrent
+sudo flatpak install flathub org.flameshot.Flameshot
+sudo flatpak install flathub com.github.muriloventuroso.pdftricks
+sudo flatpak install flathub com.gitlab.tipp10.tipp10
+sudo flatpak install flathub flathub run org.kde.okular
+sudo flatpak install flathub com.uploadedlobster.peek
 ## to consider
 # com.skype.Client
 # io.github.Hexchat
