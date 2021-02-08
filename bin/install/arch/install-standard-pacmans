@@ -49,7 +49,7 @@ sudo pacman -S --needed pcsclite -y
 ## pentesting
 sudo pacman -S --needed s-nail mtr nmap -y
 ## network
-sudo pacman -S --needed net-tools curl wget -y
+sudo pacman -S --needed dnsutils net-tools curl wget -y
 # sudo pacman -S bind vsftpd
 
 ## fonts
