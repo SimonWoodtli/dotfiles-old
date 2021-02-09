@@ -34,14 +34,14 @@ sudo pacman -S --needed git jdk-openjdk nodejs-lts-fermium npm pandoc go \
 # sudo pacman -S meld
 
 ## admin tools
-sudo pacman -S --needed htop neofetch tree alacritty lynx tmux xclip \
+sudo pacman -S --needed htop neofetch cron tree alacritty lynx tmux xclip \
   fzf dmenu -y
 # sudo pacman -S logrotate
 
 ## benchmark
 sudo pacman -S --needed hardinfo hyperfine -y
 ## neomutt
-sudo pacman -S --needed neomutt msmtp abook pass isync -y
+sudo pacman -S --needed neomutt notmuch msmtp abook pass isync -y
 ## newsboat
 sudo pacman -S --needed newsboat sxiv urlscan -y
 ## install dependency
