@@ -495,13 +495,6 @@ export LESS_TERMCAP_so=$blue
 export LESS_TERMCAP_ue=$reset
 export LESS_TERMCAP_us=$underline
 
-#export LESS_TERMCAP_mr=$yellow
-#export LESS_TERMCAP_mh=$yellow
-#export LESS_TERMCAP_ZN=$yellow
-#export LESS_TERMCAP_ZV=$yellow
-#export LESS_TERMCAP_ZO=$yellow
-#export LESS_TERMCAP_ZW=$yellow
-
 ################################ TLDR-COLORS ############################
 
 export TLDR_HEADER='magenta bold underline'
