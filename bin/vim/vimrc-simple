@@ -1,3 +1,17 @@
+" _    ___
+" | |  / (_)___ ___  __________
+" | | / / / __ `__ \/ ___/ ___/
+" | |/ / / / / / / / /  / /__
+" |___/_/_/ /_/ /_/_/   \___/
+"
+"
+"
+"" Encoding
+set encoding=utf-8
+set fileencoding=utf-8
+set fileencodings=utf-8
+
+"" Basic Settings
 syntax on
 
 set noerrorbells
@@ -5,7 +19,7 @@ set tabstop=4 softtabstop=4
 set shiftwidth=4
 set expandtab
 set smartindent
-set nu
+set number relativenumber
 set nowrap
 set smartcase
 set noswapfile
@@ -19,6 +33,7 @@ highlight ColorColumn ctermbg=0 guibg=lightgrey
 if filereadable(expand("~/.vim/autoload/plug.vim"))
   call plug#begin('~/.vimplugins')
   Plug 'morhetz/gruvbox' "color scheme
+  Plug 'vim-airline/vim-airline' "info footer
 
   call plug#end()
   colorscheme gruvbox

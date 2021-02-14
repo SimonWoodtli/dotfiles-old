@@ -5,13 +5,14 @@ if [ -z "$(which vim)" -o -z "$(which vimtutor)" ]; then
   exit 1
 fi
 
-read -p " pick:
+read -p "pick:
 1 = default
 2 = ish: ios bash shell
 
-" -n1 input
+" input
+
 case $input in
 	1) ln -sf "$PWD/vimrc" "$HOME/.vimrc" ;;
 	2) ln -sf "$PWD/vimrc-simple" "$HOME/.vimrc" ;;
-	*) echo enter 1 or 2 please
+	*) echo enter 1 or 2 please ;;
 esac
