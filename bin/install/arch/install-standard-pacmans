@@ -15,6 +15,11 @@ asciinema sxiv -y
 # sudo pacman -S dvd+rw-tools udftools ddrescue dd_rescue cdrtools cdrdao
 # dvdauthor
 
+## chinese input $ ibus-setup -> to go to settings
+sudo pacman -S ibus ibus-pinyin ibus-m17n -y
+## chinese fonts
+sudo pacman -S wqy-zenhei wqy-bitmapfont
+
 ## office
 sudo pacman -S --needed mupdf p7zip unrar -y
 ## internet tools
