@@ -6,7 +6,7 @@ paru -S brave-bin librewolf-bin appimagelauncher balena-etcher drawio-desktop gl
 ## fonts
 paru -S nerd-fonts-ubuntu-mono ttf-ms-fonts
 ## fun
-paru -S boxes toilet
+paru -S boxes toilet tmatrix-git
 ## graphics
 paru -S dxvk-bin
 ## desk env//popOS window tiler
