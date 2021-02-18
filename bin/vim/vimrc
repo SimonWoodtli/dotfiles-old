@@ -61,7 +61,7 @@ set icon
 
 "search settings:
 set hlsearch "all the /searchterms get highlighted on your display
-set nohlsearch "to turn the highligted searchterms off :noh
+"set nohlsearch "to turn the highligted searchterms off :noh
 set incsearch "to loop through all the searched elements with `n/N`
 
 "makes your list characters prettier (set list)
