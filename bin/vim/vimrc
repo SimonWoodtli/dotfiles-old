@@ -1,458 +1,128 @@
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " _    ___
 " | |  / (_)___ ___  __________
 " | | / / / __ `__ \/ ___/ ___/
 " | |/ / / / / / / / /  / /__
 " |___/_/_/ /_/ /_/_/   \___/
 "
-" use :so % to reload
-"use :set list to see text formation/structures (:set nolist)
-"to get into the command history (ex) in vim `: and then ctrl-p or ctrl-n`
-
-
-"*****************************************************************************
-"" Basic Setup
-"*****************************************************************************
-
-"" Encoding
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"" encoding
 set encoding=utf-8
 set fileencoding=utf-8
 set fileencodings=utf-8
 
-set number relativenumber   "hybrid numbers
-
-set ignorecase "ignore case of letters (easier to search)
-" force me to set everything explicitly
+""""""""""""""""""""""""""""""basic settings"""""""""""""""""""""""""""""""""""
 let skip_defaults_vim=1
-
-set nocompatible "allow vim-y things
-
-set linebreak "this will wrap `` for long words even if new line is started
-set noshowmatch "no more little pause if you type brackets
-set foldmethod=manual " manual foldingdefault (zf/zd)
-set nofoldenable "disable folding, when paragraphs can be "minimized and maximized with spacebar
-
-set ruler "ruler is on by default, just in case
-"set scrolloff=999 "keep cursor in the middle, or some big other number
-set scrolloff=7 "keep cursor at border of screen
-
-"all these are about indent:
-set expandtab "if you don't like tabs
-set tabstop=2 "settings for your notes and stuff, don't use to code with it
-set softtabstop=2 "related to tabstop
-set shiftwidth=2 "if you want lines to move in like with tabs `3>>` will move 3 lines in
-set smartindent "same as >> but when you wanna do a new line
-set autoindent " you should turn it off when you are pasting
+syntax on
+set nocompatible
+set noshowmatch
+set noerrorbells
+"" indent
+set tabstop=2 softtabstop=2
+set shiftwidth=2
+set expandtab
+set smartindent
 set smarttab
-" shows info on bottom right
-set showcmd
-"set wrap linebreak nolist "soft wrap only wraps it but not formats it
-set viminfo='20,<1000,s1000 "increase yank buffer size if you want to yank from one file to another
+set autoindent
 
-"living dangerous but clean, no more backups and swap files (use :w often!)
-set nobackup
-set nowritebackup
-set noswapfile
-
-"autocompletion for ex commands with tabs *super useful*
+set foldmethod=manual " manual fold 'zf'/'zd'
+set nofoldenable
+set number relativenumber
+set viminfo='20,<1000,s1000
+set nowrap
+set smartcase
+set ignorecase
+set scrolloff=7
+set ruler
 set wildmode=longest,list,full
-
-"sync terminal title with current file edited
-set icon
-
-"search settings:
-set hlsearch "all the /searchterms get highlighted on your display
-"set nohlsearch "to turn the highligted searchterms off :noh
-set incsearch "to loop through all the searched elements with `n/N`
-
-"makes your list characters prettier (set list)
-set listchars=tab:→\ ,eol:↲,nbsp:␣,space:·,trail:·,extends:⟩,precedes:⟨
-
-set textwidth=73 "enough for line numbers + git gutter and spaces within 80 it forces you to write better code because you are limited by 73 char per line
-"copy & past between 2 files
-set viminfo='20,<1000,s1000 " prevents truncated yanks, deletes, etc.
-"set viminfo=%,<800,'10,/50,:100,h,f0,n~/.vim/cache/.viminfo
-"           | |    |   |   |    | |  + viminfo file path
-"           | |    |   |   |    | + file marks 0-9,A-Z 0=NOT stored
-"           | |    |   |   |    + disable 'hlsearch' loading viminfo
-"           | |    |   |   + command-line history saved
-"           | |    |   + search history saved
-"           | |    + files marks saved
-"           | + lines saved each register (old name for <, vi6.2)
-"           + save/restore buffer list
-
-
-" if you make an empty hyperlinked name in markdown: [searchterm]() and close vi again it will make it searchable on duckduck
-
-"low level settings (detailed stuff)
-" Just the defaults, these are changed per filetype by plugins.
-" Most of the utility of all of this has been superceded by the use of
-" modern simplified pandoc for capturing knowledge source instead of
-" arbitrary raw text files.
-set formatoptions-=t   " don't auto-wrap text using text width
-set formatoptions+=c   " autowrap comments using textwidth with leader
-set formatoptions-=r   " don't auto-insert comment leader on enter in insert
-set formatoptions-=o   " don't auto-insert comment leader on o/O in normal
-set formatoptions+=q   " allow formatting of comments with gq
-set formatoptions-=w   " don't use trailing whitespace for paragraphs
-set formatoptions-=a   " disable auto-formatting of paragraph changes
-set formatoptions-=n   " don't recognized numbered lists
-set formatoptions+=j   " delete comment prefix when joining
-set formatoptions-=2   " don't use the indent of second paragraph line
-set formatoptions-=v   " don't use broken 'vi-compatible auto-wrapping'
-set formatoptions-=b   " don't use broken 'vi-compatible auto-wrapping'
-set formatoptions+=l   " long lines not broken in insert mode
-set formatoptions+=m   " multi-byte character line break support
-set formatoptions+=M   " don't add space before or after multi-byte char
-set formatoptions-=B   " don't add space between two multi-byte chars in join
-set formatoptions+=1   " don't break a line after a one-letter word
-
-"settings for Plug ferrine/md-img-paste paste cilboard screenshot to vim
-autocmd FileType markdown nmap <buffer><silent> <leader>p :call mdip#MarkdownClipboardImage()<CR>
-" there are some defaults for image directory and image name, you can change them
-let g:mdip_imgdir = '/home/Repos/gitlab.com/xnasero/notes/img'
-" let g:mdip_imgname = 'image'
-if $PLATFORM == 'mac'
-  " required for mac delete to work
-  set backspace=indent,eol,start
-endif
-
-"memory management (x history (: history))
 set history=100
-"stops complaining when switching from buffer with changes
 set hidden
-
-"" Copy/Paste/Cut with system clipboard not just vim buffer
-if has('unnamedplus')
-  set clipboard=unnamed,unnamedplus
-endif
-"" Vmap for maintain Visual Mode after shifting > and <
-vmap < <gv
-vmap > >gv
-" Search mappings: These will make it so that going to the next one in a
-" search will center on the line it's found in.
+"" search
+set incsearch
+set hlsearch " :noh to turn off
 nnoremap n nzzzv
 nnoremap N Nzzzv
+"" no backup
+set noswapfile
+set nowritebackup
+set nobackup
+"" write good code
+set colorcolumn=80
+set textwidth=73
+highlight ColorColumn ctermbg=0 guibg=lightgrey
 
-"*****************************************************************************
-"" Abbreviations
-"*****************************************************************************
-"" no one is really happy until you have this shortcuts
-cnoreabbrev W! w!
-cnoreabbrev Q! q!
-cnoreabbrev Qall! qall!
-cnoreabbrev Wq wq
-cnoreabbrev Wa wa
-cnoreabbrev wQ wq
-cnoreabbrev WQ wq
-cnoreabbrev W w
-cnoreabbrev Q q
-cnoreabbrev Qall qall
+"""""""""""""""""""""""""""""""""nice feats""""""""""""""""""""""""""""""""""""
+"" keep visual mode on when indenting >
+vmap < <gv
+vmap > >gv
+"" auto remove trailing white space
+autocmd BufWritePre * %s/\s\+$//e
+"" vertically center document when entering insert mode
+autocmd InsertEnter * norm zz
+"" makes your list characters prettier (set list)
+set listchars=tab:→\ ,eol:↲,nbsp:␣,space:·,trail:·,extends:⟩,precedes:⟨
+"" search and replace [foo] to [foo1] globally
+nnoremap S :%s//gI<Left><Left><Left>
+" start at last place you were editing
+au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+"normal! g'\"" | endif "remember where you were and puts you back to it
+au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe
 
-
-""*****************************************************************************
-"" ALL THE THINGS FROM HERE ON NEED SYNTAX ON
-"*****************************************************************************
-
-"syntax enable
-" normally u want syntax on but my vim gets super slow
-" js,css,html are fine now but vimrc and bash scripts are still slow
-syntax off
-
-"allow sensing the filetype
-filetype plugin on
-
-" Install vim-plugin if not already installed
+""""""""""""""""""""""""""""""""plugins""""""""""""""""""""""""""""""""""""""""
+"" get vimplug manager
 if empty(glob('~/.vim/autoload/plug.vim'))
   silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
-        \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+       \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
   autocmd VimEnter * PlugInstall
 endif
-" look for .vim if it does not exist download&install plugins
+
+"" get plugins
 if filereadable(expand("~/.vim/autoload/plug.vim"))
   call plug#begin('~/.vimplugins')
   Plug 'vim-pandoc/vim-pandoc'
-  "Plug 'neoclide/coc.nvim', {'branch': 'release'} "powerful autocomplete
   Plug 'https://gitlab.com/rwxrob/vim-pandoc-syntax-simple'
-  Plug 'vim-airline/vim-airline' "info footer
-  Plug 'vim-airline/vim-airline-themes'
-  Plug 'preservim/nerdtree'
-  Plug 'Xuyuanp/nerdtree-git-plugin'
-  let g:NERDTreeGitStatusIndicatorMapCustom = {
-                \ 'Modified'  :'✹',
-                \ 'Staged'    :'✚',
-                \ 'Untracked' :'✭',
-                \ 'Renamed'   :'➜',
-                \ 'Unmerged'  :'═',
-                \ 'Deleted'   :'✖',
-                \ 'Dirty'     :'✗',
-                \ 'Ignored'   :'☒',
-                \ 'Clean'     :'✔︎',
-                \ 'Unknown'   :'?',
-                \ }
-  "Plug 'gko/vim-coloresque' " css picked color have color-box preview
-  Plug 'ctrlpvim/ctrlp.vim' " C-p to search and open files within vim
-  Plug 'vim-scripts/UltiSnips' "auto complete
-  "Plug 'prettier/vim-prettier', { 'do': 'npm install' }
-  Plug 'tpope/vim-surround' "change single to double quotes: cs'\"
-  Plug 'alvan/vim-closetag' "html close tags
-  Plug 'sheerun/vim-polyglot' " better syntax highlighting for many lang
-  Plug 'dense-analysis/ale' "JS linter :ALEToggle
-  Plug 'elzr/vim-json' "better syntax for json
-  "Plug '/MaxMEllon/vim-jsx-pretty' "react syntax highlighting
-  "Plug 'xolox/vim-easytags' "Ctag automater
-  Plug 'majutsushi/tagbar' "tags in memory
-
-  "" colorschemes
   Plug 'morhetz/gruvbox' "color scheme
-  Plug 'HerringtonDarkholme/yats.vim' " correct syntax hightlight for gruvbox
-  "Plug 'tomasr/molokai' "color scheme
-  "Plug 'flazz/vim-colorschemes' "lots of colorschemes
+  Plug 'HerringtonDarkholme/yats.vim' "correct syntax hightlight for gruvbox
 
+  Plug 'vim-airline/vim-airline' "info footer
+  Plug 'ctrlpvim/ctrlp.vim'
 
-  "" Javascript Bundle
-  "Plug 'jelera/vim-javascript-syntax'
-
-  " C
-  "Plug 'vim-scripts/c.vim', {'for': ['c', 'cpp']}
-  "Plug 'ludwig/split-manpage.vim'
-
-
-  " python
-  "" Python Bundle
-  "Plug 'davidhalter/jedi-vim'
-  "Plug 'raimon49/requirements.txt.vim', {'for': 'requirements'}
-  "Plug 'plytophogy/vim-virtualenv'
-  " Plug 'python-mode/python-mode'
-
-  " html
-  "Plug 'hail2u/vim-css3-syntax'
-  "Plug 'gorodinskiy/vim-coloresque'
-  "Plug 'tpope/vim-haml'
-  "Plug 'mattn/emmet-vim'
-
-  "Plug 'tpope/vim-fugitive'
-  "Plug 'cespare/vim-toml'
-  "Plug 'fatih/vim-go'
-  "Plug 'PProvost/vim-ps1'
+  Plug 'alvan/vim-closetag' "html close tags
+  Plug 'sheerun/vim-polyglot' "better syntax highlighting for many lang
   call plug#end()
-  set nocompatible "needed for vim-polygot
   colorscheme gruvbox
-  "set background=dark
-  "colorscheme molokai
-  "let g:molokai_original = 1 "colorscheme from github background
-  "let g:rehash256 = 1 " colorscheme molokai 256bit color background
-  let g:go_fmt_fail_silently = 0 " let me out even with errors
-  let g:go_fmt_command = 'goimports' " autoupdate import
-  let g:go_fmt_autosave = 1
-
-  " coc autocomplete config
-  " let g:coc_global_extensions = [
-  " \ 'coc-snippets',
-  " \ 'coc-tsserver',
-  " \ 'coc-eslint',
-  " \ 'coc-prettier',
-  " \ 'coc-json',
-  " \ ]
+  set background=dark
+  set nocompatible "needed for vim-polygot
 else
   autocmd vimleavepre *.go !gofmt -w % " backup if fatih fails
 endif
 
-autocmd vimleavepre *.md !perl -p -i -e 's,\[([^\]]+?)\]\(\),[\1](https://duck.com/lite?q=\1),g' %
-" plasticboy/vim-markdown settings
-autocmd FileType markdown set conceallevel=0 " displays markdown syntax
-
-"help you to detect filetypes that are not automatically detected
-au bufnewfile,bufRead bashconfig set filetype=sh
-au bufnewfile,bufRead *.profile set filetype=sh
-au bufnewfile,bufRead *.crontab set filetype=crontab
-au bufnewfile,bufRead *ssh/config set filetype=sshconfig
-au bufnewfile,bufRead *gitconfig set filetype=gitconfig
-au bufnewfile,bufRead /tmp/psql.edit.* set syntax=sql
-
-" start at last place you were editing
-au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
-
-"normal! g'\"" | endif "remember where you were and puts you back to it
-au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe
-
-" Automatically delets all trailing whitespace on save.
-autocmd BufWritePre * %s/\s\+$//e
-
-" change mapleader to: ,
-let mapleader ="\<Space>"
-
+""""""""""""""""""""""""""""""""leader, F-keys"""""""""""""""""""""""""""""""""
+let mapleader = ""
 "" needed for spacebar leader, to avoid character move with spacebar
 nnoremap <SPACE> <Nop>
-" xclip copy/paste from X11 clipboard / ctrl-v select text first
+"" xclip copy/paste from X11 clipboard / ctrl-v select text first
 vmap <Leader>yy :!xclip -f -sel clip<CR>
 map <leader>pp mz: -1r !xclip -o -sel clip<CR>`z
 
-"vertically center document when entering insert mode
-autocmd InsertEnter * norm zz
-
-" displays all the syntax rules for current position, useful
-" when writing vimscript syntax plugins (F2)
-function! <SID>SynStack()
-	if !exists("*synstack")
-		return
-	endif
-  echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
-endfunc
-
-" Map alternatives the <ESC> key (<C-[> already is)
-inoremap jj <Esc>
-cnoremap jj <Esc>
-inoremap kk <Esc>
-cnoremap kk <Esc>
-inoremap kj <Esc>
-cnoremap kj <Esc>
-
-" no arrow keys (vi muscle memory)
-noremap <up> :echoerr "Umm, use k instead"<CR>
-noremap <down> :echoerr "Umm, use j instead"<CR>
-noremap <left> :echoerr "Umm, use h instead"<CR>
-noremap <right> :echoerr "Umm, use l instead"<CR>
-inoremap <up> <NOP>
-inoremap <down> <NOP>
-inoremap <left> <NOP>
-inoremap <right> <NOP>
-
-"get urlscan menu in vim
-noremap <leader>u :w<Home>silent <End> !urlscan<CR>
-
-"" pane switching
-map <C-j> <C-W>j
-map <C-k> <C-W>k
-map <C-h> <C-W>h
-map <C-l> <C-W>l
-
-"" Git
-noremap <Leader>ga :Gwrite<CR>
-noremap <Leader>gc :Gcommit<CR>
-noremap <Leader>gsh :Gpush<CR>
-noremap <Leader>gll :Gpull<CR>
-noremap <Leader>gs :Gstatus<CR>
-noremap <Leader>gb :Gblame<CR>
-noremap <Leader>gd :Gvdiff<CR>
-noremap <Leader>gr :Gremove<CR>
-
-" Ale
-let g:ale_linters = {
-\	'python': ['flake8', 'pylint'],
-\   'javascript': ['eslint'],
-\   'typescript': ['tslint'],
-\   'html': ['tidy']
-\}
-let g:airline#extensions#ale#enabled = 1
-let g:ale_echo_msg_format = '[%linter%] %...code...% >> %s [%severity%]'
-let g:ale_lint_delay = 500
-let g:ale_fixers = {
-\	'python': ['autopep8', 'yapf']
-\}
-" nmap <silent> <C-k> <Plug>(ale_previous_wrap)
-" nmap <silent> <C-j> <Plug>(ale_next_wrap)
-
-
-" functions keys
 map <F1> :set number! relativenumber!<CR>
-nmap <F2> :call <SID>SynStack()<CR>
 set pastetoggle=<F3> "" toggle autoindent+autocomment on/off (:set paste, :set nopaste)
 map <F4> :set list!<CR>
 map <F5> :set cursorline! cursorcolumn!<CR>
 map <F7> :set spell!<CR>
-map <F8> :NERDTreeToggle<CR>
+"" folding 'za'/spacebar to fold/unfold
 map <F12> :set fdm=indent<CR>
-" nmap <silent> <F4> :TagbarToggle<CR>
-" nmap <F4> :TagbarToggle<CR>
-nmap <F9> :TagbarToggle<CR>
-let g:tagbar_autofocus = 1
 
-
-"" NERDTree configuration
-let g:NERDTreeChDirMode=2
-let g:NERDTreeIgnore=['\.rbc$', '\~$', '\.pyc$', '\.db$', '\.sqlite$', '__pycache__']
-let g:NERDTreeSortOrder=['^__\.py$', '\/$', '*', '\.swp$', '\.bak$', '\~$']
-let g:NERDTreeShowBookmarks=1
-let g:nerdtree_tabs_focus_on_files=1
-" let g:NERDTreeMapOpenInTab='<ENTER>'
-let g:NERDTreeMapOpenInTabSilent = '<RightMouse>'
-let g:NERDTreeWinSize = 50
-set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.pyc,*.db,*.sqlite
-
-" search and replace [foo] to [foo1] globally
-nnoremap S :%s//gI<Left><Left><Left>
-
-" read personal/private vim configuration (keep last to override)
-set rtp^=~/.vimpersonal
-set rtp^=~/.vimprivate
-
-
+"""""""""""""""""""""""""""""""""plugins behave!"""""""""""""""""""""""""""""""
 " ctrlp ignores these files
 let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
 " no cache performance fix
 let g:ctrlp_use_caching = 0
 
-"*****************************************************************************
-"" Visual Settings
-"*****************************************************************************
-"
-" vim-airline
-let g:airline#extensions#virtualenv#enabled = 1
-
-if !exists('g:airline_symbols')
-  let g:airline_symbols = {}
-endif
-
-if !exists('g:airline_powerline_fonts')
-  let g:airline#extensions#tabline#left_sep = ' '
-  let g:airline#extensions#tabline#left_alt_sep = '|'
-  let g:airline_left_sep          = '▶'
-  let g:airline_left_alt_sep      = '»'
-  let g:airline_right_sep         = '◀'
-  let g:airline_right_alt_sep     = '«'
-  let g:airline#extensions#branch#prefix     = '⤴' "➔, ➥, ⎇
-  let g:airline#extensions#readonly#symbol   = '⊘'
-  let g:airline#extensions#linecolumn#prefix = '¶'
-  let g:airline#extensions#paste#symbol      = 'ρ'
-  let g:airline_symbols.linenr    = '␊'
-  let g:airline_symbols.branch    = '⎇'
-  let g:airline_symbols.paste     = 'ρ'
-  let g:airline_symbols.paste     = 'Þ'
-  let g:airline_symbols.paste     = '∥'
-  let g:airline_symbols.whitespace = 'Ξ'
-else
-  let g:airline#extensions#tabline#left_sep = ''
-  let g:airline#extensions#tabline#left_alt_sep = ''
-
-  " powerline symbols
-  let g:airline_left_sep = ''
-  let g:airline_left_alt_sep = ''
-  let g:airline_right_sep = ''
-  let g:airline_right_alt_sep = ''
-  let g:airline_symbols.branch = ''
-  let g:airline_symbols.readonly = ''
-  let g:airline_symbols.linenr = ''
-endif
-
-" set  256bit color mode
-set t_Co=256
-set termguicolors
-
-"colorscheme elflord "the best for high contrast streaming
-"colorscheme delek
-"colorscheme pablo
-set background=dark
+"""""""""""""""""""""""""""""""""visuals"""""""""""""""""""""""""""""""""""""""
 "" makes visual mode highlighting blue
 highlight Visual cterm=bold ctermbg=Blue ctermfg=NONE
-"" visual effect on F5 cursor line changed to underline
-hi clear CursorLine
-"highlight CursorLine gui=underline cterm=underline
-set cursorline
-set cursorcolumn
-highlight CursorLine ctermbg=Yellow guibg=#2b2b2b
-highlight CursorColumn ctermbg=Yellow guibg=#2b2b2b
 
-"" makes github colorschemes transparent - needs to be after Plugin stuff
-hi Normal ctermbg=NONE
-hi! NonText ctermbg=NONE guibg=NONE
-hi! Normal ctermbg=NONE guibg=NONE
+"""""""""""""""""""""""""""""""private"""""""""""""""""""""""""""""""""""""""""
+set rtp^=~/.vimpersonal
+set rtp^=~/.vimprivate

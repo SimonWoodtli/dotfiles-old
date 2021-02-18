@@ -11,23 +11,32 @@ set encoding=utf-8
 set fileencoding=utf-8
 set fileencodings=utf-8
 
-"" basic settings
+""""""""""""""""""""""""""""""basic settings"""""""""""""""""""""""""""""""""""
+let skip_defaults_vim=1
 syntax on
-"" indent
+set nocompatible
+set noshowmatch
 set noerrorbells
+"" indent
 set tabstop=2 softtabstop=2
 set shiftwidth=2
 set expandtab
 set smartindent
 set smarttab
 set autoindent
+
+set foldmethod=manual " manual fold 'zf'/'zd'
+set nofoldenable
 set number relativenumber
 set viminfo='20,<1000,s1000
 set nowrap
 set smartcase
 set ignorecase
+set scrolloff=7
 set ruler
 set wildmode=longest,list,full
+set history=100
+set hidden
 "" search
 set incsearch
 set hlsearch " :noh to turn off
@@ -41,10 +50,25 @@ set nobackup
 set colorcolumn=80
 set textwidth=73
 highlight ColorColumn ctermbg=0 guibg=lightgrey
+
+"""""""""""""""""""""""""""""""""nice feats""""""""""""""""""""""""""""""""""""
 "" keep visual mode on when indenting >
 vmap < <gv
 vmap > >gv
+"" auto remove trailing white space
+autocmd BufWritePre * %s/\s\+$//e
+"" vertically center document when entering insert mode
+autocmd InsertEnter * norm zz
+"" makes your list characters prettier (set list)
+set listchars=tab:→\ ,eol:↲,nbsp:␣,space:·,trail:·,extends:⟩,precedes:⟨
+"" search and replace [foo] to [foo1] globally
+nnoremap S :%s//gI<Left><Left><Left>
+" start at last place you were editing
+au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+"normal! g'\"" | endif "remember where you were and puts you back to it
+au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe
 
+""""""""""""""""""""""""""""""""plugins""""""""""""""""""""""""""""""""""""""""
 "" get vimplug manager
 if empty(glob('~/.vim/autoload/plug.vim'))
   silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
@@ -55,16 +79,50 @@ endif
 "" get plugins
 if filereadable(expand("~/.vim/autoload/plug.vim"))
   call plug#begin('~/.vimplugins')
+  Plug 'vim-pandoc/vim-pandoc'
+  Plug 'https://gitlab.com/rwxrob/vim-pandoc-syntax-simple'
   Plug 'morhetz/gruvbox' "color scheme
+  Plug 'HerringtonDarkholme/yats.vim' "correct syntax hightlight for gruvbox
+
   Plug 'vim-airline/vim-airline' "info footer
   Plug 'ctrlpvim/ctrlp.vim'
 
+  Plug 'alvan/vim-closetag' "html close tags
+  Plug 'sheerun/vim-polyglot' "better syntax highlighting for many lang
   call plug#end()
   colorscheme gruvbox
-
+  set background=dark
+  set nocompatible "needed for vim-polygot
 else
   autocmd vimleavepre *.go !gofmt -w % " backup if fatih fails
 endif
 
-set background=dark
+""""""""""""""""""""""""""""""""leader, F-keys"""""""""""""""""""""""""""""""""
 let mapleader = ""
+"" needed for spacebar leader, to avoid character move with spacebar
+nnoremap <SPACE> <Nop>
+"" xclip copy/paste from X11 clipboard / ctrl-v select text first
+vmap <Leader>yy :!xclip -f -sel clip<CR>
+map <leader>pp mz: -1r !xclip -o -sel clip<CR>`z
+
+map <F1> :set number! relativenumber!<CR>
+set pastetoggle=<F3> "" toggle autoindent+autocomment on/off (:set paste, :set nopaste)
+map <F4> :set list!<CR>
+map <F5> :set cursorline! cursorcolumn!<CR>
+map <F7> :set spell!<CR>
+"" folding 'za'/spacebar to fold/unfold
+map <F12> :set fdm=indent<CR>
+
+"""""""""""""""""""""""""""""""""plugins behave!"""""""""""""""""""""""""""""""
+" ctrlp ignores these files
+let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
+" no cache performance fix
+let g:ctrlp_use_caching = 0
+
+"""""""""""""""""""""""""""""""""visuals"""""""""""""""""""""""""""""""""""""""
+"" makes visual mode highlighting blue
+highlight Visual cterm=bold ctermbg=Blue ctermfg=NONE
+
+"""""""""""""""""""""""""""""""private"""""""""""""""""""""""""""""""""""""""""
+set rtp^=~/.vimpersonal
+set rtp^=~/.vimprivate
