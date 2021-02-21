@@ -68,6 +68,14 @@ au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g
 "normal! g'\"" | endif "remember where you were and puts you back to it
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe
 
+"""""""""""""""""""""""""""filetype detection""""""""""""""""""""""""""""""""""
+au bufnewfile,bufRead bashconfig set filetype=sh
+au bufnewfile,bufRead *.profile set filetype=sh
+au bufnewfile,bufRead *.crontab set filetype=crontab
+au bufnewfile,bufRead *ssh/config set filetype=sshconfig
+au bufnewfile,bufRead *gitconfig set filetype=gitconfig
+au bufnewfile,bufRead /tmp/psql.edit.* set syntax=sql
+
 """"""""""""""""""""""""""""""""plugins""""""""""""""""""""""""""""""""""""""""
 "" get vimplug manager
 if empty(glob('~/.vim/autoload/plug.vim'))
