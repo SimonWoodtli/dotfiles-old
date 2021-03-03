@@ -13,7 +13,6 @@ set fileencodings=utf-8
 
 """"""""""""""""""""""""""""""basic settings"""""""""""""""""""""""""""""""""""
 let skip_defaults_vim=1
-syntax on
 set nocompatible
 set noshowmatch
 set noerrorbells
@@ -68,15 +67,10 @@ au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g
 "normal! g'\"" | endif "remember where you were and puts you back to it
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe
 
-"""""""""""""""""""""""""""filetype detection""""""""""""""""""""""""""""""""""
-au bufnewfile,bufRead bashconfig set filetype=sh
-au bufnewfile,bufRead *.profile set filetype=sh
-au bufnewfile,bufRead *.crontab set filetype=crontab
-au bufnewfile,bufRead *ssh/config set filetype=sshconfig
-au bufnewfile,bufRead *gitconfig set filetype=gitconfig
-au bufnewfile,bufRead /tmp/psql.edit.* set syntax=sql
-
 """"""""""""""""""""""""""""""""plugins""""""""""""""""""""""""""""""""""""""""
+syntax on
+filetype plugin indent on " sense the filetype
+
 "" get vimplug manager
 if empty(glob('~/.vim/autoload/plug.vim'))
   silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
@@ -105,6 +99,19 @@ else
   autocmd vimleavepre *.go !gofmt -w % " backup if fatih fails
 endif
 
+"""""""""""""""""""""""""""filetype detection""""""""""""""""""""""""""""""""""
+au bufnewfile,bufRead bashconfig set filetype=sh
+au bufnewfile,bufRead *.profile set filetype=sh
+au bufnewfile,bufRead *.crontab set filetype=crontab
+au bufnewfile,bufRead *ssh/config set filetype=sshconfig
+au bufnewfile,bufRead *gitconfig set filetype=gitconfig
+au bufnewfile,bufRead /tmp/psql.edit.* set syntax=sql
+autocmd bufnewfile,bufRead *.muttrc set filetype=muttrc
+au bufnewfile,bufRead *.css set filetype=css
+
+""""""""""""""""""""""""""""""autocomplete"""""""""""""""""""""""""""""""""""""
+set omnifunc=syntaxcomplete#Complete
+
 """"""""""""""""""""""""""""""""leader, F-keys"""""""""""""""""""""""""""""""""
 let mapleader = ""
 "" needed for spacebar leader, to avoid character move with spacebar
@@ -130,6 +137,9 @@ let g:ctrlp_use_caching = 0
 """""""""""""""""""""""""""""""""visuals"""""""""""""""""""""""""""""""""""""""
 "" makes visual mode highlighting blue
 highlight Visual cterm=bold ctermbg=Blue ctermfg=NONE
+"" set  256bit color mode
+set t_Co=256
+"set termguicolors
 
 """""""""""""""""""""""""""""""private"""""""""""""""""""""""""""""""""""""""""
 set rtp^=~/.vimpersonal
