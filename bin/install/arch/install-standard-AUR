@@ -13,3 +13,5 @@ paru -S dxvk-bin
 paru -S gnome-shell-extension-pop-shell
 ## spotify adblocker
 paru -S spotify-adblock-git
+## gnome-terminal that has transparency
+#paru -S gnome-terminal-transparency
