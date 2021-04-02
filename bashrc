@@ -77,7 +77,7 @@ havecmd git && export GITUSER="$(git config --global user.name)"
 
 ################################ EXPORTS ################################
 
-export BROWSER=/usr/bin/lynx
+export BROWSER=/usr/sbin/librewolf
 
 ## used for `pdf` script
 export PDFDIR=$HOME/Repos/gitlab.com/$GITUSER/books/work/essentials
