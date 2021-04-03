@@ -275,7 +275,7 @@ let g:tagbar_autofocus = 1
 
 "" autocomplete
 ""double space to enter auto
-inoremap <Leader>, <C-x><C-o>
+inoremap <Leader><Leader> <C-x><C-o>
 ""C-n auto & navigate autocomplete-menu
 inoremap <C-j> <C-n>
 ""navigate autocomplete-menu
