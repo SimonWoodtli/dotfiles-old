@@ -86,10 +86,10 @@ csscheck() {
 
 template() {
   if [[ $# -eq 1 ]]; then
-    git clone git@gitlab.com:xnasero-private/www-template.git $1 && cd $_
+    gh repo clone SimonWoodtli/www-template $1 && cd $_
     rm -rf .git
   else
-    git clone git@gitlab.com:xnasero-private/www-template.git && cd www-template/
+    gh repo clone SimonWoodtli/www-template && cd www-template/
     rm -rf .git
   fi
 }
