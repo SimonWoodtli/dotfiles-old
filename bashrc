@@ -98,7 +98,9 @@ export DENO_INSTALL="$HOME/.deno"
 
 export SCRIPTS=\
 $REPOS/gitlab.com/$GITUSER/dotfiles/scripts:\
-$REPOS/github.com/$GITUSER/dotfiles/scripts
+$REPOS/github.com/$GITUSER/dotfiles/scripts:\
+$REPOS/gitlab.com/$GITUSER/dotfiles/scripts/substitute-alias:\
+$REPOS/github.com/$GITUSER/dotfiles/scripts/substitute-alias
 
 export SCRIPTS_PRIV=\
 $REPOS/gitlab.com/$GITUSER/dotfiles/scripts_private:\
@@ -793,9 +795,11 @@ ps1min () {
 ## vi-mode for shell
 set -o vi
 
-export EDITOR=vi
-export VISUAL=vi
-export EDITOR_PREFIX=vi
+if [ $(which vi 2> /dev/null) ]; then
+  { export EDITOR=vi; export VISUAL=vi; export EDITOR_PREFIX=vi; }
+elif [ $(which vim 2> /dev/null) ]; then
+  { export EDITOR=vim; export VISUAL=vim; export EDITOR_PREFIX=vim; }
+fi
 
 export VIMSPELL=(~/.vim/spell/*.add)
 declare personalspell=(~/.vimpersonal/spell/*.add)
