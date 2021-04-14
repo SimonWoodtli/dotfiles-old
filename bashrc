@@ -55,32 +55,18 @@ havecmd () {
   return $?
 }
 
-## FIXME
-for dir in repos downloads pictures; do
-  upper=${dir^^}
-  cap=${dir^}
-  if [ -z "${!upper}" ]; then
-    if [ -d "$HOME/$cap" ]; then
-      eval "export $upper='$HOME/$cap'"
-    elif [ -d "$HOME/$dir" ]; then
-      eval "export $upper='$HOME/$dir'"
-    elif [ -d "$HOME/.local/$dir" ]; then
-      eval "export $upper='$HOME/.local/$dir'"
-    elif [ -d "$HOME/.local/$dir" ]; then
-      eval "export $upper='$HOME/$dir'"
-    fi
-  fi
-done
-
 ################################# GIT ###################################
+
+export REPOS="$HOME/repos"
 havecmd git && export GITUSER="$(git config --global user.name)"
+
 
 ################################ EXPORTS ################################
 
 export BROWSER=/usr/sbin/librewolf
 
 ## used for `pdf` script
-export PDFDIR=$HOME/Repos/gitlab.com/$GITUSER/books/work/essentials
+export PDFDIR=$HOME/repos/github.com/$GITUSER/books/work/essentials
 
 ## IBUS config for chinese pinyin input
 export GTK_IM_MODULE=IBUS
@@ -133,9 +119,9 @@ export CDPATH=\
 ./:\
 $REPOS/gitlab.com/$GITUSER:\
 $REPOS/github.com/$GITUSER:\
-$REPOS/gitlab.com/$GITUSER/dotfiles:\
-$REPOS/gitlab.com/$GITUSER/pdfs:\
-$REPOS/gitlab.com/$GITUSER/notes:\
+$REPOS/github.com/$GITUSER/dotfiles:\
+$REPOS/github.com/$GITUSER/pdfs:\
+$REPOS/github.com/$GITUSER/notes:\
 $REPOS/gitlab.com/*:\
 $REPOS/github.com/*:\
 $REPOS/gitlab.com:\
@@ -1016,7 +1002,8 @@ complete -C auth auth
 complete -C live live
 complete -C wsutil wsutil
 
-eval "$(gh completion -s bash)"
+## if gh-cli auto complete should not work:
+#eval "$(gh completion -s bash)"
 eval "$(pandoc --bash-completion)"
 
 ############################ Gruvbox Colors #############################
