@@ -19,5 +19,7 @@ complete -C auth auth
 complete -C live live
 complete -C wsutil wsutil
 
+## if gh-cli auto complete should not work:
+## deactivate gh completion
 eval "$(gh completion -s bash)"
 eval "$(pandoc --bash-completion)"

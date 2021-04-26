@@ -4,7 +4,7 @@
 export BROWSER=/usr/sbin/librewolf
 
 ## used for `pdf` script
-export PDFDIR=$HOME/Repos/gitlab.com/$GITUSER/books/work/essentials
+export PDFDIR=$HOME/repos/github.com/$GITUSER/books/work/essentials
 
 ## IBUS config for chinese pinyin input
 export GTK_IM_MODULE=IBUS

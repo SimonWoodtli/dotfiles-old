@@ -40,9 +40,9 @@ export CDPATH=\
 ./:\
 $REPOS/gitlab.com/$GITUSER:\
 $REPOS/github.com/$GITUSER:\
-$REPOS/gitlab.com/$GITUSER/dotfiles:\
-$REPOS/gitlab.com/$GITUSER/pdfs:\
-$REPOS/gitlab.com/$GITUSER/notes:\
+$REPOS/github.com/$GITUSER/dotfiles:\
+$REPOS/github.com/$GITUSER/pdfs:\
+$REPOS/github.com/$GITUSER/notes:\
 $REPOS/gitlab.com/*:\
 $REPOS/github.com/*:\
 $REPOS/gitlab.com:\
