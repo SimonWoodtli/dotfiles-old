@@ -5,7 +5,9 @@ export DENO_INSTALL="$HOME/.deno"
 
 export SCRIPTS=\
 $REPOS/gitlab.com/$GITUSER/dotfiles/scripts:\
-$REPOS/github.com/$GITUSER/dotfiles/scripts
+$REPOS/github.com/$GITUSER/dotfiles/scripts:\
+$REPOS/gitlab.com/$GITUSER/dotfiles/scripts/substitute-alias:\
+$REPOS/github.com/$GITUSER/dotfiles/scripts/substitute-alias
 
 export SCRIPTS_PRIV=\
 $REPOS/gitlab.com/$GITUSER/dotfiles/scripts_private:\
