@@ -43,19 +43,12 @@ havecmd () {
   return $?
 }
 
-## FIXME
 for dir in repos downloads pictures; do
   upper=${dir^^}
   cap=${dir^}
-  if [ -z "${!upper}" ]; then
-    if [ -d "$HOME/$cap" ]; then
-      eval "export $upper='$HOME/$cap'"
-    elif [ -d "$HOME/$dir" ]; then
-      eval "export $upper='$HOME/$dir'"
-    elif [ -d "$HOME/.local/$dir" ]; then
-      eval "export $upper='$HOME/.local/$dir'"
-    elif [ -d "$HOME/.local/$dir" ]; then
-      eval "export $upper='$HOME/$dir'"
-    fi
+  if [ -d "$HOME/$cap" ]; then
+    eval "export $upper='$HOME/$cap'"
+  elif [ -d "$HOME/$dir" ]; then
+    eval "export $upper='$HOME/$dir'"
   fi
 done
