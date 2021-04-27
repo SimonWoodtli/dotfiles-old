@@ -1,6 +1,18 @@
 #!/usr/bin/bash
-## config speedy mouse scroll
+## setup speedy mouse scroll
+
 ln -sf $PWD/imwheelrc $HOME/.imwheelrc
 ls -l $HOME/.imwheelrc
 [[ ! -d $HOME/.config/autostart ]] && mkdir $HOME/.config/autostart
-ln -sf $PWD/imwheel.desktop $HOME/.config/autostart/imwheel.desktop
+
+read -p "Which Distro do you have? [1-2]
+1. Arch
+2. Another Distro
+"
+
+case $REPLY in
+  1) ln -sf $PWD/imwheel.desktop $HOME/.config/autostart/imwheel.desktop ;;
+  2) ln -sf $PWD/imwheel-pop.desktop $HOME/.config/autostart/imwheel.desktop ;;
+  *) echo valid input is: 1-2
+     exit 1 ;;
+esac

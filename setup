@@ -1,6 +1,6 @@
 #!/bin/bash
-
 declare -i major=${BASH_VERSION:0:1}
+
 if [[ ! ( $major == "4" || $major == "5" ) ]]; then
    echo Get Bash 4+ before you setup your dotfiles.
    return
@@ -12,7 +12,7 @@ ls -l $HOME/.bashrc
 ln -sf $PWD/dircolors/dircolors $HOME/.dircolors
 ls -l $HOME/.dircolors
 
-mkdir -p $HOME/.ssh
+[[ -d $HOME/.ssh ]] || mkdir -p $HOME/.ssh
 ln -sf $PWD/sshconfig $HOME/.ssh/config
 ls -l $HOME/.ssh/config
 
@@ -25,47 +25,63 @@ ls -l $HOME/.inputrc
 ln -sf $PWD/profile $HOME/.bash_profile
 ls -l $HOME/.bash_profile
 
+#sudo ln -sf $PWD/scripts/havecmd /usr/local/bin/havecmd
+#ls -l /usr/local/bin/havecmd
 
-read -p "Do you run arch?
-1) arch/gnome
-2) arch/dwm
-3) neighter
+read -p "Which Distro do you have? [1-3]
+1) Arch/gnome
+2) Arch/dwm
+3) Another Distro
+"
 
-" userinput
-
-case $userinput in
+case $REPLY in
   ## check the UUID in the metadata.json = name of folder
-  1) [[ -d $HOME/.local/share/gnome-shell-extensions ]] || mkdir -p $HOME/.local/share/gnome-shell/extensions
+  ## gnome 40 issues:
+  ## - not all extension support it yet need to manually git pull repos
+  ## - gnome-extensions cli seems to be confused after flatpak extension install
+
+  1) [[ -d $HOME/.local/share/gnome-shell/extensions ]] || mkdir -p $HOME/.local/share/gnome-shell/extensions
      [[ -d $HOME/repos/github.com/gnome-extensions ]] || mkdir -p $HOME/repos/github.com/gnome-extensions
+     flatpak install flathub org.gnome.Extensions
      cd $HOME/repos/github.com/gnome-extensions
 
-     git clone https://github.com/ubuntu/gnome-shell-extension-appindicator
+     [[ -d \
+        $HOME/repos/github.com/gnome-extensions/gnome-shell-extension-appindicator \
+        ]] || git clone https://github.com/ubuntu/gnome-shell-extension-appindicator
      ln -sf $PWD/gnome-shell-extension-appindicator \
         $HOME/.local/share/gnome-shell/extensions/appindicatorsupport@rgcjonas.gmail.com
      gnome-extensions enable appindicatorsupport@rgcjonas.gmail.com
 
-     git clone https://github.com/pop-os/gnome-shell-extension-always-show-workspaces
+     [[ -d \
+        $HOME/repos/github.com/gnome-extensions/gnome-shell-extension-always-show-workspaces \
+        ]] || git clone https://github.com/pop-os/gnome-shell-extension-always-show-workspaces
      ln -sf $PWD/gnome-shell-extension-always-show-workspaces \
         $HOME/.local/share/gnome-shell/extensions/always-show-workspaces@system76.com
      gnome-extensions enable always-show-workspaces@system76.com
 
-
-     git clone https://github.com/kgshank/gse-sound-output-device-chooser
+     [[ -d \
+        $HOME/repos/github.com/gnome-extensions/gse-sound-output-device-chooser \
+        ]] || git clone https://github.com/kgshank/gse-sound-output-device-chooser
      ln -sf $PWD/gse-sound-output-device-chooser/sound-output-device-chooser@kgshank.net \
         $HOME/.local/share/gnome-shell/extensions/sound-output-device-chooser@kgshank.net
      gnome-extensions enable sound-output-device-chooser@kgshank.net
 
-     git clone https://github.com/mpdeimos/gnome-shell-remove-dropdown-arrows
+     [[ -d \
+        $HOME/repos/github.com/gnome-extensions/gnome-shell-remove-dropdown-arrows \
+        ]] || git clone https://github.com/mpdeimos/gnome-shell-remove-dropdown-arrows
      ln -sf $PWD/gnome-shell-remove-dropdown-arrows \
         $HOME/.local/share/gnome-shell/extensions/remove-dropdown-arrows-dev@mpdeimos.com
      gnome-extensions enable remove-dropdown-arrows-dev@mpdeimos.com
 
-     git clone https://github.com/fmstrat/wintile
+     [[ -d $HOME/repos/github.com/gnome-extensions/wintile ]] \
+        || git clone https://github.com/fmstrat/wintile
      ln -sf $PWD/wintile \
         $HOME/.local/share/gnome-shell/extensions/wintile@nowsci.com
      gnome-extensions enable wintile@nowsci.com
 
-     git clone https://gitlab.com/jenslody/gnome-shell-extension-openweather
+     [[ -d \
+        $HOME/repos/github.com/gnome-extensions/gnome-shell-extension-openweather \
+        ]] || git clone https://gitlab.com/jenslody/gnome-shell-extension-openweather
      cd gnome-shell-extension-openweather
      ./autogen.sh && make local-install
 
@@ -80,7 +96,6 @@ case $userinput in
      ln -sf $PWD/xinitrc $HOME/.xinitrc
      ls -l $HOME/.xinitrc ;;
   3) exit 1 ;;
-  *) echo "give valid input [1-3]" ;;
+  *) echo "Please give a valid input: [1-3]"
+     exit 2 ;;
 esac
-#sudo ln -sf $PWD/scripts/havecmd /usr/local/bin/havecmd
-#ls -l /usr/local/bin/havecmd
