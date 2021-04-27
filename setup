@@ -16,12 +16,6 @@ mkdir -p $HOME/.ssh
 ln -sf $PWD/sshconfig $HOME/.ssh/config
 ls -l $HOME/.ssh/config
 
-## config speedy mouse scroll
-ln -sf $PWD/imwheelrc $HOME/.imwheelrc
-ls -l $HOME/.imwheelrc
-[[ ! -d $HOME/.config/autostart ]] && mkdir $HOME/.config/autostart
-ln -sf $PWD/imwheel.desktop $HOME/.config/autostart/imwheel.desktop
-
 ln -sf $PWD/gitconfig $HOME/.gitconfig
 ls -l $HOME/.gitconfig
 

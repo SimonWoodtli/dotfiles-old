@@ -1,0 +1,6 @@
+#!/usr/bin/bash
+## config speedy mouse scroll
+ln -sf $PWD/imwheelrc $HOME/.imwheelrc
+ls -l $HOME/.imwheelrc
+[[ ! -d $HOME/.config/autostart ]] && mkdir $HOME/.config/autostart
+ln -sf $PWD/imwheel.desktop $HOME/.config/autostart/imwheel.desktop
