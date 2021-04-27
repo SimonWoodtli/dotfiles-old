@@ -1,4 +1,4 @@
 #!/bin/sh
 
-DATA=$HOME/Repos/gitlab.com/xnasero/dotfiles/share/macaddress.io-db.json
+DATA=$HOME/repos/github.com/SimonWoodtli/dotfiles/share/macaddress.io-db.json
 awk -F\" '{print $4 "\t" $10}' $DATA | grep -i $1

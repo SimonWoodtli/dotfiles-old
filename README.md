@@ -13,7 +13,7 @@ Before you start:
 - If you want to get everything working you need to make sure you have a ~/.gitconfig with your username configured
 - The current setup script is used with Arch
 
-1. run `cd` now run `mkdir -p Repos/github.com/your-github-username/ && cd $_`
+1. run `cd` now run `mkdir -p repos/github.com/your-github-username/ && cd $_`
 2. clone the repo `git clone https://github.com/SimonWoodtli/dotfiles.git && cd $_`
 3. run `./setup`
 

@@ -1,5 +1,5 @@
 #!/bin/sh
 
-rm $HOME/Repos/gitlab.com/xnasero/dotfiles/scripts/redyt
-curl -o $HOME/Repos/gitlab.com/xnasero/dotfiles/scripts/redyt https://raw.githubusercontent.com/Bugswriter/redyt/master/redyt
-chmod u+x $HOME/Repos/gitlab.com/xnasero/dotfiles/scripts/redyt
+rm $HOME/repos/github.com/SimonWoodtli/dotfiles/scripts/redyt
+curl -o $HOME/repos/github.com/SimonWoodtli/dotfiles/scripts/redyt https://raw.githubusercontent.com/Bugswriter/redyt/master/redyt
+chmod u+x $HOME/repos/github.com/SimonWoodtli/dotfiles/scripts/redyt
