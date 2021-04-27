@@ -1248,22 +1248,6 @@ please() {
   fi
 }
 
-## list all current files in git repo by size
-glist() {
-  git rev-list --objects --all \
-| git cat-file --batch-check='%(objecttype) %(objectname) %(objectsize) %(rest)' \
-| awk '/^blob/ {print substr($0,6)}' \
-| sort --numeric-sort --key=2 \
-| cut --complement --characters=13-40 \
-| numfmt --field=2 --to=iec-i --suffix=B --padding=7 --round=nearest
-}
-
-## 1. run `gdl` list path of all deleted files
-## 2. `gshowdl` -> list all commits that have a deleted file, $1=<path-to-deleted-file>
-## 3. `git show <commit-id> -- <path-to-deleted-file>` -> for details
-gshowdl() {
-  git log --all -- "$1"
-}
 
 rc() {
   reddio print comments/$1 | less
@@ -1295,6 +1279,50 @@ template() {
   else
     gh repo clone SimonWoodtli/www-template && cd www-template/
     rm -rf .git
+  fi
+}
+
+#### GIT ####
+
+## list all current files in git repo by size
+glist() {
+  git rev-list --objects --all \
+| git cat-file --batch-check='%(objecttype) %(objectname) %(objectsize) %(rest)' \
+| awk '/^blob/ {print substr($0,6)}' \
+| sort --numeric-sort --key=2 \
+| cut --complement --characters=13-40 \
+| numfmt --field=2 --to=iec-i --suffix=B --padding=7 --round=nearest
+}
+
+## 1. run `gdl` list path of all deleted files
+## 2. `gshowdl` -> list all commits that have a deleted file, $1=<path-to-deleted-file>
+## 3. `git show <commit-id> -- <path-to-deleted-file>` -> for details
+gshowdl() {
+  git log --all -- "$1"
+}
+
+gmr() {
+  if [ "$#" -eq 1 ]; then
+    git merge $1 --no-ff
+  else
+    echo "Please provide a single argument: gmr \$1"
+  fi
+}
+
+gck() {
+  if [ "$#" -eq 1 ]; then
+    branches=($(git branch | cut -c 3-))
+    for branch in "${branches[@]}"; do
+      if [[ "${branch}" = $1 ]]; then
+        git checkout $1
+        echo "Switched to an existing branch: ${branch}"
+        return 0
+      fi
+    done
+    echo "Created and switched to a new branch: $1"
+    git checkout -b $1
+  else
+    echo "Please provide a single argument: gck \$1"
   fi
 }
 
