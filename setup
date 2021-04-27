@@ -42,8 +42,8 @@ read -p "Do you run arch?
 case $userinput in
   ## check the UUID in the metadata.json = name of folder
   1) [[ -d $HOME/.local/share/gnome-shell-extensions ]] || mkdir -p $HOME/.local/share/gnome-shell/extensions
-     [[ -d $HOME/Repos/github.com/gnome-extensions ]] || mkdir -p $HOME/Repos/github.com/gnome-extensions
-     cd $HOME/Repos/github.com/gnome-extensions
+     [[ -d $HOME/repos/github.com/gnome-extensions ]] || mkdir -p $HOME/repos/github.com/gnome-extensions
+     cd $HOME/repos/github.com/gnome-extensions
 
      git clone https://github.com/ubuntu/gnome-shell-extension-appindicator
      ln -sf $PWD/gnome-shell-extension-appindicator \
@@ -75,7 +75,7 @@ case $userinput in
      cd gnome-shell-extension-openweather
      ./autogen.sh && make local-install
 
-     #cd $HOME/Repos/github.com/gnome-extensions
+     #cd $HOME/repos/github.com/gnome-extensions
      #git clone https://github.com/pop-os/gnome-shell-extension-alt-tab-raise-first-window
      #ln -sf $PWD/gnome-shell-extension-alt-tab-raise-first-window \
      #   $HOME/.local/share/gnome-shell/extensions/alt-tab-raise-first-window@system76.com

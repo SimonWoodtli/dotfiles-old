@@ -4,8 +4,8 @@
 sudo apt update
 sudo apt install libx11-dev libxinerama-dev libgcr-3-dev libglib2.0-dev libwebkit2gtk-4.0-dev
 
-cd $HOME/Repos/github.com/
-if [[ ! -d $HOME/Repos/github.com/suckless ]]; then
+cd $HOME/repos/github.com/
+if [[ ! -d $HOME/repos/github.com/suckless ]]; then
   mkdir suckless
 fi
 
@@ -14,7 +14,7 @@ git clone https://git.suckless.org/surf
 cd surf
 sudo make clean install
 
-##cd $HOME/Repos/github.com/suckless
+##cd $HOME/repos/github.com/suckless
 ##git clone https://git.suckless.org/tabbed
 ##cd tabbed
 ##sudo make clean install

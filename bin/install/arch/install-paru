@@ -1,7 +1,7 @@
 #!/bin/sh
 sudo pacman -S --needed base-devel git glibc -y
-[[ -d $HOME/Repos/archlinux ]] || mkdir -p $HOME/Repos/archlinux
-cd $HOME/Repos/archlinux
+[[ -d $HOME/repos/archlinux ]] || mkdir -p $HOME/repos/archlinux
+cd $HOME/repos/archlinux
 git clone https://aur.archlinux.org/paru.git
 cd paru
 makepkg -si

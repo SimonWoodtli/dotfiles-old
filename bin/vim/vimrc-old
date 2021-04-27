@@ -109,7 +109,7 @@ set formatoptions+=1   " don't break a line after a one-letter word
 "settings for Plug ferrine/md-img-paste paste cilboard screenshot to vim
 autocmd FileType markdown nmap <buffer><silent> <leader>p :call mdip#MarkdownClipboardImage()<CR>
 " there are some defaults for image directory and image name, you can change them
-let g:mdip_imgdir = '/home/Repos/gitlab.com/xnasero/notes/img'
+let g:mdip_imgdir = '/home/repos/github.com/SimonWoodtli/notes/img'
 " let g:mdip_imgname = 'image'
 if $PLATFORM == 'mac'
   " required for mac delete to work
