@@ -1,0 +1,32 @@
+#!/bin/sh
+
+set -e
+test -z "$KN" && echo "KN (knowledge directory) not set." && exit 1
+test -z "$GITUSER" && echo "GITUSER not set." && exit 1
+EXE=${0##*/}
+test -z "$EXE" && echo "Could not determine name of executable." && exit 1
+
+add() {
+  test ! -d "$KN/$EXE" && echo "Directory not found: $KN/$EXE" && exit 1
+  dir="$KN/$EXE/$(isosec)"
+  mkdir -p "$dir"
+  ${EDITOR:-vim} "$dir/README.md"
+  cd "$dir"
+  test ! -e "$dir/README.md" && rmdir "$dir"
+  line=$(head -1 "$dir/README.md" | sed 's/#\+ *//')
+  test -n "$line"
+  echo "Adding: $line"
+  git add -A "$dir"
+  git commit -m "$line"
+  git push --mirror origin
+}
+
+
+case "$1" in
+add | "") add ;;
+q | query)
+  shift
+  query "$@"
+  ;;
+*) echo Unsupported. ;;
+esac
