@@ -75,6 +75,9 @@ export BROWSER=/usr/sbin/librewolf
 ## used for `pdf` script
 export PDFDIR=$HOME/repos/github.com/$GITUSER/books/work/essentials
 
+## used for `zet` script
+export KN=$HOME/repos/github.com/$GITUSER/knowledge
+
 ## IBUS config for chinese pinyin input
 export GTK_IM_MODULE=IBUS
 export XMODIFIERS=@im=IBUS
@@ -127,8 +130,8 @@ export CDPATH=\
 $REPOS/gitlab.com/$GITUSER:\
 $REPOS/github.com/$GITUSER:\
 $REPOS/github.com/$GITUSER/dotfiles:\
-$REPOS/github.com/$GITUSER/pdfs:\
-$REPOS/github.com/$GITUSER/notes:\
+$REPOS/github.com/$GITUSER/books:\
+$REPOS/github.com/$GITUSER/knowledge:\
 $REPOS/gitlab.com/*:\
 $REPOS/github.com/*:\
 $REPOS/gitlab.com:\

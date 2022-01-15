@@ -16,6 +16,7 @@ sudo flatpak install flathub com.gitlab.tipp10.tipp10
 sudo flatpak install flathub flathub run org.kde.okular
 sudo flatpak install flathub com.uploadedlobster.peek
 sudo flatpak install flathub uk.co.ibboard.cawbird
+sudo flatpak install flathub com.github.xournalpp.xournalpp
 ## to consider
 # com.skype.Client
 # io.github.Hexchat
