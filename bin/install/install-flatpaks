@@ -1,6 +1,7 @@
 #!/bin/sh
 sudo flatpak install flathub com.spotify.Client
 sudo flatpak install flathub org.audacityteam.Audacity
+sudo flatpak install flathub org.onionshare.OnionShare
 sudo flatpak install flathub org.kde.kdenlive
 sudo flatpak install flathub org.gimp.GIMP
 sudo flatpak install flathub io.lbry.lbry-app
