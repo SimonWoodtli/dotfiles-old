@@ -3,17 +3,17 @@
 sudo apt-get install dirmngr gpg-agent apt-transport-https
 
 ## get distro codename
-distro=$(lsb_release -c | grep -oE '[^[:space:]]+$')
+#distro=$(lsb_release -c | grep -oE '[^[:space:]]+$')
 
 ## add weechat to sources
-echo "deb https://weechat.org/ubuntu $distro main" | sudo tee /etc/apt/sources.list.d/weechat.list
-echo "deb-src https://weechat.org/ubuntu $distro main" | sudo tee -a /etc/apt/sources.list.d/weechat.list
+#echo "deb https://weechat.org/ubuntu $distro main" | sudo tee /etc/apt/sources.list.d/weechat.list
+#echo "deb-src https://weechat.org/ubuntu $distro main" | sudo tee -a /etc/apt/sources.list.d/weechat.list
 
-sudo apt-key adv --keyserver hkps://keys.openpgp.org --recv-keys 11E9DE8848F2B65222AA75B8D1820DB22A11534E
+#sudo apt-key adv --keyserver hkps://keys.openpgp.org --recv-keys 11E9DE8848F2B65222AA75B8D1820DB22A11534E
 ## install weechat
+
+sudo mkdir -p /usr/local/share/keyrings
+sudo gpg --no-default-keyring --keyring /usr/local/share/keyrings/weechat-archive-keyring.gpg --keyserver hkps://keys.openpgp.org --recv-keys 11E9DE8848F2B65222AA75B8D1820DB22A11534E
+
 sudo apt-get update
 sudo apt-get install weechat-curses weechat-plugins weechat-python weechat-perl
-
-
-
-
