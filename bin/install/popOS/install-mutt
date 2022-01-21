@@ -1,4 +1,19 @@
 #!/bin/sh
 
+## install dependencies:
 sudo apt update
-sudo apt install neomutt msmtp abook pass offlineimap
+sudo apt install neomutt curl isync msmtp pass abook notmuch urlview
+
+cd $HOME/repos/github.com/
+if [[ ! -d $HOME/repos/github.com/LukeSmithxyz ]]; then
+  mkdir LukeSmithxyz
+fi
+cd LukeSmithxyz
+git clone https://github.com/LukeSmithxyz/mutt-wizard
+cd mutt-wizard
+sudo make install
+
+## SETUP
+pass init xnasero@posteo.net
+gpg --full-gen-key
+## key pw is on your pw-manager

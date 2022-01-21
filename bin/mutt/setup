@@ -1,0 +1,20 @@
+#!/bin/sh
+
+## SETUP
+## 1.
+pass init xnasero@posteo.net
+## 2.
+## use key pw from your pw-manager with same mail as pass
+gpg --full-gen-key
+## 3.
+## add your emails with `mw -a ...`
+
+## 4.
+## setup notmuch to search mails with ctrl-f
+notmuch new
+
+## 5.
+## setup cronjob to sync mail
+mw -t 10
+echo "your mail gets synced every 10mins"
+crontab -l
