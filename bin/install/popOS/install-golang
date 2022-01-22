@@ -1,0 +1,58 @@
+#!/bin/sh
+
+## alternative:
+#sudo add-apt-repository ppa:longsleep/golang-backports
+#sudo apt update
+#sudo apt install golang-go
+
+rel=1.17.6
+
+download () {
+  echo -n "Downloading..."
+  curl -LJO https://go.dev/dl/go1.17.6.linux-amd64.tar.gz
+  result=$?
+  if [ $result -eq 0 ]; then
+    echo DOWNLOADED
+  else
+    echo FAILED Downloading
+  fi
+  return $result
+}
+
+
+verify () {
+  echo -n "Verifying..."
+  #curl --remote-name https://go.dev/dl/
+  curl https://go.dev/dl/ | grep -A5 href=\"/dl/go1.17.6.linux-amd64.tar.gz\" \
+    | grep  -Eo '([a-z0-9]{64})' > SHASUMS256.txt
+  sed -i "1s/$/  go$rel.linux-amd64.tar.gz/" SHASUMS256.txt
+  grep go$rel.linux-amd64.tar.gz SHASUMS256.txt | sha256sum -c -
+  result=$?
+  if [ $result -eq 0 ]; then
+    echo VERIFIED
+  else
+    echo FAILED Verification
+  fi
+  return $result
+}
+
+install () {
+  echo -n "Installing..."
+  sudo rm -rf /usr/local/go
+  sudo tar -C /usr/local -xzf go$rel.linux-amd64.tar.gz
+  echo "INSTALLED"
+  echo 'Add /usr/local/go/bin to your $PATH'
+}
+
+clean () {
+  rm go$rel.linux-amd64* 2>/dev/null
+  rm SHASUMS256* 2>/dev/null
+}
+
+#download
+#verify
+#install
+download && verify && install
+clean
+
+
