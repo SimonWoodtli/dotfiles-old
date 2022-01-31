@@ -26,6 +26,7 @@ verify () {
   curl https://go.dev/dl/ | grep -A5 href=\"/dl/go1.17.6.linux-amd64.tar.gz\" \
     | grep  -Eo '([a-z0-9]{64})' > SHASUMS256.txt
   sed -i "1s/$/  go$rel.linux-amd64.tar.gz/" SHASUMS256.txt
+  ## google released only sha keys but not pgp signatures to check sha key
   grep go$rel.linux-amd64.tar.gz SHASUMS256.txt | sha256sum -c -
   result=$?
   if [ $result -eq 0 ]; then
