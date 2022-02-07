@@ -1,5 +1,5 @@
 #!/bin/sh
-flatpak install flathub com.spotify.Client
+
 flatpak install flathub org.audacityteam.Audacity
 flatpak install flathub org.onionshare.OnionShare
 flatpak install flathub org.kde.kdenlive
