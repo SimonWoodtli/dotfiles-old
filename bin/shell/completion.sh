@@ -18,6 +18,8 @@ complete -C kn kn
 complete -C auth auth
 complete -C live live
 complete -C wsutil wsutil
+complete -C zet zet
+complete -C log log
 
 ## if gh-cli auto complete should not work:
 ## deactivate gh completion

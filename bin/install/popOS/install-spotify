@@ -1,0 +1,61 @@
+#!/usr/bin/bash
+
+read -p "Did you update the URL from the spotify repo to the latest
+version in the script?
+
+y | n" input
+
+case "$input" in
+"y" | "Y")
+	echo -e "starting the process"
+	blue=$(tput setaf 6)
+	cd ~
+
+	wget http://repository.spotify.com/pool/non-free/s/spotify-client/spotify-client_1.1.72.439.gc253025e_amd64.deb
+
+	debfile=`find /home -iname "*spotify-client_1*amd64.deb"`
+	echo ${blue}"found spotify deb file on" $debfile ${txtrst}
+	sudo dpkg -i $debfile && sudo apt-get install -f
+	sudo dpkg --configure -a
+	sudo apt --fix-broken install
+
+	sleep 2s
+	cd ~/Downloads
+	echo -e "installing the necessary package"
+
+	sudo apt-get install git gcc wget curl libcurl4-gnutls-dev rustc cargo
+	git clone https://github.com/abba23/spotify-adblock.git -b main spotifyadblockextra
+	spotifyextra=`find /home -iname "*spotifyadblock*"`
+	cd $spotifyextra
+
+
+	make
+	echo -e "installing the elf binary"
+	sudo make install
+
+	sleep 2s
+
+	echo -e "making a destop application for the installed lib"
+
+	cd ~/.local/share/applications
+	echo "[Desktop Entry]
+Type=Application
+Name=Spotifyglitch
+GenericName=Music Player
+Icon=spotify-client
+TryExec=spotify
+Exec=env LD_PRELOAD=/usr/local/lib/spotify-adblock.so spotify %U
+Terminal=false
+MimeType=x-scheme-handler/spotify;
+Categories=Audio;Music;Player;AudioVideo;
+StartupWMClass=spotify" > spotifylinux.desktop
+
+	echo -e "script ran successfully"
+	cd ~/
+	sleep 5s
+	zenity --info --text="if you want to change the name of the application \
+		change it in the desktop entry located in ~/.local/share/applications/"
+	exit ;;
+"n" | "N") return 1 ;;
+*) echo "wrong input please enter Y or N" ;;
+esac
