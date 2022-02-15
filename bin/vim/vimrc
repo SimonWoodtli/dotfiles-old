@@ -44,6 +44,11 @@ set smartindent "same as >> but when you wanna do a new line
 set autoindent " you should turn it off when you are pasting
 set smarttab
 
+"" set both german and english to spellcheck
+"" to download german dictonary run within vim:
+":setl spell spelllang=de
+set spelllang=en_us,de_de
+
 "" no backups
 set nobackup
 set nowritebackup
@@ -165,6 +170,7 @@ if filereadable(expand("~/.vim/autoload/plug.vim"))
   Plug 'ctrlpvim/ctrlp.vim' " C-p to search and open files within vim
   Plug 'tpope/vim-surround' "change single to double quotes: cs'\"
   Plug 'sheerun/vim-polyglot' " better syntax highlighting for many lang
+  Plug 'preservim/nerdcommenter' " Comment your code quickly
   "Plug 'elzr/vim-json' "better syntax for json
   "Plug 'tpope/vim-fugitive'
   "Plug 'cespare/vim-toml'
@@ -200,7 +206,7 @@ if filereadable(expand("~/.vim/autoload/plug.vim"))
   " Plug 'python-mode/python-mode'
 
   " html
-  Plug 'alvan/vim-closetag' "html close tags
+  "Plug 'mattn/emmet-vim'
   "Plug 'hail2u/vim-css3-syntax'
   "Plug 'gorodinskiy/vim-coloresque'
   "Plug 'tpope/vim-haml'
@@ -241,7 +247,9 @@ au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g
 "normal! g'\"" | endif "remember where you were and puts you back to it
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe
 "" Automatically delets all trailing whitespace on save.
-autocmd BufWritePre * %s/\s\+$//e
+"
+"" todo: add this function to an F key
+"autocmd BufWritePre * %s/\s\+$//e
 
 
 "" might be needed for C-x/C-o autocomplete
