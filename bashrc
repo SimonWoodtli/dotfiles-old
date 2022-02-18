@@ -1216,6 +1216,44 @@ cheat () {
   IFS=+ curl "http://cht.sh/$where/ $*"
 } && export -f cheat
 
+
+search () {
+        if [ -n "$1" ]; then
+                if [ -n "$2" ]; then
+                        find $1 -iname *$2*
+                else
+                        find / -iname *$1*
+                fi
+        else
+                echo "Usage: search [dir] [partial_file_name]"
+        fi
+}
+
+extract () {
+    if [ -n "$1" ] ; then
+        if [ -f $1 ] ; then
+                case $1 in
+                *.tar.bz2) tar xjf $1 ;;
+                *.tar.gz) tar xzf $1 ;;
+                *.bz2) bunzip2 $1 ;;
+                *.rar) rar x $1 ;;
+                *.gz) gunzip $1 ;;
+                *.tar) tar xf $1 ;;
+                *.tbz2) tar xjf $1 ;;
+                *.tgz) tar xzf $1 ;;
+                *.zip) unzip $1 ;;
+                *.Z) uncompress $1 ;;
+                *.7z) 7z x $1 ;;
+                *) echo "'$1' cannot be extracted via extract" ;;
+                esac
+        else
+                echo "'$1' is not a valid file"
+        fi
+    else
+        echo "Usage: extract filename"
+    fi
+}
+
 envx () {
   local envfile="$1"
   if [[ ! -e "${envfile}" ]]; then
