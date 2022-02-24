@@ -1,4 +1,26 @@
 #!/usr/bin/env perl
+
+#`which keyoff` and `keyoff`;
+
+sub handle {
+	exit(0);
+}
+
+$SIG{"TERM"} = \&handle;
+$SIG{"INT"} = \&handle;
+
+#
+# BUT FIRST:
+# Keep in mind that you probably have to install libcurses-perl
+# and Term::Animation from CPAN for this to work:
+#
+#     sudo apt install libcurses-perl
+#     sudo cpan -I Term::Animation
+#
+# Special thanks to @UndeadLeech for adding the transparency. This is
+# the *only* fish/asciiquarium without the default black background.
+#
+# Thanks to @qmacro for putting rwx into a special fishy.
 #
 #############################################################################
 # Asciiquarium - An aquarium animation in ASCII art
@@ -28,12 +50,12 @@
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation; either version 2 of the License, or
 # (at your option) any later version.
-# 
+#
 # This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
-# 
+#
 # You should have received a copy of the GNU General Public License along
 # with this program; if not, write to the Free Software Foundation, Inc.,
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
@@ -60,7 +82,7 @@ my %depth = (
 	shark		=> 2,
 	fish_start	=> 3,
 	fish_end	=> 20,
-	seaweed		=> 21, 
+	seaweed		=> 21,
 	castle		=> 22,
 
 	# waterline
@@ -103,7 +125,7 @@ sub main {
 		add_all_seaweed($anim);
 		add_all_fish($anim);
 		random_object(undef, $anim);
-		
+
 		$anim->redraw_screen();
 
 		my $nexttime = 0;
@@ -254,7 +276,7 @@ sub add_bubble {
 		callback_args	=> [ 0, -1, 0, .1 ],
 		die_offscreen	=> 1,
 		physical	=> 1,
-		coll_handler	=> \&bubble_collision, 
+		coll_handler	=> \&bubble_collision,
 		default_color	=> 'CYAN',
 	);
 }
@@ -291,7 +313,7 @@ q{
        \
      ...\..,
 \  /'       \
- >=     (  ' >
+ >=  rwx(  ' >
 /  \      / /
     `"'"'/''
 },
@@ -299,7 +321,7 @@ q{
        2
      1112111
 6  11       1
- 66     7  4 5
+ 66  7777  4 5
 6  1      3 1
     11111311
 },
@@ -307,7 +329,7 @@ q{
       /
   ,../...
  /       '\  /
-< '  )     =<
+< '  )rwx  =<
  \ \      /  \
   `'\'"'"'
 },
@@ -315,7 +337,7 @@ q{
       2
   1112111
  1       11  6
-5 4  7     66
+5 4  7777  66
  1 3      1  6
   11311111
 },
@@ -484,7 +506,7 @@ q{
 11116
 },
 );
-	
+
 	# 1: body
 	# 2: dorsal fin
 	# 3: flippers
@@ -640,7 +662,7 @@ q#
 
 
                                            cR
- 
+
                                           cWWWWWWWW
 
 
@@ -728,40 +750,40 @@ sub fishhook_cb {
 	my ($entity, $anim) = @_;
 
 	my @pos = $entity->position;
-	
+
 	# this means we hooked something, reel it in
 	if(defined($entity->callback_args())) {
 		$pos[1]--;
-	
+
 	# otherwise, just lower until we reach 1/4 from the bottom
 	} else {
 		if( ( $pos[1] + $entity->height) < $anim->height * .75) {
 			$pos[1]++;
 		}
 	}
-	
+
 	return @pos;
 }
 
 sub add_fishhook {
 	my ($old_ent, $anim) = @_;
 
-	my $hook_image = 
+	my $hook_image =
 q{
        o
       ||
       ||
 / \   ||
   \__//
-  `--' 
+  `--'
 };
 
 	my $point_image =
 q{
 .
- 
+
 \
- 
+
 };
 	my $line_image = "|\n"x50 . " \n"x6;
 
@@ -801,14 +823,14 @@ q{
 		physical	=> 1,
 		default_color	=> 'GREEN',
 		callback	=> \&fishhook_cb,
-		
+
 	);
 }
 
 sub add_ship {
 	my ($old_ent, $anim) = @_;
 
-	my @ship_image = (	
+	my @ship_image = (
 q{
      |    |    |
     )_)  )_)  )_)
@@ -947,7 +969,7 @@ q{
 		$spout_align = 11;
 		$x = -18;
 	}
-	
+
 	# no water spout
 	for (1..5) {
 		push(@whale_anim, "\n\n\n" . $whale_image[$dir]);
@@ -1173,17 +1195,17 @@ sub add_ducks {
 	my @duck_image = (
 	[
 q{
-      _??????????_??????????_  
+      _??????????_??????????_
 ,____(')=??,____(')=??,____(')<
- \~~= ')????\~~= ')????\~~= ') 
+ \~~= ')????\~~= ')????\~~= ')
 },q{
-      _??????????_??????????_  
+      _??????????_??????????_
 ,____(')=??,____(')<??,____(')=
- \~~= ')????\~~= ')????\~~= ') 
+ \~~= ')????\~~= ')????\~~= ')
 },q{
-      _??????????_??????????_  
+      _??????????_??????????_
 ,____(')<??,____(')=??,____(')=
- \~~= ')????\~~= ')????\~~= ') 
+ \~~= ')????\~~= ')????\~~= ')
 }
 	],[
 q{
@@ -1201,7 +1223,7 @@ q{
 }
 	]
 	);
-	
+
 	my @duck_mask = (
 q{
       g          g          g
@@ -1222,7 +1244,7 @@ ygcgwwwww  ygcgwwwww  ygcgwwwww
 	} else {
 		$x = -30
 	}
-	
+
 	$anim->new_entity(
 		shape		=> $duck_image[$dir],
 		auto_trans	=> 1,
@@ -1264,8 +1286,8 @@ q{
 }
 	]
 	);
-	
-	
+
+
 	my @dolphin_mask = (
 q{
 
@@ -1279,33 +1301,33 @@ q{
 
 
 	my $dir = int(rand(2));
-	
+
 	my $x;
 	my $speed = 1;
 	my $distance = 15; # how far apart the dolphins are
-	
+
 	# right to left
 	if($dir) {
 		$speed *= -1;
 		$distance *= -1;
 		$x = $anim->width()-2;
-		
+
 	# left to right
 	} else {
 		$x = -13
 	}
-	
+
 	my $up = [$speed,-.5,0,.5];
 	my $down = [$speed,.5,0,.5];
 	my $glide = [$speed,0,0,.5];
-	
+
 	my @path;
-	
+
 	for(1..14) { push(@path, $up); }
 	for(1..2) { push(@path, $glide); }
 	for(1..14) { push(@path, $down); }
 	for(1..6) { push(@path, $glide); }
-	
+
 	my $dolphin3 = $anim->new_entity(
 		shape		=> $dolphin_image[$dir],
 		auto_trans	=> 1,
@@ -1316,7 +1338,7 @@ q{
 		die_offscreen	=> 0,
 		default_color	=> 'blue',
 	);
-	
+
 	my $dolphin2 = $anim->new_entity(
 		shape		=> $dolphin_image[$dir],
 		auto_trans	=> 1,
@@ -1326,7 +1348,7 @@ q{
 		die_offscreen	=> 0,
 		default_color	=> 'BLUE',
 	);
-	
+
 	my $dolphin1 = $anim->new_entity(
 		shape		=> $dolphin_image[$dir],
 		auto_trans	=> 1,
@@ -1338,7 +1360,7 @@ q{
 		die_offscreen	=> 1,
 		default_color	=> 'CYAN',
 	);
-	
+
 }
 
 sub add_swan {
@@ -1366,7 +1388,7 @@ q{
 }
 	]
 	);
-	
+
 	my @swan_mask = (
 q{
 
@@ -1387,7 +1409,7 @@ yy
 	} else {
 		$x = -10
 	}
-	
+
 	$anim->new_entity(
 		shape		=> $swan_image[$dir],
 		auto_trans	=> 1,
@@ -1476,4 +1498,3 @@ sub rand_color {
 	}
 	return $color_mask;
 }
-
