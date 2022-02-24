@@ -18,7 +18,7 @@ search () {
         else
                 echo "Usage: search [dir] [partial_file_name]"
         fi
-}
+} && export -f search
 
 extract () {
     if [ -n "$1" ] ; then
@@ -43,7 +43,28 @@ extract () {
     else
         echo "Usage: extract filename"
     fi
-}
+} && export -f extract
+
+clone() {
+  local repo="$1" user
+  local repo="${repo#https://github.com/}"
+  local repo="${repo#git@github.com:}"
+  if [[ $repo =~ / ]]; then
+    user="${repo%%/*}"
+  else
+    user="$GITUSER"
+    [[ -z "$user" ]] && user="$USER"
+  fi
+  local name="${repo##*/}"
+  local userd="$REPOS/github.com/$user"
+  local path="$userd/$name"
+  [[ -d "$path" ]] && cd "$path" && return
+  mkdir -p "$userd"
+  cd "$userd"
+  echo gh repo clone "$user/$name" -- --recurse-submodule
+  gh repo clone "$user/$name" -- --recurse-submodule
+  cd "$name"
+} && export -f clone
 
 envx () {
   local envfile="$1"
@@ -71,7 +92,7 @@ fi
 ## open executable file wherever it is with "vic"
 vic () {
   vi $(which $1);
-}
+} && export -f vic
 
 ## if you forgot sudo you can just run `please` or just default: `sudo !!`
 please() {
@@ -80,7 +101,7 @@ please() {
   else
     sudo "$BASH" -c "$(history -p !!)"
   fi
-}
+} && export -f please
 
 
 rc() {
