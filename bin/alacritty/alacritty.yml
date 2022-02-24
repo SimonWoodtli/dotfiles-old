@@ -78,7 +78,7 @@ bell:
   color: '0xffffff'
   duration: 0
 
-background_opacity: .999
+window.opacity: .999
 
 mouse:
   double_click: { threshold: 300 }
