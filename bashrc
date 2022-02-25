@@ -1164,6 +1164,7 @@ alias spotify="LD_PRELOAD=/usr/local/lib/spotify-adblock.so flatpak run \
   com.spotify.Client &"
 alias rec='asciinema rec'
 alias surf="surf -F -z 1.5 duckduckgo.com & disown"
+alias neo='neo -D -c gold'
 
 
 alias ipinfo="curl ipinfo.io"
