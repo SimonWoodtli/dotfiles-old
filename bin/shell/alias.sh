@@ -1,63 +1,47 @@
 
-############################## All Aliases ##############################
-unalias -a
-alias more='less -R'
-alias c="printf  $'\033[2J\033[;H'" # clear
-## sets noclobber for mv so you don't delete file when moving them to
-## existing place
-alias mv='mv -n'
+############################## All Aliases #############################
+#      (use exec scripts instead, which work from vim and subprocs)
 
-alias grep='grep -i --colour=auto'
+unalias -a
+alias temp='cd $(mktemp -d)'
+alias more='less -R'
+alias clear='printf "\e[H\e[2J"'
+alias c="printf  $'\033[2J\033[;H'" # clear
+alias mv='mv -n' # sets noclobber: moving existing files won't get deleted
 alias egrep='egrep -i --colour=auto'
 alias fgrep='fgrep -i --colour=auto'
-alias curl='curl -L'
-
 alias sudo='sudo '
 alias visudo='EDITOR=/usr/bin/vim visudo'
-
-alias ssh-keygen='ssh-keygen -t ed25519'
-
-alias s=searx0
-alias ?=duck
-alias ??=stackexchange
-
-alias bat='\
-  upower -i /org/freedesktop/UPower/devices/battery_BAT0 | \
-  grep -E "state|to\ full|percentage"'
 alias free='free -h'
 alias df='df -h'
 alias syserrors="sudo journalctl -p 3 -xb"
 alias sysderrors="sudo systemctl --failed"
 alias chmox="chmod u+x"
-
-alias du='dust'
-alias vi='vim'
-alias emacs='emacs -nw'
-alias mutt='neomutt'
-alias doc='libreoffice'
-alias mupdf='mupdf -I'
-alias top='htop'
-alias vlc='flatpak run org.videolan.VLC'
-alias browsersync='browser-sync start --server --files "*.html, \
+_have pcregrep && alias grep='pcregrep' || alias grep='grep -i --colour=auto'
+_have curl && alias curl='curl -L'
+_have dust && alias du='dust'
+_have vim && alias vi='vim'
+_have emacs && alias emacs='emacs -nw'
+_have neomutt && alias mutt='neomutt'
+_have libreoffice && alias doc='libreoffice'
+_have mupdf && alias mupdf='mupdf -I'
+_have vlc && alias vlc='/usr/bin/vlc'
+_have neo && alias neo='neo -D -c gold'
+_have bashtop && alias top='bashtop'
+_have browser-sync && alias browsersync='browser-sync start --server --files "*.html, \
   css/*.css"'
-alias ra='reddio | boxes -d dog | less'
-alias spotify="LD_PRELOAD=/usr/local/lib/spotify-adblock.so flatpak run \
-  com.spotify.Client &"
-alias rec='asciinema rec'
-alias surf="surf -F -z 1.5 duckduckgo.com & disown"
-alias neo='neo -D -c gold'
+_have reddio && alias ra='reddio | boxes -d dog | less'
+_have spotify && alias spotify="env LD_PRELOAD=/usr/local/lib/spotify-adblock.so spotify %U &"
 
-
+alias s=searx
+alias ?=duck
+alias ??=stackexchange
 alias ipinfo="curl ipinfo.io"
-alias weather="curl wttr.in"
+alias rec='asciinema rec'
 
-#alias com='complete -W "$(tldr 2>/dev/null --list)"'
-
-
-################################### GIT ##################################
+############################ ALIAS GIT ########################################
 ## if $git rm -r is not enough:
 alias gri='git ls-files --ignored --exclude-standard | xargs -0 git rm -r'
-
 alias ga='git add'
 alias gs='git status'
 alias gpl='git pull'
@@ -70,9 +54,8 @@ alias gd='git diff'
 alias gsu='git stash && git pull && git stash pop'
 alias gdl='git log --diff-filter=D --summary | grep delete'
 
-################################### LS ##################################
+############################## ALIAS LS #######################################
 alias ls='ls -h --color=auto'
-#alias ll="ls -la"
 alias lsplain='ls -h --color=never'
 alias lx='ls -AlXB'    #  Sort by extension.
 alias lxr='ls -ARlXB'  #  Sort by extension.
