@@ -14,6 +14,7 @@ I like the Noto color emoji font, if you want another one update fonts.conf.
 Related:
 
 * [20220225052915](https://github.com/SimonWoodtli/zet/tree/main/20220225052915) Write emojis in your terminal
+
 [Ubuntu nerd font]: <https://github.com/ryanoasis/nerd-fonts/tree/master/patched-fonts/UbuntuMono/Regular/complete>
 [$HOME/.config/fontconfig/fonts.conf]: <https://github.com/SimonWoodtli/fonts>
 [opacity]: <https://github.com/SimonWoodtli/dotfiles/tree/main/scripts>
