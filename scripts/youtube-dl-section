@@ -1,5 +1,6 @@
 #!/bin/bash
-#taken from https://unix.stackexchange.com/a/388148/48971
+## taken from https://unix.stackexchange.com/a/388148/48971
+## flask app: https://github.com/DinRigtigeFar/yt-interval/
 
 if [ $# -lt 4 ]; then
         echo "Usage: $0 <youtube's URL> <HH:mm:ss.milisecs from time> <HH:mm:ss.milisecs to time> <output_file_name>"
