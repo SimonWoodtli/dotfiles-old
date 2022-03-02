@@ -1,5 +1,6 @@
 #!/bin/bash
 
+## download zipball from github page `gm zipball <account>/<repo>`
 declare subcommand="$1"; shift
 declare -r gold=$'\033[38;2;250;130;10m'
 declare -r cyan=$'\033[38;2;0;255;255m'

@@ -1,27 +1,21 @@
 
-################################# COMPLETION ############################
-
+############################## COMPLETION ##############################
 # Most completion is set near the function that uses it or internally inside
-# the command itself using https://github.com/robmuh/cmdtab for completion.
+# the command itself using https://github.com/rwxrob/cmdtab for completion.
 
 if [ -r /usr/share/bash-completion/bash_completion ]; then
   source /usr/share/bash-completion/bash_completion
 fi
 
-## needed to make pdf script work
-complete -C pdf pdf
-
-complete -C md md
-complete -C yt yt
-complete -C gl gl
-complete -C kn kn
-complete -C auth auth
-complete -C live live
-complete -C wsutil wsutil
-complete -C zet zet
-complete -C log log
+owncomp=( pdf yt zet sshkey gm )
+for i in "${owncomp[@]}"; do complete -C "$i" "$i"; done
 
 ## if gh-cli auto complete should not work:
 ## deactivate gh completion
-eval "$(gh completion -s bash)"
-eval "$(pandoc --bash-completion)"
+_have gh && . <(gh completion -s bash)
+_have pandoc && . <(pandoc --bash-completion)
+#_have spotify && . <(spotify completion bash 2>/dev/null)
+#_have podman && _source_if "$HOME/.local/share/podman/completion" # d
+_have docker && _source_if "$HOME/.local/share/docker/completion" # d
+_have docker-compose && complete -F _docker_compose dc # dc
+_have deno && source /usr/local/etc/bash_completion.d/deno.bash

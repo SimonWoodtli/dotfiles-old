@@ -1,5 +1,5 @@
 
-############################# Go Development #############################
+############################ Go Development ############################
 
 # Not being able to use private repos by default with Go is really
 # annoying. This is the standard way to overcome that.
@@ -9,6 +9,7 @@ export GOBIN="$HOME/.local/go/bin"
 mkdir -p $GOBIN
 export GOPATH="$HOME/.local/go"
 export GOPROXY="direct"
+export CGO_ENABLED=0
 
 # Changes into the first Go directory (from GOPATH) matching the name
 # passed by looking up the package by specifying the ending string of the

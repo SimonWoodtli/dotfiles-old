@@ -1,6 +1,5 @@
 #!/bin/bash
 
-declare -r cyan=$'\033[38;2;0;255;255m'
 declare -r gold=$'\033[38;2;245;160;12m'
 declare -r reset=$'\033[0m'
 
@@ -13,7 +12,7 @@ mkdir ~/.config/ 2>/dev/null
 rm -rf ~/.config/lynx 2>/dev/null
 ln -s "$PWD" "$HOME/.config/lynx"
 ls -l ~/.config/lynx
+cp "$PWD/lynx" "$DOTFILES/scripts/lynx"
 
-echo $gold"Now just put lynx into your PATH or update your PATH to look something like the following:"
-echo ""
-echo $cyan"export PATH=\"$PWD:$PATH\""$reset
+echo $gold"Now lynx should be in your scripts PATH. If not manually cp it to a
+folder which is in your PATH."

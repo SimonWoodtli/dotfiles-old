@@ -1,17 +1,5 @@
 
-############################# Export PATH ###############################
-
-export DENO_INSTALL="$HOME/.deno"
-
-export SCRIPTS=\
-$REPOS/gitlab.com/$GITUSER/dotfiles/scripts:\
-$REPOS/github.com/$GITUSER/dotfiles/scripts:\
-$REPOS/gitlab.com/$GITUSER/dotfiles/scripts/substitute-alias:\
-$REPOS/github.com/$GITUSER/dotfiles/scripts/substitute-alias
-
-export SCRIPTS_PRIV=\
-$REPOS/gitlab.com/$GITUSER/dotfiles/scripts_private:\
-$REPOS/github.com/$GITUSER/dotfiles/scripts_private
+############################## Export PATH #############################
 
 # be sure NOT to add ./ cuz it's unsafe
 export PATH=\
@@ -38,14 +26,10 @@ $HOME/.deno/bin:\
 # be sure not to remove ./ or stuff gets weird
 export CDPATH=\
 ./:\
-$REPOS/gitlab.com/$GITUSER:\
 $REPOS/github.com/$GITUSER:\
 $REPOS/github.com/$GITUSER/dotfiles:\
 $REPOS/github.com/$GITUSER/books:\
-$REPOS/github.com/$GITUSER/knowledge:\
-$REPOS/gitlab.com/*:\
 $REPOS/github.com/*:\
-$REPOS/gitlab.com:\
 $REPOS/github.com:\
 $REPOS:\
 /media/$USER:\

@@ -1,0 +1,11 @@
+#!/bin/sh
+
+## to get latest version either get appimage or use pip
+## always install with --user as systemwide pip installs can cause problems
+pip install --user --upgrade streamlink
+
+## to get older version
+#sudo apt install streamlink
+
+## get the gui here:
+#https://github.com/streamlink/streamlink-twitch-gui/releases

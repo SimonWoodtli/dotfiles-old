@@ -5,9 +5,9 @@ sudo apt update
 sudo apt install coreutils curl jq netcat
 
 ## install reddio
-mkdir $HOME/repos/gitlab.com/aaronNG
-cd $HOME/repos/gitlab.com/aaronNG
-git clone git@gitlab.com:aaronNG/reddio.git
+mkdir -p $HOME/Repos/gitlab.com/aaronNG
+cd $HOME/Repos/gitlab.com/aaronNG
+git clone https://gitlab.com/aaronNG/reddio.git 
 cd reddio/
 sudo make install
 

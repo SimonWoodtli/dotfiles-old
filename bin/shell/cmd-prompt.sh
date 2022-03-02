@@ -1,21 +1,39 @@
 
-################################ CMD PROMPT #############################
+############################## CMD PROMPT ##############################
 
-export PS1w=$'\033[35m'
-export PS1u=$'\033[33m'
-export PS1a=$'\033[38;2;100;100;100m'
-export PS1c=$'\033[38;2;110;110;110m'
-export PS1h=$'\033[34m'
-export PS1p=$PS1u
-export PS1P=$'\033[31m'
-export PS1U=$PS1P
+PROMPT_LONG=20
+PROMPT_MAX=95
+PROMPT_AT=@
+#\033[38;2;110;110;110m
 
-if [[ $EUID == 0 ]]; then
-  export PS1='\[${PS1P}\]\u\[${PS1c}\]@\[${PS1h}\]\h\[${PS1c}\]:\[${PS1w}\]\W$(__git_ps1 "\[${PS1c}\](\[${gruv_purple}\]%s\[${PS1c}\])")\[$PS1P\]#\[\033[00m\] '
-else
-  export PS1='\[${PS1u}\]\u\[${PS1c}\]@\[${PS1h}\]\h\[${PS1c}\]:\[${PS1w}\]\W$(__git_ps1 "\[${PS1c}\](\[${gruv_purple}\]%s\[${PS1c}\])")\[$PS1p\]$\[\033[00m\] '
-fi
+__ps1() {
+  local P='$' dir="${PWD##*/}" B countme short long double\
+    r='\[\e[31m\]' g='\033[38;2;110;110;110m' h='\[\e[34m\]' \
+    u='\[\e[33m\]' p='\[\e[34m\]' w='\[\e[35m\]' \
+    b='\[\e[36m\]' x='\[\e[0m\]'
 
-ps1min () {
-  export PS1='\[$gruv_orange\]$\[\033[00m\] '
+  [[ $EUID == 0 ]] && P='#' && u=$r && p=$u # root
+  [[ $PWD = / ]] && dir=/
+  [[ $PWD = "$HOME" ]] && dir='~'
+
+  B=$(git branch --show-current 2>/dev/null)
+  [[ $dir = "$B" ]] && B=.
+  countme="$USER$PROMPT_AT$(hostname):$dir($B)\$ "
+
+  [[ $B = master || $B = main ]] && b="$r"
+  [[ -n "$B" ]] && B="$g($b$B$g)"
+
+  short="$u\u$g$PROMPT_AT$h\h$g:$w$dir$B$p$P$x "
+  long="$g╔ $u\u$g$PROMPT_AT$h\h$g:$w$dir$B\n$g╚ $p$P$x "
+  double="$g╔ $u\u$g$PROMPT_AT$h\h$g:$w$dir\n$g║ $B\n$g╚ $p$P$x "
+
+  if (( ${#countme} > PROMPT_MAX )); then
+    PS1="$double"
+  elif (( ${#countme} > PROMPT_LONG )); then
+    PS1="$long"
+  else
+    PS1="$short"
+  fi
 }
+
+PROMPT_COMMAND="__ps1"

@@ -1,9 +1,11 @@
 #!/bin/bash
+declare red=$'\033[31m'
+declare reset=$'\033[0m'
 declare -i major=${BASH_VERSION:0:1}
 
-if [[ ! ( $major == "4" || $major == "5" ) ]]; then
-   echo Get Bash 4+ before you setup your dotfiles.
-   return
+if [[ ! ($major == 4 || $major == 5 ]]; then
+  echo "${red}Sorry, requires Bash 4+. Install and try again.$reset"
+  return 1
 fi
 
 ln -sf $PWD/bashrc $HOME/.bashrc
@@ -41,51 +43,51 @@ case $REPLY in
   ## - gnome-extensions cli seems to be confused after flatpak extension install
 
   1) [[ -d $HOME/.local/share/gnome-shell/extensions ]] || mkdir -p $HOME/.local/share/gnome-shell/extensions
-     [[ -d $HOME/repos/github.com/gnome-extensions ]] || mkdir -p $HOME/repos/github.com/gnome-extensions
+     [[ -d $HOME/Repos/github.com/gnome-extensions ]] || mkdir -p $HOME/Repos/github.com/gnome-extensions
      flatpak install flathub org.gnome.Extensions
-     cd $HOME/repos/github.com/gnome-extensions
+     cd $HOME/Repos/github.com/gnome-extensions
 
      [[ -d \
-        $HOME/repos/github.com/gnome-extensions/gnome-shell-extension-appindicator \
+        $HOME/Repos/github.com/gnome-extensions/gnome-shell-extension-appindicator \
         ]] || git clone https://github.com/ubuntu/gnome-shell-extension-appindicator
      ln -sf $PWD/gnome-shell-extension-appindicator \
         $HOME/.local/share/gnome-shell/extensions/appindicatorsupport@rgcjonas.gmail.com
      gnome-extensions enable appindicatorsupport@rgcjonas.gmail.com
 
      [[ -d \
-        $HOME/repos/github.com/gnome-extensions/gnome-shell-extension-always-show-workspaces \
+        $HOME/Repos/github.com/gnome-extensions/gnome-shell-extension-always-show-workspaces \
         ]] || git clone https://github.com/pop-os/gnome-shell-extension-always-show-workspaces
      ln -sf $PWD/gnome-shell-extension-always-show-workspaces \
         $HOME/.local/share/gnome-shell/extensions/always-show-workspaces@system76.com
      gnome-extensions enable always-show-workspaces@system76.com
 
      [[ -d \
-        $HOME/repos/github.com/gnome-extensions/gse-sound-output-device-chooser \
+        $HOME/Repos/github.com/gnome-extensions/gse-sound-output-device-chooser \
         ]] || git clone https://github.com/kgshank/gse-sound-output-device-chooser
      ln -sf $PWD/gse-sound-output-device-chooser/sound-output-device-chooser@kgshank.net \
         $HOME/.local/share/gnome-shell/extensions/sound-output-device-chooser@kgshank.net
      gnome-extensions enable sound-output-device-chooser@kgshank.net
 
      [[ -d \
-        $HOME/repos/github.com/gnome-extensions/gnome-shell-remove-dropdown-arrows \
+        $HOME/Repos/github.com/gnome-extensions/gnome-shell-remove-dropdown-arrows \
         ]] || git clone https://github.com/mpdeimos/gnome-shell-remove-dropdown-arrows
      ln -sf $PWD/gnome-shell-remove-dropdown-arrows \
         $HOME/.local/share/gnome-shell/extensions/remove-dropdown-arrows-dev@mpdeimos.com
      gnome-extensions enable remove-dropdown-arrows-dev@mpdeimos.com
 
-     [[ -d $HOME/repos/github.com/gnome-extensions/wintile ]] \
+     [[ -d $HOME/Repos/github.com/gnome-extensions/wintile ]] \
         || git clone https://github.com/fmstrat/wintile
      ln -sf $PWD/wintile \
         $HOME/.local/share/gnome-shell/extensions/wintile@nowsci.com
      gnome-extensions enable wintile@nowsci.com
 
      [[ -d \
-        $HOME/repos/github.com/gnome-extensions/gnome-shell-extension-openweather \
+        $HOME/Repos/github.com/gnome-extensions/gnome-shell-extension-openweather \
         ]] || git clone https://gitlab.com/jenslody/gnome-shell-extension-openweather
      cd gnome-shell-extension-openweather
      ./autogen.sh && make local-install
 
-     #cd $HOME/repos/github.com/gnome-extensions
+     #cd $HOME/Repos/github.com/gnome-extensions
      #git clone https://github.com/pop-os/gnome-shell-extension-alt-tab-raise-first-window
      #ln -sf $PWD/gnome-shell-extension-alt-tab-raise-first-window \
      #   $HOME/.local/share/gnome-shell/extensions/alt-tab-raise-first-window@system76.com

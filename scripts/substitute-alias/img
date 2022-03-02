@@ -1,7 +1,0 @@
-#!/bin/sh
-
-if [ -n "$1" ]; then
-  exec sxiv "$@" &
-else
-  echo "path to image as parameter needed"
-fi
