@@ -1,3 +1,0 @@
-#!/bin/bash
-setsid command >& /dev/null &
-#eog "$1" &>/dev/null &
