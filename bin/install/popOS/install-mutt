@@ -4,8 +4,8 @@
 sudo apt update
 sudo apt install neomutt curl isync msmtp pass abook notmuch urlview
 
-cd $HOME/repos/github.com/
-if [[ ! -d $HOME/repos/github.com/LukeSmithxyz ]]; then
+cd $HOME/Repos/github.com/
+if [[ ! -d $HOME/Repos/github.com/LukeSmithxyz ]]; then
   mkdir LukeSmithxyz
 fi
 cd LukeSmithxyz
