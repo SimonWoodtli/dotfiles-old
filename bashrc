@@ -1,4 +1,4 @@
-#########################################################################
+########################################################################
 #______  ___   _____ _   _ ______  _____
 #| ___ \/ _ \ /  ___| | | || ___ \/  __ \
 #| |_/ / /_\ \\ `--.| |_| || |_/ /| /  \/
@@ -6,12 +6,12 @@
 #| |_/ / | | |/\__/ / | | || |\ \ | \__/\
 #\____/\_| |_/\____/\_| |_/\_| \_| \____/
 #
-#########################################################################
+########################################################################
 
 
 
 
-############################# DETECTION #################################
+############################### DETECTION ##############################
 
 ## Detection of interactivity. Shell *must* be
 ## interactive or *none* of this applies.
@@ -31,7 +31,7 @@ case "$OS" in
   *)              export PLATFORM=unknown ;;
 esac
 
-############################# utility functions ###############################
+########################### Utility Functions ##########################
 
 _have()      { type "$1" &>/dev/null; }
 _source_if() { [[ -r "$1" ]] && source "$1"; }
@@ -40,7 +40,7 @@ onwin() { [ "$PLATFORM" == windows ]  && return 0 || return 1; }
 onlinux() { [ "$PLATFORM" == linux ]  && return 0 || return 1; }
 onunknown() { [ "$PLATFORM" == unknown ]  && return 0 || return 1; }
 
-################################ EXPORTS ################################
+################################ EXPORTS ###############################
 
 export USER="${USER:-$(whoami)}"
 export BROWSER=/usr/sbin/librewolf
@@ -74,7 +74,7 @@ for dir in desktop documents downloads mnt music pictures private public \
   fi
 done
 
-############################# Export PATH ###############################
+############################## Export PATH #############################
 
 # be sure NOT to add ./ cuz it's unsafe
 export PATH=\
@@ -110,7 +110,7 @@ $REPOS:\
 /media/$USER:\
 $HOME
 
-#################################### SETTINGS ###########################
+############################### SETTINGS ###############################
 
 ## globstar: (ls **filename includes subdirectories):
 #set -o noclobber            # paranoid? use >| for everything
@@ -137,7 +137,7 @@ export HRULEWIDTH=73
 ## fetch fancy git prompt, not needed with current prompt => bloat
 #_source_if "$DOTFILES/bin/shell/additional/git-prompt.sh"
 
-################################# Pager #######################################
+################################# PAGER ################################
 
 ## if statement is better readable and does the same
 #[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
@@ -146,7 +146,7 @@ if [[ -x /usr/bin/lesspipe ]]; then
   export LESSCLOSE="/usr/bin/lesspipe %s %s";
 fi
 
-################################ CMD PROMPT #############################
+############################## CMD PROMPT ##############################
 
 PROMPT_LONG=20
 PROMPT_MAX=95
@@ -185,7 +185,7 @@ __ps1() {
 
 PROMPT_COMMAND="__ps1"
 
-##################################### VIM ###############################
+################################## VIM #################################
 
 ## vi-mode for shell
 set -o vi
@@ -195,7 +195,7 @@ _have vim && export EDITOR=vim; export VISUAL=vim; export EDITOR_PREFIX=vim;
 
 [[ -d $HOME/.vim/spell ]] && export VIMSPELL=("$HOME/.vim/spell/*.add")
 
-############################# SUBPROCS SUCK #############################
+############################# SUBPROCS SUCK ############################
 
 perg() {
   declare exp="$1"; shift
@@ -326,7 +326,7 @@ lastcmd() {
   echo ${cl%% *}
 }
 
-################################ DIRCOLORS ##############################
+############################### DIRCOLORS ##############################
 
 if _have dircolors; then
   if [ -r ~/.dircolors ]; then
@@ -336,8 +336,7 @@ if _have dircolors; then
   fi
 fi
 
-################################# COMPLETION ############################
-
+############################## COMPLETION ##############################
 # Most completion is set near the function that uses it or internally inside
 # the command itself using https://github.com/rwxrob/cmdtab for completion.
 
@@ -345,7 +344,7 @@ if [ -r /usr/share/bash-completion/bash_completion ]; then
   source /usr/share/bash-completion/bash_completion
 fi
 
-owncomp=( pdf yt zet sshkey gm )
+owncomp=( pdf yt zet sshkey gm lorem )
 for i in "${owncomp[@]}"; do complete -C "$i" "$i"; done
 
 ## if gh-cli auto complete should not work:
@@ -358,7 +357,7 @@ _have docker && _source_if "$HOME/.local/share/docker/completion" # d
 _have docker-compose && complete -F _docker_compose dc # dc
 _have deno && source /usr/local/etc/bash_completion.d/deno.bash
 
-############################ Gruvbox Colors #############################
+############################ Gruvbox Colors ############################
 
 gruv () {
   printf "     "
@@ -382,7 +381,7 @@ gruv () {
 ## theme
 #theme gruvbox-original-dark-medium
 
-############################ FOREGROUND-COLORS ############################
+########################### FOREGROUND-COLORS ##########################
 
 export black=$'\033[30m'
 export red=$'\033[31m'
@@ -393,7 +392,7 @@ export magenta=$'\033[35m'
 export cyan=$'\033[36m'
 export white=$'\033[37m'
 
-########################## Terminal ANSI Escapes ########################
+######################### Terminal ANSI Escapes ########################
 
 export escape=$'\033'
 export reset=$'\033[0m'
@@ -406,7 +405,7 @@ export inverseoff=$'\033[27m'
 export normal=$'\033[39m'
 export normalbg=$'\033[49m'
 
-############################## MANPAGES COLORS ##########################
+############################ MANPAGES COLORS ###########################
 
 export LESS_TERMCAP_mb=$magenta
 export LESS_TERMCAP_md=$yellow
@@ -416,7 +415,7 @@ export LESS_TERMCAP_so=$blue
 export LESS_TERMCAP_ue=$reset
 export LESS_TERMCAP_us=$underline
 
-################################ TLDR-COLORS ############################
+############################## TLDR-COLORS #############################
 
 export TLDR_HEADER='magenta bold underline'
 export TLDR_QUOTE='italic'
@@ -424,12 +423,12 @@ export TLDR_DESCRIPTION='default'
 export TLDR_CODE='red'
 export TLDR_PARAM='blue'
 
-######################################## PYTHON #########################
+################################ PYTHON ################################
 
 ## no more annoying cache files
 export PYTHONDONTWRITEBYTECODE=1
 
-############################# Go Development #############################
+############################ Go Development ############################
 
 # Not being able to use private repos by default with Go is really
 # annoying. This is the standard way to overcome that.
@@ -459,7 +458,7 @@ gocd () {
   esac
 }
 
-############################## All Aliases ##############################
+############################## All Aliases #############################
 #      (use exec scripts instead, which work from vim and subprocs)
 
 unalias -a
@@ -533,7 +532,7 @@ alias lr='ll -AR'      #  Recursive simple ls.
 alias lm='ls |more'    #  Pipe through 'more'
 alias lmr='lr |more'   #  Pipe through 'more'
 
-################################### FUNCTIONS ###########################
+############################### FUNCTIONS ##############################
 
 clone() {
   local repo="$1" user
@@ -571,7 +570,7 @@ envx() {
 
 cdz () { cd $(zet get "$@"); }
 
-################################# PERSONAL ####################################
+############################### PERSONAL ###############################
 
 _source_if "$HOME/.bash_personal"
 _source_if "$HOME/.bash_private"
