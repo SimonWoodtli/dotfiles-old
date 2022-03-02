@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/bash
 # shellcheck disable=SC2016,SC2119,SC2120
 set -e
 shopt -s extglob
@@ -11,7 +11,7 @@ shopt -s extglob
 : "${EXE:="${0##*/}"}"
 : "${GITUSER:="$USER"}"
 : "${GITBRANCH:=main}"
-: "${GHREPOS:="$HOME/repos/github.com/$GITUSER"}"
+: "${GHREPOS:="$HOME/Repos/github.com/$GITUSER"}"
 : "${PRIVATE:="$HOME/Private"}"
 : "${VIDEOS:="$HOME/Videos"}"
 : "${PICTURES:="$HOME/Pictures"}"
@@ -695,7 +695,7 @@ x.query() {
   term="$*"
   it="https://github.com/$GITUSER/$EXE/search?q=$(x.urlencode "$term")"
   echo "[$term]: <$it>"
-  command -v chat &>/dev/null && chat "$it"
+  #command -v chat &>/dev/null && chat "$it"
 }
 
 x.ids() {

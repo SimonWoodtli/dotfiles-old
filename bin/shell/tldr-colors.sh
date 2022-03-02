@@ -1,5 +1,5 @@
 
-################################ TLDR-COLORS ############################
+############################## TLDR-COLORS #############################
 
 export TLDR_HEADER='magenta bold underline'
 export TLDR_QUOTE='italic'

@@ -1,5 +1,5 @@
 
-############################## MANPAGES COLORS ##########################
+############################ MANPAGES COLORS ###########################
 
 export LESS_TERMCAP_mb=$magenta
 export LESS_TERMCAP_md=$yellow

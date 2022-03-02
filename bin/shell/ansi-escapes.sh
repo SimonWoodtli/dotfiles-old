@@ -1,5 +1,5 @@
 
-########################## Terminal ANSI Escapes ########################
+######################### Terminal ANSI Escapes ########################
 
 export escape=$'\033'
 export reset=$'\033[0m'

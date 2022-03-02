@@ -1,11 +1,11 @@
 #!/bin/sh
 
+flatpak install flathub io.gitlab.librewolf-community
 flatpak install flathub org.audacityteam.Audacity
 flatpak install flathub org.onionshare.OnionShare
 flatpak install flathub org.kde.kdenlive
 flatpak install flathub org.gimp.GIMP
 flatpak install flathub io.lbry.lbry-app
-flatpak install flathub org.videolan.VLC
 flatpak install flathub fr.handbrake.ghb
 flatpak install flathub io.freetubeapp.FreeTube
 flatpak install flathub com.discordapp.Discord
