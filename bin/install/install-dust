@@ -1,0 +1,20 @@
+#!/bin/sh
+
+## get latest version
+VERSION=`curl  "https://api.github.com/repos/bootandy/dust/releases/latest" | grep '"tag_name"' | sed -E 's/.*"([^"]+)".*/\1/' | cut -c2-`
+
+curl -sSL \
+https://github.com/bootandy/dust/releases/download/v${VERSION}/dust-v${VERSION}-x86_64-unknown-linux-gnu.tar.gz \
+  -o dust-v${VERSION}-x86_64-unknown-linux-gnu.tar.gz
+
+## extract
+tar xvf dust-v${VERSION}-x86_64-unknown-linux-gnu.tar.gz
+## copy
+sudo cp dust-v${VERSION}-x86_64-unknown-linux-gnu/dust /usr/local/bin/
+## remove
+rm -r dust-*
+## check install
+dust -V
+
+## deb won't work
+#https://github.com/bootandy/dust/releases/download/v${VERSION}/du-dust_${VERSION}_amd64.deb \
