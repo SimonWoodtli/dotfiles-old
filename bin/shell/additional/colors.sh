@@ -17,8 +17,6 @@ export normalbg=$'\033[49m'
 export clear=$'\033[H\033[2J'
 clear () { echo -n $clear; }
 
-# TODO lookup clearline (I have someplace in Go)
-
 ############################### ANSI Colors ##############################
 
 ansicolors () {
@@ -137,7 +135,6 @@ export solB3=$'\033['$_Wb'm';  export bgbase3=$solB3
 solcolors=(y o r m v b c g)
 solbases=(b03 b02 b01 b00 b0 b1 b2 b3)
 
-# TODO add a decolor (port from Go version)
 
 rnd () {
   declare num=$[RANDOM%8]
@@ -371,7 +368,6 @@ export white=$'\033[38;2;255;255;255m'
 export whitesmoke=$'\033[38;2;245;245;245m'
 export yellow=$'\033[38;2;255;255;0m'
 export yellowgreen=$'\033[38;2;139;205;50m'
-
 export alicebluebg=$'\033[48;2;240;248;255m'
 export antiquewhitebg=$'\033[48;2;250;235;215m'
 export aquabg=$'\033[48;2;0;255;255m'
