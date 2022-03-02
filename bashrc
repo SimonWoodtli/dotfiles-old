@@ -344,7 +344,7 @@ if [ -r /usr/share/bash-completion/bash_completion ]; then
   source /usr/share/bash-completion/bash_completion
 fi
 
-owncomp=( pdf yt zet sshkey gm lorem )
+owncomp=( pdf yt zet sshkey gm lorem reddit )
 for i in "${owncomp[@]}"; do complete -C "$i" "$i"; done
 
 ## if gh-cli auto complete should not work:
