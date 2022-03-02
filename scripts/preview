@@ -10,4 +10,4 @@ browser-sync start \
   --ignore '**/.*' \
   -sw
 
-
+#browser-sync start --server --files "*.html, css/*.css"'
