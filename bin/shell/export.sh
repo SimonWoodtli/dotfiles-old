@@ -1,20 +1,34 @@
 
-################################ EXPORTS ################################
+################################ EXPORTS ###############################
 
+export USER="${USER:-$(whoami)}"
 export BROWSER=/usr/sbin/librewolf
-
+export VIRTUALMACHINES="$HOME/VirtualMachines"
+export TERM=xterm-256color
+export HELP_BROWSER=lynx
+export ZETDIR="$GHREPOS/zet"
+export ZETTELCASTS="$VIDEOS/ZettelCasts"
+_have git && export GITUSER="$(git config --global user.name)"
+export GHREPOS="$REPOS/github.com/$GITUSER"
+export DOTFILES="$GHREPOS/dotfiles"
+export SCRIPTS="$DOTFILES/scripts"
 ## used for `pdf` script
-export PDFDIR=$HOME/repos/github.com/$GITUSER/books/work/essentials
-
-## used for `zet` script
-export KN=$HOME/repos/github.com/$GITUSER/knowledge
-
+export PDFDIR=$GHREPOS/books/work/essentials
+## used for `zet-old` script
+#export KN=$HOME/Repos/github.com/$GITUSER
 ## IBUS config for chinese pinyin input
 export GTK_IM_MODULE=IBUS
 export XMODIFIERS=@im=IBUS
 export QT_IM_MODULE=IBUS
 
-## not sure if I still need this:
-#VERSION=v12.18.1
-#DISTRO=linux-x64
-#export PATH=/usr/local/lib/nodejs/node-$VERSION-/bin:$PATH
+_have deno && export DENO_INSTALL_ROOT="$HOME/.deno/bin"
+for dir in desktop documents downloads mnt music pictures private public \
+  repos templates videos workspaces; do
+  upper=${dir^^}
+  cap=${dir^}
+  if [ -d "$HOME/$cap" ]; then
+    eval "export $upper='$HOME/$cap'"
+  elif [ -d "$HOME/$dir" ]; then
+    eval "export $upper='$HOME/$dir'"
+  fi
+done
