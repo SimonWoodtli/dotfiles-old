@@ -1,11 +1,8 @@
 #!/bin/bash
-<<<<<<< HEAD
 
 ## create comments default # otherwise use `!!cmt //`
-=======
 ## create comments default # otherwise use `!!cmt //`
 ## useful in vim with !!
->>>>>>> dev
 while read -r line; do
   echo "${1-#} $line"
 done
