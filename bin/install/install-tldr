@@ -1,8 +1,8 @@
 #!/bin/sh
 ## bash-version: https://github.com/raylee/tldr-sh-client
 ## alternative: npm install -g tldr
-rm $HOME/repos/github.com/SimonWoodtli/dotfiles/scripts/tldr
-curl -o $HOME/repos/github.com/SimonWoodtli/dotfiles/scripts/tldr https://raw.githubusercontent.com/raylee/tldr/master/tldr
-chmod u+x $HOME/repos/github.com/SimonWoodtli/dotfiles/scripts/tldr
+rm $HOME/Repos/github.com/SimonWoodtli/dotfiles/scripts/tldr
+curl -o $HOME/Repos/github.com/SimonWoodtli/dotfiles/scripts/tldr https://raw.githubusercontent.com/raylee/tldr/master/tldr
+chmod u+x $HOME/Repos/github.com/SimonWoodtli/dotfiles/scripts/tldr
 ## autocomplete: complete -W "$(tldr 2>/dev/null --list)" tldr
 
