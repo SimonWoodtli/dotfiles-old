@@ -4,8 +4,8 @@
 sudo apt update
 sudo apt install libx11-dev libxinerama-dev libgcr-3-dev libglib2.0-dev libwebkit2gtk-4.0-dev
 
-cd $HOME/repos/github.com/
-if [[ ! -d $HOME/repos/github.com/suckless ]]; then
+cd $HOME/Repos/github.com/
+if [[ ! -d $HOME/Repos/github.com/suckless ]]; then
   mkdir suckless
 fi
 
