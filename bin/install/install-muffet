@@ -1,2 +1,3 @@
 #!/bin/sh
-go get -u github.com/raviqqe/muffet
+## make sure to install go first
+GO111MODULE=on go get -u github.com/raviqqe/muffet/v2
