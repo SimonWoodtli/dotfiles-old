@@ -42,6 +42,17 @@ onunknown() { [ "$PLATFORM" == unknown ]  && return 0 || return 1; }
 
 ################################ EXPORTS ###############################
 
+for dir in desktop documents downloads mnt music pictures private public \
+  repos templates videos workspaces; do
+  upper=${dir^^}
+  cap=${dir^}
+  if [ -d "$HOME/$cap" ]; then
+    eval "export $upper='$HOME/$cap'"
+  elif [ -d "$HOME/$dir" ]; then
+    eval "export $upper='$HOME/$dir'"
+  fi
+done
+
 export USER="${USER:-$(whoami)}"
 export BROWSER=/usr/sbin/librewolf
 export VIRTUALMACHINES="$HOME/VirtualMachines"
@@ -53,6 +64,7 @@ _have git && export GITUSER="$(git config --global user.name)"
 export GHREPOS="$REPOS/github.com/$GITUSER"
 export DOTFILES="$GHREPOS/dotfiles"
 export SCRIPTS="$DOTFILES/scripts"
+export SCRIPTS_PRIV="$PRIVATE/scripts"
 ## used for `pdf` script
 export PDFDIR=$GHREPOS/books/work/essentials
 ## used for `zet-old` script
@@ -63,16 +75,6 @@ export XMODIFIERS=@im=IBUS
 export QT_IM_MODULE=IBUS
 
 _have deno && export DENO_INSTALL_ROOT="$HOME/.deno/bin"
-for dir in desktop documents downloads mnt music pictures private public \
-  repos templates videos workspaces; do
-  upper=${dir^^}
-  cap=${dir^}
-  if [ -d "$HOME/$cap" ]; then
-    eval "export $upper='$HOME/$cap'"
-  elif [ -d "$HOME/$dir" ]; then
-    eval "export $upper='$HOME/$dir'"
-  fi
-done
 
 ############################## Export PATH #############################
 
@@ -427,6 +429,8 @@ export TLDR_PARAM='blue'
 
 ## no more annoying cache files
 export PYTHONDONTWRITEBYTECODE=1
+export PYTHONIOENCODING='UTF-8'; # use UTF encoding for output stdin|out|error
+
 
 ############################ Go Development ############################
 
@@ -469,6 +473,7 @@ alias c="printf  $'\033[2J\033[;H'" # clear
 alias mv='mv -n' # sets noclobber: moving existing files won't get deleted
 alias egrep='egrep -i --colour=auto'
 alias fgrep='fgrep -i --colour=auto'
+alias grep='fgrep -i --colour=auto'
 alias sudo='sudo '
 alias visudo='EDITOR=/usr/bin/vim visudo'
 alias free='free -h'
@@ -476,7 +481,7 @@ alias df='df -h'
 alias syserrors="sudo journalctl -p 3 -xb"
 alias sysderrors="sudo systemctl --failed"
 alias chmox="chmod u+x"
-_have pcregrep && alias grep='pcregrep' || alias grep='grep -i --colour=auto'
+#_have pcregrep && alias grep='pcregrep' || alias grep='grep -i --colour=auto'
 _have curl && alias curl='curl -L'
 _have dust && alias du='dust'
 _have vim && alias vi='vim'

@@ -10,6 +10,7 @@ alias c="printf  $'\033[2J\033[;H'" # clear
 alias mv='mv -n' # sets noclobber: moving existing files won't get deleted
 alias egrep='egrep -i --colour=auto'
 alias fgrep='fgrep -i --colour=auto'
+alias grep='fgrep -i --colour=auto'
 alias sudo='sudo '
 alias visudo='EDITOR=/usr/bin/vim visudo'
 alias free='free -h'
@@ -17,7 +18,7 @@ alias df='df -h'
 alias syserrors="sudo journalctl -p 3 -xb"
 alias sysderrors="sudo systemctl --failed"
 alias chmox="chmod u+x"
-_have pcregrep && alias grep='pcregrep' || alias grep='grep -i --colour=auto'
+#_have pcregrep && alias grep='pcregrep' || alias grep='grep -i --colour=auto'
 _have curl && alias curl='curl -L'
 _have dust && alias du='dust'
 _have vim && alias vi='vim'
