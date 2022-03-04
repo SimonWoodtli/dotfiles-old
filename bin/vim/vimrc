@@ -163,14 +163,21 @@ if filereadable(expand("~/.vim/autoload/plug.vim"))
   call plug#begin('~/.vimplugins')
   Plug 'vim-pandoc/vim-pandoc'
   Plug 'https://gitlab.com/rwxrob/vim-pandoc-syntax-simple'
-  Plug 'vim-airline/vim-airline' "info footer
-  Plug 'vim-airline/vim-airline-themes'
+  "Plug 'vim-airline/vim-airline' "info footer
+  "Plug 'vim-airline/vim-airline-themes'
+  Plug 'itchyny/lightline.vim' "info footer
   Plug 'preservim/nerdtree'
   Plug 'Xuyuanp/nerdtree-git-plugin'
   Plug 'ctrlpvim/ctrlp.vim' " C-p to search and open files within vim
   Plug 'tpope/vim-surround' "change single to double quotes: cs'\"
   Plug 'sheerun/vim-polyglot' " better syntax highlighting for many lang
   Plug 'preservim/nerdcommenter' " Comment your code quickly
+  Plug 'puremourning/vimspector' " Debugger
+  let g:lightline = {
+      \ 'colorscheme': 'wombat',
+      \ }
+  set laststatus=2
+
   "Plug 'elzr/vim-json' "better syntax for json
   "Plug 'tpope/vim-fugitive'
   "Plug 'cespare/vim-toml'
@@ -187,12 +194,15 @@ if filereadable(expand("~/.vim/autoload/plug.vim"))
   "" colorschemes
   Plug 'morhetz/gruvbox' "color scheme
   Plug 'HerringtonDarkholme/yats.vim' " correct syntax hightlight for gruvbox
+  "Plug 'NLKNguyen/papercolor-theme'
   "Plug 'tomasr/molokai' "color scheme
   "Plug 'flazz/vim-colorschemes' "lots of colorschemes
 
   " Javascript
   "Plug '/MaxMEllon/vim-jsx-pretty' "react syntax highlighting
   "Plug 'dense-analysis/ale' "JS linter :ALEToggle
+  Plug 'moll/vim-node' " Node.js
+  Plug 'godlygeek/tabular' " make quick tables, clean json data
 
   " C
   "Plug 'vim-scripts/c.vim', {'for': ['c', 'cpp']}
