@@ -1,0 +1,7 @@
+#!/bin/sh
+## Install
+sudo apt install qt5-style-kvantum, qt5-style-kvantum-themes
+## Export Variable, for some reason it does not work in bash_profile (odd)
+echo "export QT_STYLE_OVERRIDE=kvantum" >> $HOME/.profile
+## Now you need to logout and login
+## Open Kvantum Manager and set it to "KvSimplicityDark"
