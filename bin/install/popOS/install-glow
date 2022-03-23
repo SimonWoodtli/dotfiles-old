@@ -1,4 +1,5 @@
 #!/bin/sh
+## Terminal Markdown Reader
 ## create variable for your system
 spruce_type=amd64.deb
 
