@@ -1,0 +1,8 @@
+#!/bin/bash
+## Start Whonix-Gateway headless
+vboxmanage startvm --type headless Whonix-Gateway-CLI
+sleep 10
+## Start Whonix-Workstation
+vboxmanage startvm Whonix-Workstation-XFCE
+
+## TODO write `whonix off` to shutdown both VMs
