@@ -1,0 +1,36 @@
+#!/bin/bash
+profilename="test1"
+dir="$HOME/.mozilla/firefox/profile-$profilename"
+## Install Dependencies
+#sudo apt install xdotool
+
+## Create Profile
+firefox -CreateProfile "$profilename $HOME/.mozilla/firefox/profile-$profilename"
+## Launch Firefox to initialize profile
+firefox -P $profilename &
+sleep 5
+
+## Quit Firefox
+## Get Firefox ID
+WID=`xdotool search "Mozilla Firefox" | head -1`
+## Activate Window with Firefox ID
+xdotool windowactivate --sync $WID
+## Quit Firefox Window
+xdotool key --clearmodifiers alt+q
+sleep 3
+
+## Remove profile files
+cd $dir
+rm *
+read -p "Do you want to setup regular Firefox or Whonix? [1-2]
+1) Regular Firefox
+2) Whonix
+"
+case $REPLY in
+  1) cp -r $DOTFILES/bin/firefox/ffprofile/* $dir ;;
+  2) cp $DOTFILES/bin/firefox/whonixprofile/prefs.js $dir/prefs.js ;;
+  *) echo "Only 1 and 2 are valid inputs" && exit 2 ;;
+esac
+
+## Copy profile files
+
