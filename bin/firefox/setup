@@ -40,3 +40,6 @@ case $REPLY in
   2) cp $DOTFILES/bin/firefox/whonixprofile/prefs.js $dir/prefs.js ;;
   *) echo "Only 1 and 2 are valid inputs" && exit 2 ;;
 esac
+## TODO after setting up everyting you still need to go to
+## "about:profiles" and make sure your privacy profile is used by
+## starting it. "about:support" contains profile folders
