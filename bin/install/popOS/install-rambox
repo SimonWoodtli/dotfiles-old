@@ -1,0 +1,14 @@
+#!/bin/sh
+
+## create variable for your system
+spruce_type=linux-x64.deb
+
+## get correct link with jq
+URL=$(curl -s https://api.github.com/repos/ramboxapp/download/releases/latest | jq -r ".assets[] | select(.name | test(\"${spruce_type}\")) | .browser_download_url")
+
+## download deb
+curl -LJ -o rambox.deb $URL
+## install deb
+sudo apt dpkg -i rambox.deb
+## remove deb
+rm rambox.deb

@@ -1,0 +1,75 @@
+#!/bin/bash
+## https://thelounge.chat/
+rel=v16.14.2
+download () {
+  echo -n "Downloading..."
+  curl -O https://nodejs.org/dist/$rel/node-$rel-linux-arm64.tar.xz
+  result=$?
+  if [ $result -eq 0 ]; then
+    echo DOWNLOADED
+  else
+    echo FAILED
+  fi
+  return $result
+}
+verify () {
+  echo -n "Verifying..."
+  curl -O https://nodejs.org/dist/$rel/SHASUMS256.txt
+  curl -LJO https://nodejs.org/dist/$rel/SHASUMS256.txt.sig
+  grep node-$rel-linux-arm64.tar.xz SHASUMS256.txt | sha256sum -c -
+  gpg --keyserver keyserver.ubuntu.com --recv-keys 4ED778F539E3634C779C87C6D7062848A1AB005C
+  gpg --keyserver keyserver.ubuntu.com --recv-keys 94AE36675C464D64BAFA68DD7434390BDBE9B9C5
+  gpg --keyserver keyserver.ubuntu.com --recv-keys 74F12602B6F1C4E913FAA37AD3A89613643B6201
+  gpg --keyserver keyserver.ubuntu.com --recv-keys 71DCFD284A79C3B38668286BC97EC7A07EDE3FC1
+  gpg --keyserver keyserver.ubuntu.com --recv-keys 8FCCA13FEF1D0C2E91008E09770F7A9A5AE15600
+  gpg --keyserver keyserver.ubuntu.com --recv-keys C4F0DFFF4E8C1A8236409D08E73BC641CC11F4C8
+  gpg --keyserver keyserver.ubuntu.com --recv-keys C82FA3AE1CBEDC6BE46B9360C43CEC45C17AB93C
+  gpg --keyserver keyserver.ubuntu.com --recv-keys DD8F2338BAE7501E3DD5AC78C273792F7D83545D
+  gpg --keyserver keyserver.ubuntu.com --recv-keys A48C2BEE680E841632CD4E44F07496B3EB3C1762
+  gpg --keyserver keyserver.ubuntu.com --recv-keys 108F52B48DB57BB0CC439B2997B01419BD92F80A
+  gpg --keyserver keyserver.ubuntu.com --recv-keys B9E2F5981AA6E0CD28160D9FF13993A75599653C
+  gpg --verify SHASUMS256.txt.sig SHASUMS256.txt
+  result=$?
+  if [ $result -eq 0 ]; then
+    echo VERIFIED
+  else
+    echo FAILED
+  fi
+  return $result
+}
+
+install () {
+  echo -n "Installing..."
+  unxz node-$rel-linux-arm64.tar.xz
+  tar -xvf node-$rel-linux-arm64.tar
+  rm -rf $HOME/.node
+  mv node-$rel-linux-arm64 $HOME/.node
+  echo "INSTALLED"
+  echo 'Add $HOME/.node/bin to your $PATH'
+}
+
+clean () {
+  rm node-$rel-linux-arm64* 2>/dev/null
+  rm SHASUMS256* 2>/dev/null
+}
+
+## Check if Node.js is installed or install it
+if [[ ! -e "$HOME/.node/bin/node" ]]; then
+  download && verify && install
+  clean
+fi
+
+## Install thelounge
+npm update
+npm install --global --unsafe-perm thelounge
+## Install darkmode
+thelounge install thelounge-theme-flat-dark
+## Now you just have to:
+echo 'Next up:
+1. create a static ip for raspberry pi
+2. start thelounge  `thelounge start`
+3. create a user `thelounge add <username>`
+4. connect any device on your local network via webbrower
+`yourstaticip:9000` or I prefer using Rambox
+5. test if everything works then stop thelounge and create a systemd
+daemon to lunch at startup'
