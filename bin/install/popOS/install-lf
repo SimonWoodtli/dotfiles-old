@@ -1,0 +1,12 @@
+#!/bin/sh
+## dependencies
+## 1. ueberzug, bat, mediainfo, ffmpegthumbnailer, pdftoppm, odt2txt, gpg,
+## install dependencies
+## https://github.com/seebye/ueberzug
+## https://github.com/sharkdp/bat
+## https://github.com/gokcehan/lf
+$DOTFILES/bin/install/popOS/./install-bat
+pip install ueberzug
+sudo apt install mediainfo ffmpegthumbnailer odt2txt gpg
+## Install LF, requires go >= 1.17
+env CGO_ENABLED=0 go install -ldflags="-s -w" github.com/gokcehan/lf@latest

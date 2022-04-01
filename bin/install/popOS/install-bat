@@ -1,0 +1,16 @@
+#!/bin/sh
+
+## create variable for your system
+spruce_type=amd64.deb
+
+## get correct link with jq
+URL=$(curl -s https://api.github.com/repos/sharkdp/bat/releases/latest | jq -r ".assets[] | select(.name | test(\"${spruce_type}\")) | .browser_download_url")
+## get name
+NAME=$(curl -s https://api.github.com/repos/sharkdp/bat/releases/latest |
+  jq -r ".assets[0].name")
+## download deb
+curl -LJOs $URL
+## install deb
+sudo dpkg -i $NAME
+## remove deb
+rm $NAME

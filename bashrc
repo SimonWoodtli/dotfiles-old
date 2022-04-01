@@ -76,6 +76,85 @@ export QT_IM_MODULE=IBUS
 
 _have deno && export DENO_INSTALL_ROOT="$HOME/.deno/bin"
 
+# This is the list for lf icons:
+export LF_ICONS="di=📁:\
+fi=📃:\
+tw=🤝:\
+ow=📂:\
+ln=⛓:\
+or=❌:\
+ex=🎯:\
+*.txt=✍:\
+*.mom=✍:\
+*.me=✍:\
+*.ms=✍:\
+*.png=🖼:\
+*.webp=🖼:\
+*.ico=🖼:\
+*.jpg=📸:\
+*.jpe=📸:\
+*.jpeg=📸:\
+*.gif=🖼:\
+*.svg=🗺:\
+*.tif=🖼:\
+*.tiff=🖼:\
+*.xcf=🖌:\
+*.html=🌎:\
+*.xml=📰:\
+*.gpg=🔒:\
+*.css=🎨:\
+*.pdf=📚:\
+*.djvu=📚:\
+*.epub=📚:\
+*.csv=📓:\
+*.xlsx=📓:\
+*.tex=📜:\
+*.md=📘:\
+*.r=📊:\
+*.R=📊:\
+*.rmd=📊:\
+*.Rmd=📊:\
+*.m=📊:\
+*.mp3=🎵:\
+*.opus=🎵:\
+*.ogg=🎵:\
+*.m4a=🎵:\
+*.flac=🎼:\
+*.wav=🎼:\
+*.mkv=🎥:\
+*.mp4=🎥:\
+*.webm=🎥:\
+*.mpeg=🎥:\
+*.avi=🎥:\
+*.mov=🎥:\
+*.mpg=🎥:\
+*.wmv=🎥:\
+*.m4b=🎥:\
+*.flv=🎥:\
+*.zip=📦:\
+*.rar=📦:\
+*.7z=📦:\
+*.tar.gz=📦:\
+*.z64=🎮:\
+*.v64=🎮:\
+*.n64=🎮:\
+*.gba=🎮:\
+*.nes=🎮:\
+*.gdi=🎮:\
+*.1=ℹ:\
+*.nfo=ℹ:\
+*.info=ℹ:\
+*.log=📙:\
+*.iso=📀:\
+*.img=📀:\
+*.bib=🎓:\
+*.ged=👪:\
+*.part=💔:\
+*.torrent=🔽:\
+*.jar=♨:\
+*.java=♨:\
+"
+
 ############################## Export PATH #############################
 
 # be sure NOT to add ./ cuz it's unsafe
@@ -481,7 +560,9 @@ alias df='df -h'
 alias syserrors="sudo journalctl -p 3 -xb"
 alias sysderrors="sudo systemctl --failed"
 alias chmox="chmod u+x"
+
 #_have pcregrep && alias grep='pcregrep' || alias grep='grep -i --colour=auto'
+_have lf && alias lf='lf-image'
 _have curl && alias curl='curl -L'
 _have dust && alias du='dust'
 _have vim && alias vi='vim'
@@ -574,6 +655,19 @@ envx() {
 [[ -e "$HOME/.env" ]] && envx "$HOME/.env"
 
 cdz () { cd $(zet get "$@"); }
+
+
+## currently only working without image-preview. Because `lf-image` is
+## WIP lfcd+lf-image are not working together yet
+lfc () {
+    tmp="$(mktemp)"
+    \lf -last-dir-path="$tmp" "$@"
+    if [ -f "$tmp" ]; then
+        dir="$(cat "$tmp")"
+        rm -f "$tmp" >/dev/null
+        [ -d "$dir" ] && [ "$dir" != "$(pwd)" ] && cd "$dir"
+    fi
+}
 
 ############################### PERSONAL ###############################
 
