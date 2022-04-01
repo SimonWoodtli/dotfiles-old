@@ -36,3 +36,16 @@ envx() {
 [[ -e "$HOME/.env" ]] && envx "$HOME/.env"
 
 cdz () { cd $(zet get "$@"); }
+
+
+## currently only working without image-preview. Because `lf-image` is
+## WIP lfcd+lf-image are not working together yet
+lfc () {
+    tmp="$(mktemp)"
+    \lf -last-dir-path="$tmp" "$@"
+    if [ -f "$tmp" ]; then
+        dir="$(cat "$tmp")"
+        rm -f "$tmp" >/dev/null
+        [ -d "$dir" ] && [ "$dir" != "$(pwd)" ] && cd "$dir"
+    fi
+}
