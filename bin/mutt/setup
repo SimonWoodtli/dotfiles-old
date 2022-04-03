@@ -18,3 +18,9 @@ notmuch new
 mw -t 10
 echo "your mail gets synced every 10mins"
 crontab -l
+
+## make mailto: links open in mutt
+cp "$PWD/neomutt.desktop" "$HOME/.local/share/applications/neomutt.desktop"
+xdg-settings set default-url-scheme-handler mailto neomutt.desktop
+## check if set correctly
+xdg-email "test@good.com"
