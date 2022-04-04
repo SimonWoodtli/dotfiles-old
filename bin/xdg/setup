@@ -1,0 +1,11 @@
+#!/bin/bash
+## 1. make mupdf default pdf viewer
+cp "$PWD/mupdf.desktop" "$HOME/.local/share/applications/mupdf.desktop"
+xdg-mime default mupdf.desktop application/pdf
+## 2. make neomutt default mail client
+cp "$PWD/neomutt.desktop" "$HOME/.local/share/applications/neomutt.desktop"
+xdg-settings set default-url-scheme-handler mailto neomutt.desktop
+## 3. make vim default editor: export $EDITOR and $VISUAL and:
+sudo update-alternatives --config editor
+## dirty fix for opening vim from file explorer: change vim.desktop to
+## exec with alacritty and `xdg-mime default vim.desktop text/plain`
