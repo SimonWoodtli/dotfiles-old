@@ -23,4 +23,4 @@ cat \
   bin/shell/alias.sh    \
   bin/shell/functions.sh    \
   bin/shell/personal.sh    \
->| bashrc
+>| bashrc.bak
