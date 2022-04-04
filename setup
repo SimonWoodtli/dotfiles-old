@@ -3,9 +3,9 @@ declare red=$'\033[31m'
 declare reset=$'\033[0m'
 declare -i major=${BASH_VERSION:0:1}
 
-if [[ ! ($major == 4 || $major == 5 ]]; then
+if [[ ! ($major == 4 || $major == 5) ]]; then
   echo "${red}Sorry, requires Bash 4+. Install and try again.$reset"
-  return 1
+  exit 1
 fi
 
 ln -sf $PWD/bashrc $HOME/.bashrc

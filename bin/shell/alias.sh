@@ -21,6 +21,7 @@ alias chmox="chmod u+x"
 
 #_have pcregrep && alias grep='pcregrep' || alias grep='grep -i --colour=auto'
 _have lf && alias lf='lf-image'
+_have bat && alias bat='bat --theme gruvbox-dark'
 _have curl && alias curl='curl -L'
 _have dust && alias du='dust'
 _have vim && alias vi='vim'

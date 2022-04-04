@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=Mutt
+GenericName=Terminal Email Client
+Icon=neomutt
+Exec=/usr/bin/alacritty -e /usr/bin/neomutt -E %U
+MimeType=x-scheme-handler/mailto;
+#Categories=Viewer;Graphics;
