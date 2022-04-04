@@ -1,4 +1,0 @@
-[Desktop Entry]
-Type=Application
-Name=Email Client
-Exec=/usr/bin/alacritty -e /usr/bin/neomutt
