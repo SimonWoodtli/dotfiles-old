@@ -18,9 +18,8 @@ shopt -s checkwinsize # checks term size when bash regains control
 HISTCONTROL=ignoreboth
 #HISTCONTROL=ignoredups # Ignore duplicates in command history
 HISTSIZE=5000 # increase default 500 commands to 5000
-HISTFILESIZE=10000
+HISTFILESIZE=10001
 #setxkbmap -option ctrl:ctrl_modifier # map capslock to control
-bind "set completion-ignore-case on" # TAB completion ignores upper/lower case
 export HRULEWIDTH=73
 
 ## fetch fancy git prompt, not needed with current prompt => bloat

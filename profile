@@ -8,6 +8,9 @@
 ## auto-launch into gui -> no display manager
 #[[ $(fgconsole 2>/dev/null) == 1 ]] && exec startx --vt1
 
+## source bashrc
+[ -f "$HOME/.bashrc" ] && source "$HOME/.bashrc"
+
 ## set PATH so it includes user's private bin if it exists
 if [ -d "$HOME/.local/bin" ] ; then
   PATH="$HOME/.local/bin:$PATH"

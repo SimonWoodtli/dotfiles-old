@@ -14,13 +14,6 @@ ls -l $HOME/.bashrc
 ln -sf $PWD/dircolors/dircolors $HOME/.dircolors
 ls -l $HOME/.dircolors
 
-[[ -d $HOME/.ssh ]] || mkdir -p $HOME/.ssh
-ln -sf $PWD/sshconfig $HOME/.ssh/config
-ls -l $HOME/.ssh/config
-
-ln -sf $PWD/gitconfig $HOME/.gitconfig
-ls -l $HOME/.gitconfig
-
 ln -sf $PWD/inputrc $HOME/.inputrc
 ls -l $HOME/.inputrc
 
@@ -33,7 +26,7 @@ ls -l $HOME/.bash_profile
 read -p "Which Distro do you have? [1-3]
 1) Arch/gnome
 2) Arch/dwm
-3) Another Distro
+3) Default
 "
 
 case $REPLY in
