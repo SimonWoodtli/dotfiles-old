@@ -10,7 +10,9 @@
 ##########################################################################
 #
 ## Very useful for the tab completion
-#set completion-ignore-case On
+set completion-ignore-case On
+## Another way to enable tab completion without case sensitive
+#bind "set completion-ignore-case on"
 ## It treats hyphens and underscores equally during the completion
 set completion-map-case on
 ## programs with GNU Readline command-line interface support VIM-mode (e.g in python REPL)
