@@ -2,8 +2,9 @@
 
 ## Instructions
 
-1. create encrypted passphrase: `pass init xnasero@posteo.net`
-2. use key pw from your pw-manager with same mail as pass: `gpg --full-gen-key`
+1. create gpg key: `gpg --full-gen-key`
+2. create encrypted passphrase: `pass init [gpgEmail]` (creates ~/.password-store/)
+or `pass init [gpgID]`
 3. install [mutt-wizzard]
 4. add your emails with `mw -a yourEmail`
 5. setup `notmuch` to search mails with ctrl-f: `notmuch new`
