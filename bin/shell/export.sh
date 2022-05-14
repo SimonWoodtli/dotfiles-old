@@ -32,6 +32,8 @@ export PDFDIR=$GHREPOS/books/work/essentials
 export GTK_IM_MODULE=IBUS
 export XMODIFIERS=@im=IBUS
 export QT_IM_MODULE=IBUS
+export ANSIBLE_INVENTORY="$HOME/.config/ansible/ansible_hosts"
+export DOCKER_HOST=unix:///run/user/$(id -u)/docker.sock
 
 _have deno && export DENO_INSTALL_ROOT="$HOME/.deno/bin"
 
