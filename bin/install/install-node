@@ -6,7 +6,21 @@
 ## 2. put the path displayed at end of script in your bashrc
 ## 3. $ nvm install node (for the latest) or LTS-version: $ nvm install --lts
 
-rel=v16.13.2
+
+read -p "Run this script only for Fedora or Debian. Arch installs via
+AUR. 
+
+Did you check the latest LTS on nodejs.org and adjust \$rel if need be?
+Ready to install? [y/n]" input
+case $input in
+  y|Y) echo "Preparing now" ;;
+  n|N) exit 1 ;;
+  *) echo 'wrong input only "y n" accepted.' ;;
+esac
+
+
+## CHECK for latest LTS and change $rel if needed
+rel=v16.16.0
 
 download () {
   echo -n "Downloading..."

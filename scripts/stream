@@ -1,2 +1,2 @@
 #!/bin/sh
-exec streamlink "$@" best
+exec streamlink --player mpv "$@" best

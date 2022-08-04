@@ -1,0 +1,26 @@
+#!/bin/sh
+sudo dnf check-update
+## 'bashtop' is deprecated rewritten as 'btop'
+sudo dnf install vim tmux gh alacritty lynx gnome-tweaks imwheel htop btop jq \
+  vlc xclip imagemagick tree mupdf ShellCheck neofetch asciinema nmap \
+  sxiv pip python-devel
+
+echo "Open Gnome-Tweaks - Window Titlebars -> activate Maximize and
+Minimize"
+
+pip install --user --upgrade streamlink
+
+
+##TODO Need to create setup script and config
+#sudo dnf install mpd
+
+## Extras Fun
+#sudo dnf install lolcat cowsay boxes figlet toilet
+## Extras Work
+#sudo dnf install ctags
+## Extra CLI tools
+#sudo dnf install fzf
+
+
+#  scdaemon  pcregrep uidmap python-is-python3 netcat coreutils \
+#  screenkey
