@@ -49,7 +49,9 @@ export LESS_TERMCAP_se=$'\e[0m'        # reset reverse video
 export LESS_TERMCAP_ue=$'\e[0m'        # reset underline
 export GROFF_NO_SGR=1                  # for konsole and gnome-terminal
 
-#export MANPAGER='less -s -M +Gg' why?
+## Needed in Fedora, other Distros not sure
+export MANPAGER='less -s -M +Gg' # show percentage in status line
+
 ## Further Info
 #https://tldp.org/HOWTO/Bash-Prompt-HOWTO/x329.html
 #https://wiki.archlinux.org/title/Color_output_in_console
