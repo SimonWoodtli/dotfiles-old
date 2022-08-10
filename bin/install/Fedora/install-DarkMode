@@ -1,0 +1,33 @@
+#!/bin/sh
+
+## Gnome Desktop 42
+
+read -p "Which Programs do you want to darkmode?
+
+1) Geary
+2) KDE QT Apps (VirtualBox)" input
+
+case $input in
+    1) ## Effects: Geary 
+        echo "On Gnome 42 you can just use Gnome Tweaks, Appearance, Legacy App
+        -> adw-gtk3"
+        #https://github.com/lassekongo83/adw-gtk3
+        sudo dnf copr enable nickavem/adw-gtk3
+        sudo dnf install adw-gtk3
+
+        ## Fix to make really everything dark :)
+        touch $HOME/.config/geary/user-style.css
+        echo "@media (prefers-color-scheme: dark) {
+            :root, *:not(a) {
+                color: #eeeeec !important;
+                background-color: #353535 !important;
+            }
+        }
+        " > $HOME/.config/geary/user-style.css ;;
+    2) ## Effects: VirtualBox 
+        sudo dnf install kvantum
+        ## Export Variable, for some reason it does not work in bash_profile (odd)
+        echo "export QT_STYLE_OVERRIDE=kvantum" >> $HOME/.profile
+        echo 'Now you need to logout and login. Then Open Kvantum
+        Manager and change the theme => "KvSimplicityDark"' ;;
+esac

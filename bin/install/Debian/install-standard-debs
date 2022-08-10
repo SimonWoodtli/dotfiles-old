@@ -5,3 +5,5 @@ sudo apt install vim tmux lynx jq vlc xclip imagemagick tree mupdf mpv htop \
   exuberant-ctags asciinema nmap sxiv imwheel fzf steam streamlink alacritty \
   scdaemon pcscd bashtop pcregrep uidmap python-is-python3 netcat coreutils \
   screenkey
+
+echo 'Checkout Zet "Customize Gnome Desktop"'

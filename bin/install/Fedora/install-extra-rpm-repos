@@ -11,6 +11,6 @@ sleep 2
 
 ## Install software
 sudo dnf check-update
-sudo dnf install discord mpv brave-browser
+sudo dnf install discord mpv brave-browser VirtualBox
 
 
