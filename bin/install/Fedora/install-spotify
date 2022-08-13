@@ -1,0 +1,26 @@
+#!/bin/sh
+## install dependencies
+sudo install git make
+curl https://sh.rustup.rs -sSf | sh
+sleep 2
+## install spotify
+dnf config-manager --add-repo=https://negativo17.org/repos/fedora-spotify.repo
+sudo dnf install spotify-client
+sleep 2
+## install adblock
+cd $HOME/Repos/github.com
+git clone https://github.com/abba23/spotify-adblock.git
+cd spotify-adblock
+make
+sudo make install
+
+## Add env variable to spotify wrapper
+echo 'Edit /usr/bin/spotify and add the LD_PRELOAD Variable
+
+export LD_LIBRARY_PATH="/usr/lib64/spotify-client${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
+export SCALE_FACTOR="$(/usr/lib64/spotify-client/get-scale-factor.py)"
+#HERE
+export LD_PRELOAD=/usr/local/lib/spotify-adblock.so'
+## check install
+whereis spotify && echo "Program installed" || echo "Program
+failed to install"

@@ -1,0 +1,23 @@
+#!/bin/sh
+## create variable for your system
+spruce_type=x86_64-unknown-linux-gnu.tar.gz
+
+## get correct link with jq
+URL=$(curl -s "https://api.github.com/repos/bootandy/dust/releases/latest" | jq -r ".assets[] | select(.name |     test(\"${spruce_type}\")) | .browser_download_url")
+
+#VERSION=`curl  "https://api.github.com/repos/bootandy/dust/releases/latest" | grep '"tag_name"' | sed -E 's/.*"([^"]+)".*/\1/' | cut -c2-`
+
+## create file name variable
+TARGZ=${URL##*/}
+TAR=${TARGZ%.*}
+NAME=${TAR%.*}
+
+## download
+curl -LJ $URL -o "/tmp/${URL##*/}"
+## extract
+tar xvf "/tmp/$TARGZ"
+## copy
+sudo cp "$NAME/dust" /usr/local/bin/
+## check install
+dust -V && echo "Program installed" || echo "Program
+failed to install"

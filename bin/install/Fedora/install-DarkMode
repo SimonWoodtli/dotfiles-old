@@ -2,7 +2,7 @@
 
 ## Gnome Desktop 42
 
-read -p "Which Programs do you want to darkmode?
+read -p "Which Programs do you want darkmode to apply?
 
 1) Geary
 2) KDE QT Apps (VirtualBox)" input

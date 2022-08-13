@@ -1,0 +1,24 @@
+#!/bin/sh
+## install dependencies
+sudo dnf install autoconf ncurses-devel ncurses-libs gcc-c++
+
+## create variable for your system
+spruce_type=tar.gz
+
+## get correct link with jq
+URL=$(curl -s https://api.github.com/repos/st3w/neo/releases/latest | jq -r ".assets[] | select(.name |     test(\"${spruce_type}\")) | .browser_download_url")
+TAG=$(curl -s https://api.github.com/repos/st3w/neo/releases/latest | jq -r ".tag_name")
+TAR=${URL##*/}
+## download tarball
+curl -LJ -o "/tmp/$TAR" $URL
+## extract tarball
+tar xzf "/tmp/$TAR"
+cd /tmp/"${TAR%%0*}${TAG#*v}"
+sleep 2
+## Install
+./configure
+make
+sudo make install
+## check install
+neo -V && echo "Program installed" || echo "Program
+failed to install"

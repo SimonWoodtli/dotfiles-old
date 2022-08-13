@@ -10,6 +10,8 @@ sudo rpm --import https://brave-browser-rpm-release.s3.brave.com/brave-core.asc
 sleep 2
 
 ## Install software
+## VirtualBox needs Extension Pack downloaded directly from https://www.virtualbox.org/wiki/Downloads
+## VirualBox also needs Guest Iso downloaded from within a VM under Devices tab
 sudo dnf check-update
 sudo dnf install discord mpv brave-browser VirtualBox
 
