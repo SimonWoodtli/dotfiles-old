@@ -1,4 +1,7 @@
 #!/bin/sh
+## can be installed directly
+sudo apt update
+sudo ap install suckless-tools
 
 ## install dependencies:
 sudo apt update
