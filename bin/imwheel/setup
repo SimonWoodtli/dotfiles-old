@@ -17,9 +17,9 @@ read -p "Which Distro do you have? [1-3]
 ## autostart imwheel:
 ## To make backward/forward buttons work on mouse 'imwheel -b "4 5"' needed
 case $REPLY in
-  1) ln -sf $PWD/imwheel-fedora.desktop $HOME/.config/autostart/imwheel.desktop ;;
+  1) ln -sf $PWD/imwheel-fedora-arch.desktop $HOME/.config/autostart/imwheel.desktop ;;
   2) ln -sf $PWD/imwheel-debian.desktop $HOME/.config/autostart/imwheel.desktop ;;
-  3) ln -sf $PWD/imwheel-fedora.desktop $HOME/.config/autostart/imwheel.desktop ;;
+  3) ln -sf $PWD/imwheel-fedora-arch.desktop $HOME/.config/autostart/imwheel.desktop ;;
   *) echo valid input is: 1-3
      exit 1 ;;
 esac
