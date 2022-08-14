@@ -1,0 +1,14 @@
+#!/bin/sh
+read -p "Which package do you want to install?
+
+1) html5validator
+2) jupyter notebook" input
+
+case $input in
+  1) pip install --user --upgrade html5validator ;;
+    ## github.com/svenkreiss/html5validator
+    ## needs openjdk8
+  2) ## start notebook-server: `jupyter notebook`
+    pip3 install --user --upgrade jupyterlab
+    pip3 install --user --upgrade notebook ;;
+  *) ;;

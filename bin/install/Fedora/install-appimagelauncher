@@ -1,0 +1,17 @@
+#!/bin/sh
+
+## create variable for your system
+spruce_type=x86_64.rpm
+
+## get correct link with jq
+URL=$(curl -s "https://api.github.com/repos/TheAssassin/AppImageLauncher/releases/latest" | jq -r ".assets[] | select(.name | test(\"${spruce_type}\")) | .browser_download_url")
+
+## download rpm
+curl -LJ -o "/tmp/appimagelauncher.rpm" $URL
+## install rpm
+sudo dnf install "/tmp/appimagelauncher.rpm"
+sleep 2
+## check install
+whereis appimagelauncher && echo "Program installed" || echo "Program
+failed to install"
+

@@ -4,4 +4,6 @@ sudo apt install vim tmux lynx jq vlc xclip imagemagick tree mupdf mpv htop \
   shellcheck neofetch mpd lolcat cowsay boxes figlet toilet gnome-tweaks \
   exuberant-ctags asciinema nmap sxiv imwheel fzf steam streamlink alacritty \
   scdaemon pcscd bashtop pcregrep uidmap python-is-python3 netcat coreutils \
-  screenkey
+  screenkey golang suckless-tools
+
+echo 'Checkout Zet "Customize Gnome Desktop"'

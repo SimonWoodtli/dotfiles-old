@@ -1,0 +1,18 @@
+#!/bin/sh
+sudo dnf install dnf-plugins-core
+## Add RPM Fusion free and non freee Repo
+sudo dnf install https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
+## Add Brave-Browser Repo
+sudo dnf config-manager --add-repo https://brave-browser-rpm-release.s3.brave.com/x86_64/
+sudo rpm --import https://brave-browser-rpm-release.s3.brave.com/brave-core.asc
+
+
+sleep 2
+
+## Install software
+## VirtualBox needs Extension Pack downloaded directly from https://www.virtualbox.org/wiki/Downloads
+## VirualBox also needs Guest Iso downloaded from within a VM under Devices tab
+sudo dnf check-update
+sudo dnf install discord mpv brave-browser VirtualBox
+
+

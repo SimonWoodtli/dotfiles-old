@@ -10,6 +10,9 @@ fi
 owncomp=( pdf yt zet sshkey gm lorem tidder )
 for i in "${owncomp[@]}"; do complete -C "$i" "$i"; done
 
+## autocomplete for tldr
+complete -W "$(tldr 2>/dev/null --list)" tldr
+
 ## if gh-cli auto complete should not work:
 ## deactivate gh completion
 _have gh && . <(gh completion -s bash)

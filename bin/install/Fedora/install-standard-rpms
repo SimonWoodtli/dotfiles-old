@@ -1,0 +1,28 @@
+#!/bin/sh
+sudo dnf check-update
+## 'bashtop' is deprecated rewritten as 'btop'
+sudo dnf install vim tmux gh alacritty lynx gnome-tweaks imwheel htop btop jq \
+  vlc xclip ImageMagick tree mupdf ShellCheck neofetch asciinema nmap \
+  netcat sxiv pip python-devel golang pcre-tools coreutils pandoc geary \
+  dmenu
+
+  
+echo 'Checkout Zet "Customize Gnome Desktop"'
+
+##TODO Need to create setup script and config
+#sudo dnf install mpd
+
+## Extras Fun
+#sudo dnf install lolcat cowsay boxes figlet toilet
+
+## Extras Work
+#sudo dnf install ctags
+
+## Extra CLI tools
+#sudo dnf install fzf
+
+## Extras Streaming
+#sudo dnf install screenkey
+
+## NOT sure if needed
+#scdaemon uidmap

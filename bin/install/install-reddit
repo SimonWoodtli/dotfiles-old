@@ -1,0 +1,24 @@
+#!/bin/sh
+read -p "Make sure to install all the dependencies.
+
+##dependencies:
+#sudo apt install coreutils curl jq netcat 
+
+[y/n]" input
+
+case $input in
+
+  y|Y) ## install reddio: reddit CLI
+      [ -d $HOME/Repos/gitlab.com/aaronNG ] || mkdir -p $HOME/Repos/gitlab.com/aaronNG
+      cd $HOME/Repos/gitlab.com/aaronNG
+      git clone https://gitlab.com/aaronNG/reddio.git 
+      cd reddio/
+      sudo make install
+      ## install redyt: CLI to grab pics
+      rm $HOME/Repos/github.com/SimonWoodtli/dotfiles/scripts/redditpic
+      curl -o $HOME/Repos/github.com/SimonWoodtli/dotfiles/scripts/redditpic \ 
+        https://raw.githubusercontent.com/Bugswriter/redyt/master/redyt
+      chmod u+x $HOME/Repos/github.com/SimonWoodtli/dotfiles/scripts/redditpic ;;
+  n|N) echo Go install it then.  ;;
+  *) echo Wrong input only y/n accepted. ;;
+esac

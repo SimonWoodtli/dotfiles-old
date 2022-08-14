@@ -1,0 +1,5 @@
+#!/bin/sh
+
+rm /usr/local/bin/theme
+sudo curl -Lo /usr/local/bin/theme https://raw.githubusercontent.com/lemnos/theme.sh/master/theme.sh
+sudo chmod 755 /usr/local/bin/theme

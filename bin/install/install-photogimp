@@ -1,4 +1,10 @@
 #!/bin/sh
+read -p "Only run this script if you installed Gimp via Flatpak. [y/n]" input
+case $input in
+  y|Y) echo "Preparing" ;;
+  n|N) exit 1 ;;
+  *) echo 'Invalid input only "y n" accepted.'
+esac
 ## create variable for your system
 spruce_type=Flatpak
 
@@ -11,10 +17,21 @@ curl -sL "$URL" -o "/tmp/${URL##*/}"
 
 ## unzipping
 echo "Installing /tmp/${URL##*/}"
-unzip "/tmp/${URL##*/}" -d $HOME
+unzip "/tmp/${URL##*/}" -d /tmp
+
+## Problem the unzipped folder doesn't have .zip ending in it's name.
+## Parameter Expansion can only be applied to either the beginning or the
+## end of a variable but not both at the same time. You could youse some
+## regex but that requires [[]]
+## example: [[ $foo =~ ^[.]([^.]+) ]] && echo ${BASH_REMATCH[1]}
+## Hence at least one reassignment of the variable is needed
+## remove .zip
+URL="${URL%.*}"
+## remove path to file
+#URL="${URL##*/}
 
 ## moving files
-rm -r $HOME/.var/app/org.gimp.GIMP/
-mv $HOME/"PhotoGIMP by Diolinux v2020 for Flatpak"/.var/app/org.gimp.GIMP/ $HOME/.var/app/
-mv $HOME/"PhotoGIMP by Diolinux v2020 for Flatpak"/.icons/* $HOME/.icons/
-mv $HOME/"PhotoGIMP by Diolinux v2020 for Flatpak"/.local/share/applications/* $HOME/.local/share/applications/
+rm -rf $HOME/.var/app/org.gimp.GIMP/
+cp -rf /tmp/"${URL##*/}"/.var/app/org.gimp.GIMP/ $HOME/.var/app/
+cp -rf /tmp/"${URL##*/}"/.local/share/icons/* $HOME/.local/share/icons/
+cp -rf /tmp/"${URL##*/}"/.local/share/applications/* $HOME/.local/share/applications/

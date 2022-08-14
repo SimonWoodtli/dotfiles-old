@@ -1,0 +1,23 @@
+#!/bin/sh
+
+read -p "
+
+1. Install Dependencies & Reboot
+2. Install VirtualBox
+" input
+
+case $input in
+  1) cd /etc/yum.repos.d/
+    sudo curl -LJO http://download.virtualbox.org/virtualbox/rpm/fedora/virtualbox.repo
+    sudo dnf install binutils gcc make patch libgomp dkms qt5-qtx11extras libxkbcommon
+    sudo dnf install glibc-headers glibc-devel kernel-headers kernel-devel compat-libvpx5
+    sudo reboot ;;
+  2) #VB needs kernel source cod to intall needed kernel modules
+    export KERN_DIR=/usr/src/kernels/`uname -r` #needed so virtualbox
+    #can get kernel source code
+    echo $KERN_DIR
+    sudo dnf install VirtualBox
+    sudo /usr/lib/virtualbox/vboxdrv.sh setup ;;#rebuild kernel modules
+esac
+
+echo "If you want DarkMode run install-DarkMode"
