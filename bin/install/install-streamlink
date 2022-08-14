@@ -1,11 +1,19 @@
 #!/bin/sh
+#sudo apt install streamlink ##older version
+#sudo pacman -S streamlink ##universal instal script same on all distros
 
 ## to get latest version either get appimage or use pip
 ## always install with --user as systemwide pip installs can cause problems
 pip install --user --upgrade streamlink
 
-## to get older version
-#sudo apt install streamlink
+## INSTALL GUI
+## create variable for your system
+spruce_type=x86_64.AppImage
 
-## get the gui here:
-#https://github.com/streamlink/streamlink-twitch-gui/releases
+## get correct link with jq
+URL=$(curl -s "https://api.github.com/repos/streamlink/streamlink-twitch-gui/releases/latest" | jq -r ".assets[] | select(.name |   test(\"${spruce_type}\")) | .browser_download_url")
+
+## download AppImage
+curl -LJO $URL
+## integrate AppImage in your system
+AppImageLauncher ${URL##*/}

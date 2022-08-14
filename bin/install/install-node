@@ -7,11 +7,11 @@
 ## 3. $ nvm install node (for the latest) or LTS-version: $ nvm install --lts
 
 
-read -p "Run this script only for Fedora or Debian. Arch installs via
+read -p 'Run this script only for Fedora or Debian. Arch installs via
 AUR. 
 
-Did you check the latest LTS on nodejs.org and adjust \$rel if need be?
-Ready to install? [y/n]" input
+Did you check the latest LTS on nodejs.org and adjust $rel if need be?
+Ready to install? [y/n]' input
 case $input in
   y|Y) echo "Preparing now" ;;
   n|N) exit 1 ;;

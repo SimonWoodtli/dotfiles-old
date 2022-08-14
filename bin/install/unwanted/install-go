@@ -1,59 +1,49 @@
-#!/bin/sh
+#!/usr/bin/bash
+## Make sure to export go bin path in bashrc
 
-## alternative:
-#sudo add-apt-repository ppa:longsleep/golang-backports
-#sudo apt update
-#sudo apt install golang-go
+## 1.18 is the new default
+sudo apt -y install golang
+sudo dnf install golang
 
-rel=1.17.6
+## Old Method
 
-download () {
-  echo -n "Downloading..."
-  curl -LJO https://go.dev/dl/go1.17.6.linux-amd64.tar.gz
-  result=$?
-  if [ $result -eq 0 ]; then
-    echo DOWNLOADED
-  else
-    echo FAILED Downloading
-  fi
-  return $result
-}
+#
+#
+# set -e
+#
+# install_17() {
+#   cd "$(mktemp -d)"
+#
+#   os=linux
+#   arch=amd64
+#
+#   file=$(curl -sSL  "https://golang.org/dl/?mode=json" \
+#     | jq -r '.[0].files[]
+#       | select(.os == "'"$os"'")
+#       | select(.arch == "'"$arch"'")
+#       | .filename')
+#
+#   curl -sSLO \
+#     -H "Accept: application/vnd.github.v3+json" \
+#      "https://dl.google.com/go/$file"
+#
+#   sudo tar xzf "$file" -C /usr/local/
+#
+#   echo "Make sure /usr/local/go/bin is in PATH"
+# }
+#
+# upgrade_18() {
+#   /usr/local/go/bin/go install golang.org/dl/go1.18beta2@latest
+#   "$GOBIN/go1.18beta2" download
+#   go install golang.org/x/tools/gopls@latest
+# }
+#
+# #install_17
+# upgrade_18
+#
 
+## Another Old Method
 
-verify () {
-  echo -n "Verifying..."
-  #curl --remote-name https://go.dev/dl/
-  curl https://go.dev/dl/ | grep -A5 href=\"/dl/go1.17.6.linux-amd64.tar.gz\" \
-    | grep  -Eo '([a-z0-9]{64})' > SHASUMS256.txt
-  sed -i "1s/$/  go$rel.linux-amd64.tar.gz/" SHASUMS256.txt
-  ## google released only sha keys but not pgp signatures to check sha key
-  grep go$rel.linux-amd64.tar.gz SHASUMS256.txt | sha256sum -c -
-  result=$?
-  if [ $result -eq 0 ]; then
-    echo VERIFIED
-  else
-    echo FAILED Verification
-  fi
-  return $result
-}
-
-install () {
-  echo -n "Installing..."
-  sudo rm -rf /usr/local/go
-  sudo tar -C /usr/local -xzf go$rel.linux-amd64.tar.gz
-  echo "INSTALLED"
-  echo 'Add /usr/local/go/bin to your $PATH'
-}
-
-clean () {
-  rm go$rel.linux-amd64* 2>/dev/null
-  rm SHASUMS256* 2>/dev/null
-}
-
-#download
-#verify
-#install
-download && verify && install
-clean
-
-
+# sudo add-apt-repository ppa:longsleep/golang-backports
+# sudo apt update
+# sudo apt install golang-go

@@ -1,3 +1,6 @@
 #!/bin/sh
 ## make sure to install go first
-GO111MODULE=on go get -u github.com/raviqqe/muffet/v2
+## Muffet is a website link checker which scrapes and inspects all pages in a website recursively.
+if ! which go; then 
+  GO111MODULE=on go get -u github.com/raviqqe/muffet/v2
+fi
