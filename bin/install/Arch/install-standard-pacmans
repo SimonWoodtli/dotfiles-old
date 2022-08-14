@@ -10,7 +10,7 @@ sudo pacman -S --needed ttf-linux-libertine xorg-fonts-100dpi \
 ## fun
 sudo pacman -S --needed lolcat asciiquarium cowsay figlet steam -y
 ## media
-sudo pacman -S --needed mpv streamlink onionshare imagemagick mpd
+sudo pacman -S --needed mpv onionshare imagemagick mpd
 asciinema sxiv -y
 # sudo pacman -S dvd+rw-tools udftools ddrescue dd_rescue cdrtools cdrdao
 # dvdauthor
@@ -61,6 +61,10 @@ sudo pacman -S --needed dnsutils net-tools curl wget -y
 sudo pacman -S --needed ttf-linux-libertine ttf-bitstream-vera \
   ttf-liberation noto-fonts ttf-roboto ttf-opensans \
   opendesktop-fonts cantarell-fonts freetype2 papirus-icon-theme -y
+
+## Fun
+
+sudo pacman -S --needed neo-matrix
 
 ## security
 # pacman -S ufw bleachbit

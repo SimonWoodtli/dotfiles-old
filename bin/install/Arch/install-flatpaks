@@ -1,5 +1,6 @@
 #!/bin/sh
 
+flatpak install flathub com.mattjakeman.ExtensionManager
 flatpak install flathub io.gitlab.librewolf-community
 flatpak install flathub org.onionshare.OnionShare
 flatpak install flathub org.gimp.GIMP
