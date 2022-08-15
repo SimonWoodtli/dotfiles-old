@@ -13,11 +13,10 @@ echo $N2
 exit
 
 ## download tarball
-curl -LJO -o ventoy.tar.gz $URL
+curl -LJ -o /tmp/$NAME $URL
 
-## create dir and extract tarball
-mkdir dir
-tar -xvzf ${URL##*/} -C dir
+## extract tarball
+tar -xvzf /tmp/$NAME
+cd /tmp/$N2 || echo 'cd into /tmp/ventoydir'
 
-## rm tarball
-rm ${URL##*/}
+echo 'run `sudo sh Ventoy2Disk.sh { -i | -I | -u } /dev/XXX` to install Ventoy on your USB device'

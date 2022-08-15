@@ -7,6 +7,11 @@ missingDependencies=""
 #installdir="/usr/local/share/$name"
 files=("$name" "xwinwrap")
 
+
+## dependencies debian: mpv pcregrep xrandr
+## dependencies fedora: mpv pcre-tools xrandr
+## dependencies arch: mpv pcre xorg-xrandr
+
 check_dependencies() {
 	# Downloading xwinwrap
 	if [ ! -f "$installdir/xwinwrap" ] ; then

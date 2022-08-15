@@ -1,5 +1,4 @@
 #!/bin/sh
-
-rm $HOME/Repos/github.com/SimonWoodtli/dotfiles/scripts/yt
-curl -o $HOME/Repos/github.com/SimonWoodtli/dotfiles/scripts/yt https://raw.githubusercontent.com/sayan01/scripts/master/yt
-chmod u+x $HOME/Repos/github.com/SimonWoodtli/dotfiles/scripts/yt
+rm $HOME/.local/bin/yt
+curl -LJ -o $HOME/.local/bin/yt https://raw.githubusercontent.com/sayan01/scripts/master/yt
+chmod u+x $HOME/.local/bin/yt

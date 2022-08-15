@@ -15,10 +15,9 @@ case $input in
       cd reddio/
       sudo make install
       ## install redyt: CLI to grab pics
-      rm $HOME/Repos/github.com/SimonWoodtli/dotfiles/scripts/redditpic
-      curl -o $HOME/Repos/github.com/SimonWoodtli/dotfiles/scripts/redditpic \ 
-        https://raw.githubusercontent.com/Bugswriter/redyt/master/redyt
-      chmod u+x $HOME/Repos/github.com/SimonWoodtli/dotfiles/scripts/redditpic ;;
+      rm $HOME/.local/bin/redditpic
+      curl -LJ -o $HOME/.local/bin/redditpic https://raw.githubusercontent.com/Bugswriter/redyt/master/redyt
+      chmod u+x $HOME/.local/bin/redditpic ;;
   n|N) echo Go install it then.  ;;
   *) echo Wrong input only y/n accepted. ;;
 esac
