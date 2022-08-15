@@ -20,6 +20,10 @@ ls -l $HOME/.inputrc
 ln -sf $PWD/profile $HOME/.bash_profile
 ls -l $HOME/.bash_profile
 
+## Fix background color sxiv and font
+ln -sf $PWD/Xresources $HOME/.Xresources
+ls -l $HOME/.Xresources
+
 #sudo ln -sf $PWD/scripts/havecmd /usr/local/bin/havecmd
 #ls -l /usr/local/bin/havecmd
 

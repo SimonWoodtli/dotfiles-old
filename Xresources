@@ -1,0 +1,4 @@
+# maybe needed to load it: xrdb -load ~/.Xresources
+Sxiv.background: #282828
+Sxiv.foreground: #00C0FF
+Sxiv.font: UbuntuMono Nerd Font Mono
