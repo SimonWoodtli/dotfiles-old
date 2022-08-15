@@ -1,0 +1,10 @@
+#!/bin/bash
+## SDKMAN manage different java versions and other SDK's -> #https://sdkman.io/sdks
+# https://linuxhint.com/install-openjdk-fedora-linux/
+curl -s "https://get.sdkman.io" | bash
+sleep 2
+exec bash -l
+source "$HOME/.sdkman/bin/sdkman-init.sh"
+sdk version || exit 1
+sleep 2
+sdk install java 8.0.302-open
