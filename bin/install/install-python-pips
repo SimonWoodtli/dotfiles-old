@@ -1,7 +1,7 @@
 #!/bin/sh
-read -p "Which package do you want to install?
+read -p "Which package do you want to install?sdk install java 8.0.275.open-adpt
 
-1) html5validator
+1) html5validator: run install-java script first!
 2) jupyter notebook" input
 
 case $input in
@@ -12,3 +12,4 @@ case $input in
     pip3 install --user --upgrade jupyterlab
     pip3 install --user --upgrade notebook ;;
   *) ;;
+esac
