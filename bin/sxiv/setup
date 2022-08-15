@@ -1,0 +1,17 @@
+#!/bin/sh
+[ -d $HOME/.config/sxiv/exec/ ] || mkdir -p $HOME/.config/sxiv/exec/
+[ -d $HOME/.trash ] || mkdir $HOME/.trash
+
+## change background color and font
+ln -sf $PWD/Xresources $HOME/.Xresources
+ls -l $HOME/.Xresources
+
+## statusbar: add filesize info
+ln  $PWD/image-info $HOME/.config/sxiv/exec/image-info
+ls -l $HOME/.config/sxiv/exec/image-info
+
+## setup keyhandler
+ln -sf $PWD/key-handler $HOME/.config/sxiv/exec/key-handler
+ls -l $HOME/.config/sxiv/exec/key-handler
+
+

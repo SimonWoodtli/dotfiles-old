@@ -1,0 +1,14 @@
+#!/bin/sh
+## Activate handler: Ctrl-x followed by any keystroke in the case
+# fix: how to copy pics? Ctrl-x c gives error
+while read file
+do
+        case "$1" in
+        "d") mv "$file" ~/.trash ;;
+        "r") convert -rotate 90 "$file" "$file" ;;
+
+        "c") #echo -n "$file" | xclip -selection clipboard -t image/png ;;
+             #cat "$file" | xclip -sel c -t image/png ;;
+        "w") nitrogen --save --set-zoom-fill "$file" ;;
+        esac
+done
