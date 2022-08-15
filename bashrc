@@ -29,3 +29,5 @@ source $HOME/Repos/github.com/SimonWoodtli/dotfiles/bin/shell/golang.sh
 source $HOME/Repos/github.com/SimonWoodtli/dotfiles/bin/shell/alias.sh
 source $HOME/Repos/github.com/SimonWoodtli/dotfiles/bin/shell/functions.sh
 source $HOME/Repos/github.com/SimonWoodtli/dotfiles/bin/shell/personal.sh
+##this must be at the end of bashrc for sdkman to work
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
