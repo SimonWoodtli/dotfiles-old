@@ -1,0 +1,28 @@
+#!/bin/sh
+curl -1sLf \
+   'https://dl.cloudsmith.io/public/balena/etcher/setup.rpm.sh' \
+   | sudo -E bash
+
+sudo dnf install -y balena-etcher-electron
+
+## Uninstall
+#rm /etc/yum.repos.d/balena-etcher.repo
+#rm /etc/yum.repos.d/balena-etcher-source.repo
+
+## 2nd Method: need to be updated and tested!
+## DONT RUN
+## create variable for your system
+#spruce_type=x86_64.rpm
+
+## get correct link with jq
+#URL=$(curl -s https://api.github.com/repos/balena-io/etcher/releases/latest | jq -r ".assets[] | select(.name | test(\"${spruce_type}\")) | .browser_download_url")
+
+## download rpm
+#curl -LJ -o /tmp/${URL##*/} $URL
+
+## install dependencies
+#sudo apt update
+#sudo apt install gconf2
+
+## install deb
+#sudo dpkg -i ${URL##*/}
