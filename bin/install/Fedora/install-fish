@@ -1,0 +1,8 @@
+#!/bin/sh
+## install dependencies
+##Fedora
+sudo dnf install perl-Curses perl-Term-Animation
+## download perl script
+curl -LJ -o $HOME/.local/bin/fish-kirk https://robobunny.com/projects/asciiquarium/asciiquarium
+## make it executable
+chmod u+x $HOME/.local/bin/fish-kirk
