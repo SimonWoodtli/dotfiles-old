@@ -1,0 +1,68 @@
+#!/bin/sh
+declare OS=$(uname)
+declare DISTRO=$(hostnamectl | grep "Operating System")
+declare red=$'\033[31m'
+declare black=$'\033[30m'
+declare green=$'\033[32m'
+declare yellow=$'\033[33m'
+declare blue=$'\033[34m'
+declare magenta=$'\033[35m'
+declare cyan=$'\033[36m'
+declare white=$'\033[37m'
+declare reset=$'\033[0m'
+declare bold=$'\033[1m'
+
+echo "$cyan
+██╗   ██╗██╗███████╗██████╗
+██║   ██║██║██╔════╝██╔══██╗
+██║   ██║██║█████╗  ██████╔╝
+╚██╗ ██╔╝██║██╔══╝  ██╔══██╗
+ ╚████╔╝ ██║███████╗██████╔╝
+  ╚═══╝  ╚═╝╚══════╝╚═════╝
+$reset"
+
+if [ $OS != 'Linux' ] ; then
+  echo "${red}Error:$reset ${bold}Sorry designed to be installed on Linux only.$reset"
+  exit 1
+fi
+if [ $(id -u) = 0 ]; then
+  echo "${yellow}Warning:$reset Please don't run random scripts you find on the internet as root!
+         ${bold}sudo or doas will be used when elevated privileges are required.$reset"
+  exit 1
+fi
+
+## create variable to get download link
+case $DISTRO in
+  *Fedora*) declare spruce_type=x86_64.rpm ;;
+  *Debian*) declare spruce_type=amd64.deb ;;
+  *Arch*) command -v paru > /dev/null 2>&1 && paru -S vieb-bin && exit 0
+    echo ${yellow}Warning:$reset Make sure paru is installed and run script again.;;
+  *) echo ${red}Error:$reset Adjust script to your Distro. ;;
+esac
+
+## get download link
+declare URL=$(curl -s https://api.github.com/repos/Jelmerro/Vieb/releases/latest | jq -r ".assets[] | select(.name | test(\"${spruce_type}\")) | .browser_download_url")
+declare NAME=${URL##*/}
+
+## download pre compiled package
+curl -LJ -o /tmp/$NAME $URL
+
+## check sudo/doas
+if command -v sudo >/dev/null 2>&1; then
+  PRIV_ESC='sudo'
+elif command -v doas >/dev/null 2>&1; then
+  PRIV_ESC='doas'
+else
+  echo ${red}Error:$reset Can not find ${bold}sudo$reset or ${bold}doas$reset \
+    in your \$PATH, one of these is required.$reset
+  exit 1
+fi
+
+## install package
+case $DISTRO in
+  *Fedora*) $PRIV_ESC dnf install /tmp/$NAME ;;
+  *Debian*) $PRIV_ESC apt install /tmp/$NAME ;;
+  *) echo ${red}Error:$reset Adjust script to your Distro. ;;
+esac
+
+echo ${green}Done:$reset Installled Vieb successfully.
