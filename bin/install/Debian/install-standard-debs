@@ -1,9 +1,36 @@
 #!/bin/sh
+declare OS=$(uname)
+declare cyan=$'\033[36m'
+declare red=$'\033[31m'
+declare green=$'\033[32m'
+declare blue=$'\033[34m'
+declare bold=$'\033[1m'
+declare reset=$'\033[0m'
+
+if [ $OS != 'Linux' ] ; then
+  echo "${red}Error:$reset ${bold}Sorry designed to be installed on Linux only.$reset"
+  exit 1
+fi
+
+echo "$cyan
+ ██████╗ ███████╗███████╗██╗ ██████╗██╗ █████╗ ██╗      ██████╗ ███████╗██████╗ ███████╗
+██╔═══██╗██╔════╝██╔════╝██║██╔════╝██║██╔══██╗██║      ██╔══██╗██╔════╝██╔══██╗██╔════╝
+██║   ██║█████╗  █████╗  ██║██║     ██║███████║██║█████╗██║  ██║█████╗  ██████╔╝███████╗
+██║   ██║██╔══╝  ██╔══╝  ██║██║     ██║██╔══██║██║╚════╝██║  ██║██╔══╝  ██╔══██╗╚════██║
+╚██████╔╝██║     ██║     ██║╚██████╗██║██║  ██║███████╗ ██████╔╝███████╗██████╔╝███████║
+ ╚═════╝ ╚═╝     ╚═╝     ╚═╝ ╚═════╝╚═╝╚═╝  ╚═╝╚══════╝ ╚═════╝ ╚══════╝╚═════╝ ╚══════╝
+$reset"
+
 sudo apt update
 sudo apt install vim tmux lynx jq vlc xclip imagemagick tree mupdf mpv htop \
   shellcheck neofetch mpd lolcat cowsay boxes figlet toilet gnome-tweaks \
   exuberant-ctags asciinema nmap sxiv imwheel fzf steam streamlink alacritty \
   scdaemon pcscd bashtop pcregrep uidmap python-is-python3 netcat coreutils \
-  screenkey golang suckless-tools
+  screenkey golang suckless-tools pandoc
 
-echo 'Checkout Zet "Customize Gnome Desktop"'
+echo "${green}Done:$reset Installled all essential, official packages successfully.
+
+"
+echo "${blue}Checkout:$reset Zet 'Customize Gnome Desktop'"
+echo "${blue}Hint:$reset Only install Pandoc via official Repo if you are on Debian-SID. 
+Otherwise it's too outdated use unwanted/install-pandoc script to get the latest."
