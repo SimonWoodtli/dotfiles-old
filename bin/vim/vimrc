@@ -35,14 +35,6 @@ set incsearch "to loop through all the searched elements with `n/N`
 set history=100 "memory management (x history (: history))
 set hidden "stops complaining when switching from buffer with changes
 
-"" all these are about indent:
-set expandtab "if you don't like tabs
-set tabstop=2 "settings for your notes and stuff, don't use to code with it
-set softtabstop=2 "related to tabstop
-set shiftwidth=2 "if you want lines to move in like with tabs `3>>` will move 3 lines in
-set smartindent "same as >> but when you wanna do a new line
-set autoindent " you should turn it off when you are pasting
-set smarttab
 
 "" set both german and english to spellcheck
 "" to download german dictonary run within vim:
@@ -322,7 +314,16 @@ hi Normal ctermbg=NONE
 hi! NonText ctermbg=NONE guibg=NONE
 hi! Normal ctermbg=NONE guibg=NONE
 
+"" all these are about indent:
+set autoindent " you should turn it off when you are pasting
+set expandtab "if you don't like tabs
+set smartindent "same as >> but when you wanna do a new line
+set smarttab
+set tabstop=2 "settings for your notes and stuff, don't use to code with it
+set softtabstop=2 "related to tabstop
+set shiftwidth=2 "if you want lines to move in like with tabs `3>>` will move 3 lines in
+
 """"""""""""""""""""""""""""""""private settings"""""""""""""""""""""""""""""""
 "" read personal/private vim configuration (keep last to override)
-set rtp^=~/.vimpersonal
-set rtp^=~/.vimprivate
+"set rtp^=~/.vimpersonal
+"set rtp^=~/.vimprivate
