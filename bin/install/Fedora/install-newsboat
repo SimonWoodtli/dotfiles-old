@@ -1,0 +1,27 @@
+#!/bin/sh
+declare OS=$(uname)
+declare cyan=$'\033[36m'
+declare red=$'\033[31m'
+declare green=$'\033[32m'
+declare bold=$'\033[1m'
+declare reset=$'\033[0m'
+
+if [ $OS != 'Linux' ] ; then
+  echo "${red}Error:$reset ${bold}Sorry designed to be installed on Linux only.$reset"
+  exit 1
+fi
+
+echo "$cyan
+███╗   ██╗███████╗██╗    ██╗███████╗██████╗  ██████╗  █████╗ ████████╗
+████╗  ██║██╔════╝██║    ██║██╔════╝██╔══██╗██╔═══██╗██╔══██╗╚══██╔══╝
+██╔██╗ ██║█████╗  ██║ █╗ ██║███████╗██████╔╝██║   ██║███████║   ██║   
+██║╚██╗██║██╔══╝  ██║███╗██║╚════██║██╔══██╗██║   ██║██╔══██║   ██║   
+██║ ╚████║███████╗╚███╔███╔╝███████║██████╔╝╚██████╔╝██║  ██║   ██║   
+╚═╝  ╚═══╝╚══════╝ ╚══╝╚══╝ ╚══════╝╚═════╝  ╚═════╝ ╚═╝  ╚═╝   ╚═╝   
+                                                                      
+$reset"
+## install dependencies and newsboat:
+## sxiv and urlscan needed for `linkhandler` to display pics and get urlmenu in terminal apps
+sudo dnf install newsboat sxiv urlscan
+
+echo ${green}Done:$reset Installled Newsboat successfully.
