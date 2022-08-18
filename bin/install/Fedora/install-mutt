@@ -1,0 +1,19 @@
+#!/bin/sh
+## Setup instructions: dotfiles/bin/mutt
+## install dependencies:
+sudo dnf install curl isync msmtp pass abook notmuch urlview
+
+## install neomutt
+sudo dnf copr enable flatcap/neomutt
+sudo dnf install neomutt
+
+# install mutt-wizzard
+[ -d $HOME/Repos/github.com/LukeSmithxyz ] || mkdir -p $HOME/Repos/github.com/LukeSmithxyz
+cd $HOME/Repos/github.com/LukeSmithxyz
+git clone https://github.com/LukeSmithxyz/mutt-wizard
+cd mutt-wizard
+sudo make install
+
+## uninstall
+#dnf remove neomutt
+#dnf copr remove flatcap/neomutt

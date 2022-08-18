@@ -2,13 +2,19 @@
 
 ## Instructions
 
-1. create gpg key: `gpg --full-gen-key`
-2. create encrypted passphrase: `pass init [gpgEmail]` (creates ~/.password-store/)
-or `pass init [gpgID]`
-3. install [mutt-wizzard]
+1. install neomutt with the `install-mutt` script
+1. create gpg key: `gpg --full-gen-key` -> 
+1. Create a new entry with the email/passphrase in your password manager
+1. Unlock gpg at startup so you don't have to enter passphrase every time you use gpg.
+  1.On Gnome you can safe the passphrase by checking the box when you use your gpg key or when you setup a new gpg key.
+  However if you use a window manager you need to setup `pam-gnupg`.
+  2. You can trigger to enter your passphrase `touch foo && gpg -r [gpgEmail] -e foo && gpg -d foo.gpg` and check box to store the passphrase on the Gnome keyring.
+2. Tell `pass` the local password manager, which gpg key to use: `pass init [gpgEmail]` or `pass init [gpgID]`. This allows neomutt to store the emails passwords in `pass` and use `gpg` to encrypt/decrypt these passwords. 
+Note: `pass` stores entries in ~/.password-store/
 4. add your emails with `mw -a yourEmail`
-5. setup `notmuch` to search mails with ctrl-f: `notmuch new`
-6. setup cronjob to sync mail every 10min: `mw -t 10` check:  `crontab -l`
+5. setup cronjob to sync mail every 10min: `mw -t 10` check:  `crontab -l`
+
+(New Mutt-Wizzard should not need this): setup `notmuch` to search mails with ctrl-f: `notmuch new`
 
 ## Issue mailto from webbrowser
 

@@ -1,0 +1,147 @@
+#!/bin/sh
+## More User Agents: https://www.networkinghowtos.com/howto/common-user-agent-list/
+declare OS=$(uname)
+_print_colors() {
+  case "$2" in
+    "info") declare COLOR="96m" ;;
+    "success") declare COLOR="92m" ;;
+    "warning") declare COLOR="93m" ;;
+    "danger") declare COLOR="91m" ;;
+    "bold") declare COLOR="1m" ;;
+    *) declare COLOR="0m" ;;
+  esac
+  declare STARTCOLOR="\e[$COLOR";
+  declare ENDCOLOR="\e[0m";
+  printf "$STARTCOLOR%b$ENDCOLOR" "$1";
+}
+set -e
+
+if [ $OS != 'Linux' ] ; then 
+  _print_colors "Failed: " "warning"
+  _print_colors "Sorry designed to be installed on Linux only.\n" "bold"
+  exit 1
+fi
+
+if [ $(id -u) = 0 ]; then
+  _print_colors "Warning: " "warning";
+  _print_colors "Please don't run random scripts you find on the internet as root!\n"
+  _print_colors "sudo or doas will be used when elevated privileges are required.\n" "bold"
+  exit 1
+fi
+
+#_print_colors "This is a green text " "success";
+#_print_colors "This is a yellow text " "warning";
+#_print_colors "This is a light blue with a \t tab " "info";
+#_print_colors "This is a red text with a \n new line " "danger";
+#_print_colors "This is a default text"
+
+_print_colors "
+████████╗██╗   ██╗██╗  ██╗██╗
+╚══██╔══╝██║   ██║╚██╗██╔╝██║
+   ██║   ██║   ██║ ╚███╔╝ ██║
+   ██║   ██║   ██║ ██╔██╗ ██║
+   ██║   ╚██████╔╝██╔╝ ██╗██║
+   ╚═╝    ╚═════╝ ╚═╝  ╚═╝╚═╝
+                             
+\n" "info"
+
+## install dependencies
+##pup : https://github.com/ericchiang/pup
+#env CGO_ENABLED=0 go install -ldflags="-s -w" github.com/ericchiang/pup@latest
+./install-pup
+
+##recode : https://github.com/rrthomas/recode
+#sudo apt install recode
+#sudo dnf install recode
+#sudo pacman -S --needed recode
+
+##jq : https://github.com/stedolan/jq
+#sudo pacman -S --needed jq
+#sudo apt install jq
+#sudo dnf install jq
+
+## inform dependencies
+_print_colors "Hint: " "info"; _print_colors "Tuxi depends on 'jq' and 'recode',
+available from the standard repos. Did you install them yet?  [Y/n] "
+while true; do
+  read input
+  case $input in
+    [Yy]*) break ;;
+    [Nn]*) exit ;;
+    * ) echo "Wrong input, please answer Y/y or N/n";;
+  esac
+done
+
+## check dependencies
+if !command -v jq >/dev/null 2&>1; then
+  _print_colors "Error: " "danger"; _print_colors "You have to install 'jq'\n"
+fi
+if !command -v recode >/dev/null 2>&1; then
+  _print_colors "Error: " "danger"; _print_colors "You have to install 'recode'\n"
+fi
+if !command -v pup >/dev/null 2>&1; then
+  _print_colors "Error: " "danger"; _print_colors "You have to install 'pup'\n"
+fi
+
+## Install Tuxi
+rm $HOME/.local/bin/tuxi
+curl -LJ -o $HOME/.local/bin/tuxi https://raw.githubusercontent.com/Bugswriter/tuxi/main/tuxi
+chmod u+x $HOME/.local/bin/tuxi
+
+_print_colors "Error: " "danger" 
+_print_colors "Current version requires manual fix.\n" 
+_print_colors "Change: " "warning"
+_print_colors "Line 886 to:\n" "bold" 
+_print_colors "user_agent='Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) QtWebEngine/5.15.2
+Chrome/87.0.4280.144 Safari/537.36'\n\n"
+_print_colors "Alternatively: " "info"
+_print_colors "install curl-impersonate\n" 
+_print_colors "Link: " "info"
+_print_colors "https://github.com/lwthiker/curl-impersonate\n"
+_print_colors "Change: " "warning"
+_print_colors "Line 891 to:\n" "bold" 
+_print_colors "Look for 'curl' and change it to 'curl_chrome99' or whatever you want to use.\n"
+_print_colors "Alternatively: " "info"
+_print_colors "Install 2nd Method - old version of the script.\n" 
+
+## 2nd Method: old version
+
+# echo'
+# #!/bin/sh
+# if [ $# -le 0 ]; then
+# echo "Hi, I am Tuxi.. Ask me something"
+# echo "Usage: tuxi <your question>"
+# exit
+# fi
+# query="$@"
+# user_agent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) QtWebEngine/5.15.2 Chrome/87.0.4280.144      Safari/537.36"
+# webpage=$(curl -s -G https://www.google.com/search --user-agent "$user_agent" --data-urlencode "q=$query")
+# res0=$(echo $webpage | pup 'a.gL9Hy > b text{}' | sed ':a;N;$!ba;s/\n/ /g'| recode html..utf8 )
+# [[ -n $res0 ]] && echo "> u mean $res0?"
+# list=$(echo $webpage | pup 'div.dAassd json{}'  | jq -r '.[] | .children | .[] | .text' | sed ':a;N;$!ba;s/\n/ /g' | sed 's/    null/\n/g' | awk '{$1=$1;print "* " $0}' | sed '/^* $/d')
+# [[ -n "$list" ]] && echo "$list" && exit
+# res1=$(echo $webpage | pup 'div.zCubwf text{}' | tr -d '\n' | recode html..utf8)
+# [[ -n "$res1" ]] && echo "$res1" && exit
+# res2=$(echo $webpage | pup 'div.XcVN5d text{}' | recode html..utf8)
+# [[ -n "$res2" ]] && echo "$res2" && exit
+# res3=$(echo $webpage | pup 'span.hgKElc text{}' | tr -d '\n' | recode html..utf8 | xargs -d ' ' -n10)
+# [[ -n "$res3" ]] && echo "$res3" && exit
+# tmp=$(echo $webpage | pup 'div.kno-rdesc')
+# [[ -z "$tmp" ]] && echo "No Result" || (echo "$tmp" | pup 'span' | sed -n '2p' | awk '{$1=$1;print}' | recode html..utf8 |      xargs -d ' ' -n10)
+# ' > $HOME/.local/bin/tuxi
+
+## 3rd Method: last time I checked 16.06.22 not working
+## Rust Fork
+## dependencies: Rust -> Cargo
+
+# read -p "Make sure to have Rust installed. [y/n]
+# "
+# case $REPLY in
+# "y"|"Y") rustc --version || exit 1 ;;
+# "n"|"N") echo go run install-rust then && exit 1 ;;
+# *) echo no valid input only y/n accepted. && exit 1 ;;
+# esac
+
+# cd $HOME/Repos/github.com
+# clone PureArtistry/oi
+# ./install.sh
