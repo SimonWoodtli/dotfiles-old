@@ -40,7 +40,7 @@ sudo pacman -S --needed git github-cli jdk-openjdk nodejs-lts-fermium npm pandoc
 
 ## admin tools
 sudo pacman -S --needed htop neofetch cron tree alacritty lynx tmux xclip \
-  fzf dmenu -y
+  fzf dmenu bat -y
 # sudo pacman -S logrotate
 
 ## benchmark

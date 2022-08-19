@@ -2,16 +2,17 @@
 ## admin
 paru -S downgrade dust
 ## basic apps
-paru -S brave-bin librewolf-bin appimagelauncher balena-etcher drawio-desktop glow
+paru -S brave-bin librewolf-bin appimagelauncher ferdium-bin
 ## fonts
 paru -S nerd-fonts-ubuntu-mono ttf-ms-fonts
-## fun
-paru -S boxes toilet tmatrix-git
 ## graphics
 paru -S dxvk-bin
-## desk env//popOS window tiler
-paru -S gnome-shell-extension-pop-shell
 ## spotify adblocker
 paru -S spotify-adblock-git
+
+## Additional stuff:
+#paru -S drawio-desktop balena-etcher 
+## fun
+#paru -S boxes toilet tmatrix-git
 ## gnome-terminal that has transparency
 #paru -S gnome-terminal-transparency
