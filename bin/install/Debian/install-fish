@@ -1,12 +1,13 @@
 #!/bin/sh
 ## install dependencies
-sudo apt-get install libncurses5-dev libncursesw5-dev
-## there might be more needed check the error log next time you reinstall a distro
+##Debian
+#sudo apt install libncurses5-dev libncursesw5-dev
+sudo apt install libcurses-perl #TODO test if only this package is enough
 sudo cpan App::cpanminus
 cpanm Curses::Window
 cpanm Term::Animation
 
-## get fish script
-curl -LJ -o $HOME/.local/bin/fish https://robobunny.com/projects/asciiquarium/asciiquarium
-## chmod it
-chmod u+x $HOME/.local/bin/fish
+## download original perl script
+curl -LJ -o $HOME/.local/bin/fish-kirk https://robobunny.com/projects/asciiquarium/asciiquarium
+## make it executable
+chmod u+x $HOME/.local/bin/fish-kirk

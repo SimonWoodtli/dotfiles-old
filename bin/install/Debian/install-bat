@@ -1,16 +1,26 @@
 #!/bin/sh
+##1st Method:
+##Important: If you install bat this way, please note that the executable may be installed as batcat instead of bat (due to a name clash with another package). You can set up a bat -> batcat symlink or alias to prevent any issues that may come up because of this and to be consistent with other distributions:
+sudo apt update
+sudo apt install bat
+#mkdir -p ~/.local/bin
+#ln -s /usr/bin/batcat ~/.local/bin/bat
+
+## 2nd Method: Latest version 
+##TODO fix URL variables gives back two links
 
 ## create variable for your system
-spruce_type=amd64.deb
+#spruce_type=amd64.deb
 
 ## get correct link with jq
-URL=$(curl -s https://api.github.com/repos/sharkdp/bat/releases/latest | jq -r ".assets[] | select(.name | test(\"${spruce_type}\")) | .browser_download_url")
+#URL=$(curl -s https://api.github.com/repos/sharkdp/bat/releases/latest | jq -r ".assets[] | select(.name | test(\"${spruce_type}\")) | .browser_download_url")
 ## get name
-NAME=$(curl -s https://api.github.com/repos/sharkdp/bat/releases/latest |
-  jq -r ".assets[0].name")
+#NAME=$(curl -s https://api.github.com/repos/sharkdp/bat/releases/latest |
+#  jq -r ".assets[13].name")
+#echo $URL
+#echo $NAME
+#echo /tmp/${URL##*/}
 ## download deb
-curl -LJOs $URL
+#curl -LJ -o /tmp/${URL##*/} $URL
 ## install deb
-sudo dpkg -i $NAME
-## remove deb
-rm $NAME
+#sudo dpkg -i /tmp/${URL##*/}

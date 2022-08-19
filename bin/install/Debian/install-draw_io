@@ -1,15 +1,9 @@
 #!/bin/sh
 ## create variable for your system
-spruce_type=amd64
-
+spruce_type=.deb
 ## get correct link with jq
 URL=$(curl -s https://api.github.com/repos/jgraph/drawio-desktop/releases/latest | jq -r ".assets[] | select(.name | test(\"${spruce_type}\")) | .browser_download_url")
-
 ## download deb
-curl -LJO $URL
-
+curl -LJ -o /tmp/${URL##*/} $URL
 ## install deb
-sudo dpkg -i ${URL##*/}
-
-## remove deb
-rm ${URL##*/}
+sudo dpkg -i /tmp/${URL##*/}

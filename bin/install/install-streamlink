@@ -16,4 +16,6 @@ URL=$(curl -s "https://api.github.com/repos/streamlink/streamlink-twitch-gui/rel
 ## download AppImage
 curl -LJO $URL
 ## integrate AppImage in your system
-AppImageLauncher ${URL##*/}
+ail-cli integrate ${URL##*/} || exit 1
+## remove AppImage
+#ail-cli unintegrate $HOME/Applications/streamlink*

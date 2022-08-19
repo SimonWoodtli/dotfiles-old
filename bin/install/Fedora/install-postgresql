@@ -1,0 +1,25 @@
+#!/bin/sh
+declare OS=$(uname)
+declare cyan=$'\033[36m'
+declare red=$'\033[31m'
+declare green=$'\033[32m'
+declare blue=$'\033[34m'
+declare bold=$'\033[1m'
+declare reset=$'\033[0m'
+
+if [ $OS != 'Linux' ] ; then
+  echo "${red}Error:$reset ${bold}Sorry designed to be installed on Linux only.$reset"
+  exit 1
+fi
+
+echo "$cyan
+██████╗  ██████╗ ███████╗████████╗ ██████╗ ██████╗ ███████╗███████╗ ██████╗ ██╗
+██╔══██╗██╔═══██╗██╔════╝╚══██╔══╝██╔════╝ ██╔══██╗██╔════╝██╔════╝██╔═══██╗██║
+██████╔╝██║   ██║███████╗   ██║   ██║  ███╗██████╔╝█████╗  ███████╗██║   ██║██║
+██╔═══╝ ██║   ██║╚════██║   ██║   ██║   ██║██╔══██╗██╔══╝  ╚════██║██║▄▄ ██║██║
+██║     ╚██████╔╝███████║   ██║   ╚██████╔╝██║  ██║███████╗███████║╚██████╔╝███████╗
+╚═╝      ╚═════╝ ╚══════╝   ╚═╝    ╚═════╝ ╚═╝  ╚═╝╚══════╝╚══════╝ ╚══▀▀═╝ ╚══════╝
+$reset"
+
+sudo dnf install postgresql
+command -v postgresql > /dev/null 2>&1 && echo "${green}Done:$reset Installled PostgreSQL successfully."
