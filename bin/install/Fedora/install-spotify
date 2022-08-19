@@ -1,7 +1,13 @@
 #!/bin/sh
 ## install dependencies
-sudo install git make
-curl https://sh.rustup.rs -sSf | sh
+sudo dnf install git make
+read -p "Make sure to have Rust installed. Run 'install-rust'" input
+case $input in
+  "y"|"Y") rustc --version || exit 1 ;;
+  "n"|"N") echo 'Go run "install-rust" then.' && exit 1 ;;
+  *) echo Wrong input only [y/n] accepted. && exit 1 ;;
+esac
+
 sleep 2
 ## install spotify
 dnf config-manager --add-repo=https://negativo17.org/repos/fedora-spotify.repo

@@ -10,7 +10,6 @@ flatpak install flathub org.gimp.GIMP
 flatpak install flathub io.lbry.lbry-app
 flatpak install flathub fr.handbrake.ghb
 flatpak install flathub io.freetubeapp.FreeTube
-flatpak install flathub com.obsproject.Studio
 flatpak install flathub org.qbittorrent.qBittorrent
 flatpak install flathub com.github.muriloventuroso.pdftricks
 flatpak install flathub com.gitlab.tipp10.tipp10
@@ -19,6 +18,7 @@ flatpak install flathub com.github.xournalpp.xournalpp
 flatpak install flathub net.ankiweb.Anki
 
 ## to consider
+#flatpak install flathub com.obsproject.Studio
 #flatpak install flathub com.skype.Client
 #flatpak install flathub io.github.Hexchat
 #flatpak install flathub com.vscodium.codium

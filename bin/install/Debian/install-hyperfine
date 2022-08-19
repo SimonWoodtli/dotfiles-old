@@ -1,21 +1,26 @@
 #!/bin/sh
-## create variable for your system
-## not the best option with 2 variables but good enough for now
-spruce_type=amd64
-x=hyperfine_
+##install dependencies:
+sudo apt install build-essential
+read -p "Make sure to have Rust installed. Run 'install-rust'" input
+case $input in
+  "y"|"Y") rustc --version || exit 1;;
+  "n"|"N") echo 'Go run "install-rust" then.' && exit 1 ;;
+  *) echo Wrong input only [y/n] accepted. && exit 1 ;;
+esac
 
-## get correct link with jq (goal find a way to only use 1 variable)
-#URL=$(curl -s https://api.github.com/repos/sharkdp/hyperfine/releases/latest | jq -r ".assets[] | select(.name | test(\"${spruce_type}\")) | .browser_download_url")
-## get correct link with jq, with 2 variables
-URL=$(curl -s https://api.github.com/repos/sharkdp/hyperfine/releases/latest | jq -r ".assets[] | select(.name | test(\"${spruce_type}\")) | select(.name | test(\"${x}\")) | .browser_download_url")
+source $HOME/.cargo/env
+cargo install hyperfine
 
+##2nd Method:
+##create variables for your system
+#spruce_type=amd64
+#x=hyperfine_
+#URL=$(curl -s https://api.github.com/repos/sharkdp/hyperfine/releases/latest | jq -r ".assets[] | select(.name | test(\"${spruce_type}\")) | select(.name | test(\"${x}\")) | .browser_download_url")
 
-## download deb-package
-curl -LJO -o hyperfine.deb $URL
-package=$(ls *amd64*)
+##download .deb package
+#curl -LJ -o /tmp/${URL##*/} $URL
 
-## install deb-package
-sudo dpkg -i $package
+##install .deb package
+#sudo dpkg -i /tmp/${URL##*/} 
 
-## remove deb-package
-rm $package
+hyperfine --version || echo "Failed to install hyperfine"

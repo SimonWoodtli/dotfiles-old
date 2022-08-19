@@ -6,6 +6,10 @@ sudo dnf install https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-releas
 sudo dnf config-manager --add-repo https://brave-browser-rpm-release.s3.brave.com/x86_64/
 sudo rpm --import https://brave-browser-rpm-release.s3.brave.com/brave-core.asc
 
+## Maybe needed (latest version)
+#sudo dnf install 'dnf-command(config-manager)'
+#sudo dnf config-manager --add-repo https://cli.github.com/packages/rpm/gh-cli.repo
+#sudo dnf install gh
 
 sleep 2
 
@@ -13,6 +17,5 @@ sleep 2
 ## VirtualBox needs Extension Pack downloaded directly from https://www.virtualbox.org/wiki/Downloads
 ## VirualBox also needs Guest Iso downloaded from within a VM under Devices tab
 sudo dnf check-update
-sudo dnf install discord mpv brave-browser VirtualBox
-
-
+sudo dnf install mpv brave-browser VirtualBox
+# sudo dnf install discord ## use Ferdium

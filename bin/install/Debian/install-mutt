@@ -1,19 +1,11 @@
 #!/bin/sh
-
+## Setup instructions: dotfiles/bin/mutt
 ## install dependencies:
 sudo apt update
 sudo apt install neomutt curl isync msmtp pass abook notmuch urlview
 
-cd $HOME/Repos/github.com/
-if [[ ! -d $HOME/Repos/github.com/LukeSmithxyz ]]; then
-  mkdir LukeSmithxyz
-fi
-cd LukeSmithxyz
+[ -d $HOME/Repos/github.com/LukeSmithxyz ] || mkdir -p $HOME/Repos/github.com/LukeSmithxyz
+cd $HOME/Repos/github.com/LukeSmithxyz
 git clone https://github.com/LukeSmithxyz/mutt-wizard
 cd mutt-wizard
 sudo make install
-
-## SETUP
-pass init xnasero@posteo.net
-gpg --full-gen-key
-## key pw is on your pw-manager

@@ -1,4 +1,5 @@
 #!/bin/sh
+## FORK with more features: https://github.com/yt-dlp/yt-dlp
 dest=$HOME/.local/bin/youtube-dl
 curl -L https://yt-dl.org/downloads/latest/youtube-dl -o "$dest"
 chmod +rx $dest
