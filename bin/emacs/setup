@@ -1,0 +1,10 @@
+#!/bin/sh
+## create systemd service to run emacs as daemon
+[ -f $HOME/.config/systemd/user/default.target.wants/emacs.service ] || \ 
+  systemctl --user enable --now emacs
+## if no systemd:
+## create file .config/autostart/emacs.desktop
+## EXEC=/usr/foo/emacs-daemon
+
+cp $PWD/emacsclient.desktop $HOME/.local/share/applications
+ls -l $HOME/.local/share/applications/emacsclient.desktop
