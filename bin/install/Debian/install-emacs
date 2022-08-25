@@ -1,0 +1,49 @@
+#!/bin/sh
+declare OS=$(uname)
+declare cyan=$'\033[36m'
+declare red=$'\033[31m'
+declare green=$'\033[32m'
+declare yellow=$'\033[33m'
+declare blue=$'\033[34m'
+declare bold=$'\033[1m'
+declare reset=$'\033[0m'
+
+if [ $OS != 'Linux' ] ; then
+  echo "${red}Error:$reset ${bold}Sorry designed to be installed on Linux only.$reset"
+  exit 1
+fi
+
+echo "$cyan
+███████╗███╗   ███╗ █████╗  ██████╗███████╗
+██╔════╝████╗ ████║██╔══██╗██╔════╝██╔════╝
+█████╗  ██╔████╔██║███████║██║     ███████╗
+██╔══╝  ██║╚██╔╝██║██╔══██║██║     ╚════██║
+███████╗██║ ╚═╝ ██║██║  ██║╚██████╗███████║
+╚══════╝╚═╝     ╚═╝╚═╝  ╚═╝ ╚═════╝╚══════╝
+$reset"
+## install emacs
+sudo apt install emacs 
+## install doom emacs
+git clone --depth 1 https://github.com/doomemacs/doomemacs $HOME/.emacs.d
+$HOME/.emacs.d/bin/doom install
+## add ~/.emacs.d/bin to path
+read -p "${blue}Hint:$reset Make sure you have added ~/.emacs.d/bin to your \$PATH before
+you continue. Don't forgtet to source bashrc so the \$PATH gets updated
+with the new changes. Done both? [y/N]"
+case $REPLY in
+  [yY]) echo $PATH | grep -o emacs.d/bin > /dev/null || exit 2;;
+  [nN]) echo ${yellow}Warning:$reset Go add it then && exit 1 ;;
+  *) echo ${yellow}Warning:$reset Wrong input only [Y/n] accepted. && exit 1 ;;
+esac
+## sync doom emacs: ensures needed packages are installed, orphaned
+## packages are removed and your autoloads/cache files are up to date
+doom sync
+
+## Bugs coming your way: Use the diagnoses tool
+#doom doctor
+
+## Update Doom
+#doom upgrade
+
+##Access Doom's documentation from within Emacs via 'SPC h d h' or 'C-h d h' (or 'M-x doom/help')
+command -v  emacs > /dev/null 2>&1 && echo "${green}Done:$reset Installled Emacs successfully."
