@@ -1,0 +1,16 @@
+#!/bin/sh
+## how to run shell scripts from feh:
+## checkout format specifiers in the feh manual
+## https://unix.stackexchange.com/questions/227863/bind-key-to-custom-script-in-feh
+
+[ -d $HOME/.config/feh ] || mkdir -p $HOME/.config/feh
+
+if type feh; then
+  ln -sf $PWD/keys $HOME/.config/feh
+  ls -l $HOME/.config/feh/keys
+  ln -sf $PWD/buttons $HOME/.config/feh
+  ls -l $HOME/.config/feh/buttons
+
+else
+  echo ${yellow}Warning:$reset Program feh is not installed.
+fi
