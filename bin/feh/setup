@@ -1,0 +1,16 @@
+#!/bin/sh
+## for shell scripts with --action: checkout format specifiers in the feh manual
+## scripts/feh (wrapper) and scripts/feh-keyhandler needed too for more
+## sane usage
+declare yellow=$'\033[33m'
+declare reset=$'\033[0m'
+[ -d $HOME/.config/feh ] || mkdir -p $HOME/.config/feh
+
+if type feh; then
+  ln -sf $PWD/keys $HOME/.config/feh
+  ls -l $HOME/.config/feh/keys
+  ln -sf $PWD/buttons $HOME/.config/feh
+  ls -l $HOME/.config/feh/buttons
+else
+  echo ${yellow}Warning:$reset Program feh is not installed.
+fi

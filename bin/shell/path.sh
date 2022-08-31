@@ -11,6 +11,7 @@ $HOME/.local/go/bin:\
 $HOME/.cargo/bin:\
 $HOME/.node/bin:\
 $HOME/.deno/bin:\
+$HOME/.emacs.d/bin:\
 /usr/local/opt/coreutils/libexec/gnubin:\
 /usr/local/go/bin:\
 /usr/local/tinygo/bin:\

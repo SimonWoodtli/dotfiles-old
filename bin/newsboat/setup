@@ -1,17 +1,11 @@
 #!/bin/sh
 
-#mkdir -p $HOME/.newsboat
-#cp $PWD/config $HOME/.newsboat/config
-#ls -l $HOME/.newsboat/config
-#cp $PWD/urls $HOME/.newsboat/urls
-#ls -l $HOME/.newsboat/urls
-
 if type newsboat; then
   mkdir -p $HOME/.newsboat
   ln -sf "$PWD/config" "$HOME/.newsboat/config"
-  ln -sf "$PWD/urls" "$HOME/.newsboat/urls"
+  #ln -sf "$PWD/urls" "$HOME/.newsboat/urls"
   ls -l $HOME/.newsboat/config
-  ls -l $HOME/.newsboat/urls
+  #ls -l $HOME/.newsboat/urls
   (crontab -l ; echo "*/20 * * * * /usr/bin/newsboat -x reload") | crontab -
 else
   echo  "Newsboat not installed. Skipping setup."

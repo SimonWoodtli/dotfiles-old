@@ -23,7 +23,7 @@ sudo pacman -S wqy-zenhei wqy-bitmapfont
 ## office
 sudo pacman -S --needed mupdf p7zip unrar -y
 ## internet tools
-sudo pacman -S --needed anki youtube-dl -y
+sudo pacman -S --needed anki yt-dlp -y #youtube-dl is slow use yt-dlp
 ## maintenance
 sudo pacman -S --needed pacman-contrib -y
 # checkout features: https://github.com/kyrias/pacman-contrib
