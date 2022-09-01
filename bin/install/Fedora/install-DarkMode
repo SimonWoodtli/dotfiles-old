@@ -5,7 +5,8 @@
 read -p "Which Programs do you want darkmode to apply?
 
 1) Geary
-2) KDE QT Apps (VirtualBox)" input
+2) KDE QT Apps (VirtualBox)
+3) QBittorrent" input
 
 case $input in
     1) ## Effects: Geary 
@@ -30,4 +31,11 @@ case $input in
         echo "export QT_STYLE_OVERRIDE=kvantum" >> $HOME/.profile
         echo 'Now you need to logout and login. Then Open Kvantum
         Manager and change the theme => "KvSimplicityDark"' ;;
+    3) [ -d $HOME/.local/themes ] || mkdir -p $HOME/.local/themes
+        curl -LJ https://github.com/dracula/qbittorrent/raw/master/qbittorrent.qbtheme \
+            -o $HOME/.local/themes/qbittorrent.qbtheme
+        ls -l $HOME/.local/themes/qbittorrent.qbtheme
+        echo "Open QBittorrent => Tools => Options => Behavior =>
+        Interface => Use custom UI Theme and select the downloaded
+        Theme. Now restart the app." ;;
 esac
