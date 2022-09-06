@@ -1,9 +1,9 @@
 #show-read-feeds no
-# always loads rss when newsboat opened (deactivate if cronjob is
-# activated)
+## always loads rss when newsboat opened (deactivate if cronjob is activated)
 #auto-reload yes
 
-# see pics via urlscan in sxiv press U to get menu
+## urlscan: program to get links out of file or input => install on your distro
+## linkhandler: script to open the scanned urls in an application. Depending on file type different programs get executed.
 external-url-viewer "urlscan -dc -r 'linkhandler {}'"
 
 # vim bindings
@@ -23,7 +23,7 @@ bind-key a toggle-article-read
 bind-key n next-unread
 bind-key N prev-unread
 bind-key D pb-download
-bind-key U show-urls
+bind-key U show-urls # important: key to open urlscan
 bind-key x pb-delete
 
 # colortheme
@@ -35,16 +35,15 @@ color listfocus_unread   black     cyan
 color info               cyan      black
 color article            default   default
 
-# shortcuts to open links in other browser use: ,w for lynx
+# important: open main links (blue) in another program use: ",w" for lynx etc.
 browser linkhandler
-macro , open-in-browser
-macro t set browser "qndl" ; open-in-browser ; set browser linkhandler
-macro a set browser "tsp youtube-dl --add-metadata -xic -f bestaudio/best" ; open-in-browser ; set browser linkhandler
-macro v set browser "setsid -f mpv" ; open-in-browser ; set browser linkhandler
-macro w set browser "lynx" ; open-in-browser ; set browser linkhandler
-macro p set browser "dmenuhandler" ; open-in-browser ; set browser linkhandler
-macro c set browser "xsel -b <<<" ; open-in-browser ; set browser linkhandler
-macro C set browser "youtube-viewer --comments=%u" ; open-in-browser ; set browser linkhandler
+macro , open-in-browser # important key: leader key set to ","
+macro m set browser "setsid -f mpv" ; open-in-browser ; set browser linkhandler #open link with mpv
+macro w set browser "lynx" ; open-in-browser ; set browser linkhandler #open link with terminal browser
+##TODO use xclip instead of xsel
+macro c set browser "xsel -b <<<" ; open-in-browser ; set browser linkhandler #copy link to clipboard
+##TODO fix download
+macro d set browser "yt-dlp -o ~/Downloads/%(title)s.%(ext)s" ; open-in-browser ; set browser linkhandler #download YT video
 
 # hightlighting when reading article
 highlight article "^Feed:.*" color5 color234
