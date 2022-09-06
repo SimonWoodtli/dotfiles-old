@@ -1,6 +1,7 @@
 #!/bin/sh
 ## Ferdium is a for of a fork
 ## Ferdi is dead so Ferdium is the next best thing
+## https://github.com/fosscord open source discord
 declare OS=$(uname)
 declare cyan=$'\033[36m'
 declare red=$'\033[31m'
