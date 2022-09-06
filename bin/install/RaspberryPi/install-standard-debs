@@ -1,0 +1,5 @@
+#!/bin/sh
+sudo apt update
+sudo apt full-upgrade
+# Widevine DRM library for Netflix
+sudo apt install libwidevinecdm0
