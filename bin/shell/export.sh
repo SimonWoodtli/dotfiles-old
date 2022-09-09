@@ -37,3 +37,4 @@ export DOCKER_HOST=unix:///run/user/$(id -u)/docker.sock
 
 _have deno && export DENO_INSTALL_ROOT="$HOME/.deno/bin"
 _have sdk && export SDKMAN_DIR="$HOME/.sdkman"
+_have fzf && export FZF_DEFAULT_OPTS="--layout=reverse --height 30%"

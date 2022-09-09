@@ -1,6 +1,7 @@
 #  Interesting Software to check out
 
 Most promising deb get. But I will probably just use nix package manager on next install.
+Add corectrl via nix too
 
 * https://github.com/pacstall/pacstall
 * https://github.com/wimpysworld/deb-get

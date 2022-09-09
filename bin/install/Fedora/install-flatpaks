@@ -16,6 +16,18 @@ flatpak install flathub com.uploadedlobster.peek
 flatpak install flathub com.github.xournalpp.xournalpp
 flatpak install flathub net.ankiweb.Anki
 
+## To get this to run on Fedora is quite annoying. On Debian it should be much easier
+# 1. install this: https://github.com/M0Rf30/android-udev-rules (andorid documentation mentions adding udev rules but there is only a deb package)
+# 2. download and unzip the android SDK platform tools: https://developer.android.com/studio/command-line/adb#Enabling
+# 3. Make sure your phone has developer options activated and enabe usb debugging and wifi debugging
+# 4. run platform-tools/./adb devices => no permission error (attached device is what you need)
+# 5. try this:(non permanent solution) sudo ./adb kill-server && sudo ./adb start-server (https://stackoverflow.com/questions/14460656/android-debug-bridge-adb-device-no-permissions) 
+# 6. Now with an actual USB cable debugging (./adb devices now asks my phone to allow usb debugging)works and GUISCRPY works via
+# cable. However still need to find a way to make it work with wifi + the running adb as sudo is ...
+# Since I don't use/need this ability often I don't care if it's a hack like this
+# 
+flatpak install flathub in.srev.guiscrcpy #activate developer options=> enable usb & wifi debugging
+
 ## to consider
 #flatpak install flathub com.obsproject.Studio
 #flatpak install flathub com.skype.Client
@@ -30,4 +42,3 @@ flatpak install flathub net.ankiweb.Anki
 ## buggy not working, but the standard repo is also not working 
 ##TODO => compile it and see if that works
 #flatpak install flathub org.onionshare.OnionShare
-
