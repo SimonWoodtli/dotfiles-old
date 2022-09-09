@@ -37,6 +37,7 @@ _have browser-sync && alias browsersync='browser-sync start --server --files "*.
   css/*.css"'
 _have reddio && alias ra='reddio | boxes -d dog | less'
 _have spotify && alias spotify="env LD_PRELOAD=/usr/local/lib/spotify-adblock.so spotify %U &"
+_have speedtest-cli && alias speedtest='speedtest-cli --secure'
 
 alias s=searx
 alias ?=duck
