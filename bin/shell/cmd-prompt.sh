@@ -1,64 +1,32 @@
 
 ############################## CMD PROMPT ##############################
 
-# Syntactic sugar for ANSI escape sequences
-txtblk='\e[0;30m' # Black - Regular
-txtred='\e[0;31m' # Red
-txtgrn='\e[0;32m' # Green
-txtylw='\e[0;33m' # Yellow
-txtblu='\e[0;34m' # Blue
-txtpur='\e[0;35m' # Purple
-txtcyn='\e[0;36m' # Cyan
-txtwht='\e[0;37m' # White
-bldblk='\e[1;30m' # Black - Bold
-bldred='\e[1;31m' # Red
-bldgrn='\e[1;32m' # Green
-bldylw='\e[1;33m' # Yellow
-bldblu='\e[1;34m' # Blue
-bldpur='\e[1;35m' # Purple
-bldcyn='\e[1;36m' # Cyan
-bldwht='\e[1;37m' # White
-unkblk='\e[4;30m' # Black - Underline
-undred='\e[4;31m' # Red
-undgrn='\e[4;32m' # Green
-undylw='\e[4;33m' # Yellow
-undblu='\e[4;34m' # Blue
-undpur='\e[4;35m' # Purple
-undcyn='\e[4;36m' # Cyan
-undwht='\e[4;37m' # White
-bakblk='\e[40m'   # Black - Background
-bakred='\e[41m'   # Red
-badgrn='\e[42m'   # Green
-bakylw='\e[43m'   # Yellow
-bakblu='\e[44m'   # Blue
-bakpur='\e[45m'   # Purple
-bakcyn='\e[46m'   # Cyan
-bakwht='\e[47m'   # White
-txtrst='\e[0m'    # Text Reset
-#d=$'\033[38;2;110;110;110m'
-#txtdark='\e[90m'
-
-p='\e[0;35m' # Purple
-c='\e[0;36m' # Cyan
-b='\e[0;34m' # Blue
-r='\e[0;31m' # Red
-y='\e[0;33m' # Yellow
-d='\e[38;2;110;110;110m' # Dark
-r='\e[0m'    # Text Reset
-
+## http://mywiki.wooledge.org/BashFAQ/053
+##TODO if PS1 too long make it two lines
 __ps1() {
-  #git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
-  #git branch --show-current 2> /dev/null
-  git symbolic-ref --short HEAD 2>/dev/null
-  #[[ $B = master || $B = main ]] && b="$r"
+  local p='\e[0;35m' # Purple
+  local cr='\e[0;36m' # Cyan => main Red
+  local br='\e[0;34m' # Blue -> root Red
+  local b='\e[0;34m' # Blue
+  local r='\e[0;31m' # Red
+  local yr='\e[0;33m' # Yellow -> root Red
+  local d='\e[38;2;110;110;110m' # Dark
+  local x='\e[0m'    # Text Reset
+  local P='$'        # prompt end $/#
+  #branch=$(git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/') #complicated get branch name + ()
+  local branch=$(git branch --show-current 2> /dev/null) #store branch name
+  ## Problem: /home/user/.basrc does not get read by root
+  ## Solution: add this to /root/.bashrc: source /home/sero/Repos/github.com/SimonWoodtli/dotfiles/bin/shell/cmd-prompt.sh
+  [[ $EUID == 0 ]] && P='#' && yr=$r && br=$r #check if root and change color
+  [[ $branch = master || $branch = main ]] && cr="$r" #change branch to red
+  [[ $branch != master && $branch != main ]] && cr='\e[0;36m' #change branch to cyan
+  [[ -n "$branch" ]] && branch="\[$d\](\[$cr\]$branch\[$d\])" #if branch exist add parenthesis and branchname
+  ## PS1 explained:
+  # \u = user \h = host \W = current dir (\w = current dir + path)
+  ## ANSI Colors need to be wrapped/escaped \[...\]
+  ## @,: is hardcoded => no escape
+  ## $branch, $P are variables that change depending on whether git repo or root => no escape
+  export PS1="\[$yr\]\u\[$d\]@\[$b\]\h\[$d\]:\[$p\]\W$branch\[$br\]$P\[$x\] " #defaultp prompt has no (git-branch-name)
 }
 
-##TODO change colors if root == red or normal user == yellow
-##TODO get rid of () if not a git repo
-##TODO change color if main branch == red
-
-export PS1="\[$y\]\u\[$d\]@\[$b\]\h\[$d\]:\[$p\]\W\[$d\](\[$c\]\$(__ps1)\[$d\])\[$b\]\$\[$r\] "
-##works
-#export PS1="\[$y\]\u\[$d\]@\[$b\]\h\[$d\]:\[$p\]\W\[$d\](\[$c\]\$(__ps1)\[$d\])\[\033[00m\]\$ "
-
-#PROMPT_COMMAND="__ps1"
+export PROMPT_COMMAND="__ps1"
