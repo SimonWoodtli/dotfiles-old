@@ -15,10 +15,18 @@ shopt -s histappend # do not overwrite history
 shopt -s checkwinsize # checks term size when bash regains control
 #shopt -s nullglob # creates bug FIX ME
 
-HISTCONTROL=ignoreboth
-#HISTCONTROL=ignoredups # Ignore duplicates in command history
-HISTSIZE=5000 # increase default 500 commands to 5000
-HISTFILESIZE=10001
+export HISTCONTROL=ignoreboth:erasedups # Ignore duplicates in command history
+export HISTSIZE=5000 # increase default 500 commands to 5000
+export HISTFILESIZE=10001
+## unlimited history
+#export HISTSIZE=
+#export HISTFILESIZE=
+## Change the file location because certain bash sessions truncate .bash_history file upon close.
+#export HISTFILE=$HOME/.bash_eternal_history
+
+export HISTTIMEFORMAT="%Y/%m/%d %H:%M:%S:   "
+# Force prompt to write history after every command.
+PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
 #setxkbmap -option ctrl:ctrl_modifier # map capslock to control
 export HRULEWIDTH=73
 
