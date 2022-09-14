@@ -9,8 +9,11 @@ paru -S nerd-fonts-ubuntu-mono ttf-ms-fonts
 paru -S dxvk-bin
 ## spotify adblocker
 paru -S spotify-adblock-git
+## virtualbox extension pack
+paru -S virtualbox-ext-oracle
 
 ## Additional stuff:
+#paru -S visual-studio-code-bin
 #paru -S drawio-desktop balena-etcher 
 ## fun
 #paru -S boxes toilet tmatrix-git
