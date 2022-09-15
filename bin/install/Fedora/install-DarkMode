@@ -1,6 +1,7 @@
 #!/bin/sh
 
 ## Gnome Desktop 42
+## darkmode for libreoffice: https://itsfoss.com/libreoffice-dark-mode/
 
 read -p "Which Programs do you want darkmode to apply?
 

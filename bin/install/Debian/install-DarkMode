@@ -1,5 +1,7 @@
 #!/bin/sh
 
+## darkmode for libreoffice: https://itsfoss.com/libreoffice-dark-mode/
+
 ## OUTDATED for Gnome 42 => Check Fedora 'install-DarkMode' script
 ## Install
 #sudo apt install qt5-style-kvantum qt5-style-kvantum-themes
