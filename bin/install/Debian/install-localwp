@@ -1,0 +1,5 @@
+#!/bin/sh
+## No way to automate this as URL path changes with every new release
+## Just grab the latest version from their site
+## DL-SITE: https://localwp.com/releases/
+## SETUP: https://ostechnix.com/setup-local-wordpress-development-environment-in-linux/
