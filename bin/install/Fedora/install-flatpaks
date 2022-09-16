@@ -15,6 +15,7 @@ flatpak install flathub com.gitlab.tipp10.tipp10
 flatpak install flathub com.uploadedlobster.peek
 flatpak install flathub com.github.xournalpp.xournalpp
 flatpak install flathub net.ankiweb.Anki
+flatpak install flathub com.calibre_ebook.calibre
 
 ## To get this to run on Fedora is quite annoying. On Debian it should be much easier
 # 1. install this: https://github.com/M0Rf30/android-udev-rules (andorid documentation mentions adding udev rules but there is only a deb package)
