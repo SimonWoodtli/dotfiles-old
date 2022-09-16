@@ -1,4 +1,5 @@
 #!/bin/sh
 [ -d $HOME/.config/alacritty ] || mkdir -p $HOME/.config/alacritty
+## make sure to copy the config file symlink breaks opacity
 cp $PWD/alacritty.yml $HOME/.config/alacritty/alacritty.yml
 ls -l $HOME/.config/alacritty/alacritty.yml
