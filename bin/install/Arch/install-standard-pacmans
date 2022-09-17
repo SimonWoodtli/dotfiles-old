@@ -1,74 +1,87 @@
 #!/bin/sh
-sudo pacman -S --needed xdg-utils reflector imwheel netctl flatpak dash \
-  linux-headers linux-lts linux-lts-headers rsync bash-completion \
-  base-devel weechat diffutils mesa gnome-common lesspipe -y
 ## remember after flatpak install it needs a reboot!!
-
+sudo pacman -S --needed xdg-utils reflector imwheel netctl flatpak dash -y || exit 1
+sleep 2
+sudo pacman -S --needed linux-headers linux-lts linux-lts-headers  -y || exit 2
+sleep 2
+sudo pacman -S --needed rsync bash-completion base-devel -y  || exit 3
+sleep 2
+sudo pacman -S --needed weechat diffutils mesa gnome-common lesspipe -y || exit 4
+sleep 2
 ## fonts
-sudo pacman -S --needed ttf-linux-libertine xorg-fonts-100dpi \
-  xorg-fonts-75dpi noto-fonts
+sudo pacman -S --needed ttf-linux-libertine xorg-fonts-100dpi || exit 5
+sleep 2
+sudo pacman -S --needed xorg-fonts-75dpi noto-fonts || exit 6
+sleep 2
 ## fun
-sudo pacman -S --needed lolcat asciiquarium cowsay figlet steam -y
+#sudo pacman -S --needed lolcat asciiquarium cowsay figlet steam -y
+## fun
+sudo pacman -S --needed neo-matrix asciiquarium -y || exit 99
+sleep 2
 ## media
-sudo pacman -S --needed mpv onionshare imagemagick mpd
-asciinema sxiv -y
+sudo pacman -S --needed mpv onionshare imagemagick -y || exit 7
+sleep 2
+sudo pacman -S --needed mpd asciinema sxiv -y || exit 8
+sleep 2
 # sudo pacman -S dvd+rw-tools udftools ddrescue dd_rescue cdrtools cdrdao
 # dvdauthor
-
 ## chinese input $ ibus-setup -> to go to settings
-sudo pacman -S ibus ibus-pinyin ibus-m17n -y
+sudo pacman -S ibus ibus-pinyin ibus-m17n -y || exit 9
+sleep 2
 ## chinese fonts
-sudo pacman -S wqy-zenhei wqy-bitmapfont
-
+sudo pacman -S wqy-zenhei wqy-bitmapfont || exit 10
+sleep 2
 ## office
-sudo pacman -S --needed mupdf p7zip unrar -y
-## internet tools
-sudo pacman -S --needed anki yt-dlp -y #youtube-dl is slow use yt-dlp
-## maintenance
-sudo pacman -S --needed pacman-contrib -y
-# checkout features: https://github.com/kyrias/pacman-contrib
-
-## gaming: https://christitus.com/ultimate-linux-gaming-guide/
-#sudo pacman -S lib32-gnutls lib32-libldap lib32-libgpg-error lib32-sqlite lib32-libpulse lib32-mesa vulkan-radeon lib32-vulkan-radeon vulkan-icd-loader lib32-vulkan-icd-loader -y
-## wine
-#sudo pacman -S wine-staging giflib lib32-giflib libpng lib32-libpng libldap lib32-libldap gnutls lib32-gnutls mpg123 lib32-mpg123 openal lib32-openal v4l-utils lib32-v4l-utils libpulse lib32-libpulse libgpg-error lib32-libgpg-error alsa-plugins lib32-alsa-plugins alsa-lib lib32-alsa-lib libjpeg-turbo lib32-libjpeg-turbo sqlite lib32-sqlite libxcomposite lib32-libxcomposite libxinerama lib32-libgcrypt libgcrypt lib32-libxinerama ncurses lib32-ncurses opencl-icd-loader lib32-opencl-icd-loader libxslt lib32-libxslt libva lib32-libva gtk3 lib32-gtk3 gst-plugins-base-libs lib32-gst-plugins-base-libs vulkan-icd-loader lib32-vulkan-icd-loader lutris -y
-
+sudo pacman -S --needed mupdf p7zip unrar -y || exit 11
+sleep 2
+## internet tools: youtube-dl is slow use yt-dlp
+sudo pacman -S --needed screenkey anki yt-dlp qbittorrent -y || exit 12
+sleep 2
+## maintenance: checkout features https://github.com/kyrias/pacman-contrib
+sudo pacman -S --needed pacman-contrib -y || exit 13
+sleep 2
 ## dev tools
-sudo pacman -S --needed git github-cli jdk-openjdk nodejs-lts-fermium npm pandoc  \
-  perl jq ctags python3 python-pip
+sudo pacman -S --needed git github-cli jdk-openjdk nodejs-lts-fermium -y || exit 14
+sleep 2
+sudo pacman -S --needed npm pandoc perl jq ctags python3 python-pip -y || exit 15
+sleep 2
 # sudo pacman -S meld
-
 ## cpu/gpu control
-sudo pacman -S --needed corectrl
-
+sudo pacman -S --needed corectrl -y || exit 16
+sleep 2
 ## admin tools
-sudo pacman -S --needed bashtop htop neofetch cron tree alacritty lynx tmux xclip \
-  fzf dmenu bat -y
+sudo pacman -S --needed virtualbox bashtop htop neofetch cron tree -y || exit 17
+sleep 2
+sudo pacman -S --needed alacritty lynx tmux xclip fzf dmenu bat -y || exit 18
+sleep 2
 # sudo pacman -S logrotate
-
 ## benchmark
-sudo pacman -S --needed speedtest-cli hardinfo hyperfine -y
+sudo pacman -S --needed speedtest-cli hardinfo hyperfine -y || exit 19
+sleep 2
 ## neomutt
-sudo pacman -S --needed neomutt notmuch msmtp abook pass isync -y
+sudo pacman -S --needed neomutt notmuch msmtp abook pass isync -y || exit 20
+sleep 2
 ## newsboat
-sudo pacman -S --needed newsboat sxiv urlscan -y
+sudo pacman -S --needed newsboat sxiv urlscan -y || exit 21
+sleep 2
 ## install dependency
-sudo pacman -S --needed pcsclite -y
+sudo pacman -S --needed pcsclite -y || exit 22
+sleep 2
 ## pentesting
-sudo pacman -S --needed s-nail mtr nmap -y
+sudo pacman -S --needed s-nail mtr nmap -y || exit 23
+sleep 2
 ## network
-sudo pacman -S --needed dnsutils net-tools curl wget -y
+sudo pacman -S --needed dnsutils net-tools curl wget -y || exit 24
+sleep 2
 # sudo pacman -S bind vsftpd
-
 ## fonts
-sudo pacman -S --needed ttf-linux-libertine ttf-bitstream-vera \
-  ttf-liberation noto-fonts ttf-roboto ttf-opensans \
-  opendesktop-fonts cantarell-fonts freetype2 papirus-icon-theme -y
-
-## Fun
-
-sudo pacman -S --needed neo-matrix
-
+sudo pacman -S --needed ttf-linux-libertine ttf-bitstream-vera -y || exit 25
+sleep 2
+sudo pacman -S --needed ttf-liberation noto-fonts ttf-roboto ttf-opensans -y  || exit 26
+sleep 2
+sudo pacman -S --needed opendesktop-fonts cantarell-fonts freetype2 -y || exit 27
+sleep 2
+sudo pacman -S --needed papirus-icon-theme -y || exit 28
 ## security
 # pacman -S ufw bleachbit
 
@@ -80,7 +93,3 @@ sudo pacman -S --needed neo-matrix
 
 ## xorg stuff
 #sudo pacman -S xorg-apps xorg-drivers xorg-xkill xorg-xinit
-
-
-## more random data for /dev/random
-# sudo pacman -S haveged
