@@ -259,14 +259,18 @@ au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe
 "set omnifunc=htmlcomplete#CompleteTags
 "set omnifunc=csscomplete#CompleteCSS
 "set omnifunc=phpcomplete#CompletePHP
-
-
+"
 """"""""""""""""""""""""""""""leader, f-keys"""""""""""""""""""""""""""""""""""
+
+"" solution (Fedora): select 'v' + normal yank 'y', paste 'leader p'
+"" don't change position, only works if set before leader key
+map <leader>p :call system('xclip -sel clipboard', @0)<CR>
+
 let mapleader ="\<Space>"
 "" needed for spacebar leader, to avoid character move with spacebar
 nnoremap <SPACE> <Nop>
-"" xclip copy/paste from X11 clipboard / ctrl-v select text first
-vmap <Leader>yy :!xclip -f -sel clip<CR>
+"" problem (Fedora): select 'v' + yank 'leader yy', copies whole line
+vmap <leader>yy :!xclip -f -sel clip<CR>
 map <leader>pp mz: -1r !xclip -o -sel clip<CR>`z
 
 map <F1> :set number! relativenumber!<CR>
