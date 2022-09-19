@@ -1,11 +1,23 @@
 #!/bin/sh
+## difference between $* and $@? Both hold list of all arguments passed to
+## script. However the values are not the same if surrounded by double quotes:
+## - $@ expanded as "$1" "$2" "$3" ... "$n"
+## - $* expanded as "$1y$2y$3y...$n", where y is the value of IFS variable i.e. 
+##  "$*" is one long string and $IFS act as an separator or token delimiters.
+# IFS=+
+# echo $*
+# echo "$*"
+# echo
+# echo $@
+# echo "$@"
+# exit
 
 cheat() {
-  where="$1"
+  language="$1"
   if [ $# -ge 1 ]; then
     shift
   fi
-  IFS=+ curl -sS "http://cht.sh/$where/ $*"
+  IFS=+; curl -sS http://cht.sh/$language/"$*"
 }
 
 cheat "$@"
