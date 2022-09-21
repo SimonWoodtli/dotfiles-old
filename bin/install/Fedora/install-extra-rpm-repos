@@ -6,8 +6,10 @@ sudo dnf install https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-releas
 sudo dnf config-manager --add-repo https://brave-browser-rpm-release.s3.brave.com/x86_64/
 sudo rpm --import https://brave-browser-rpm-release.s3.brave.com/brave-core.asc
 
-## Maybe needed (latest version)
+## If you can't install latest version with Fedoras Update Repo: activate
+## and install with this Repo
 #sudo dnf install 'dnf-command(config-manager)'
+#sudo dnf config-manager --add-repo https://cli.github.com/packages/rpm/gh-cli.repo
 #sudo dnf config-manager --add-repo https://cli.github.com/packages/rpm/gh-cli.repo
 #sudo dnf install gh
 

@@ -25,7 +25,7 @@ export DOTFILES="$GHREPOS/dotfiles"
 export SCRIPTS="$DOTFILES/scripts"
 export SCRIPTS_PRIV="$PRIVATE/scripts"
 ## used for `pdf` script
-export PDFDIR=$GHREPOS/importantBooks
+export PDFDIR="$HOME/Documents/books/importantBooks"
 ## used for `zet-old` script
 #export KN=$HOME/Repos/github.com/$GITUSER
 ## IBUS config for chinese pinyin input
