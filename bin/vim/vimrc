@@ -21,6 +21,7 @@ set linebreak "this will wrap `` for long words even if new line is started
 set noshowmatch "no more little pause if you type brackets
 set foldmethod=manual " manual foldingdefault (zf/zd)
 set nofoldenable "disable folding, when paragraphs can be minimized and maximized with spacebar
+"set foldcolumn=0 "I had a foldcolumn on the left side this fixes it
 set ruler "ruler is on by default, just in case
 "set scrolloff=999 "keep cursor in the middle, or some big other number
 set scrolloff=7 "keep cursor at border of screen
@@ -160,11 +161,15 @@ if filereadable(expand("~/.vim/autoload/plug.vim"))
   Plug 'itchyny/lightline.vim' "info footer
   Plug 'preservim/nerdtree'
   Plug 'Xuyuanp/nerdtree-git-plugin'
-  Plug 'ctrlpvim/ctrlp.vim' " C-p to search and open files within vim
+  "Plug 'ctrlpvim/ctrlp.vim' " C-p to search and open files within vim
   Plug 'tpope/vim-surround' "change single to double quotes: cs'\"
   Plug 'sheerun/vim-polyglot' " better syntax highlighting for many lang
   Plug 'preservim/nerdcommenter' " Comment your code quickly
   Plug 'puremourning/vimspector' " Debugger
+  "Plug 'vim-scripts/YankRing.vim' " don't use it's still version 19
+  "newest version: https://www.vim.org/scripts/script.php?script_id=1234
+  "extract manually to ~/.vimplugins/yankring
+  Plug '~/.vimplugins/yankring'
   let g:lightline = {
       \ 'colorscheme': 'wombat',
       \ }
@@ -264,6 +269,8 @@ au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe
 
 "" solution (Fedora): select 'v' + normal yank 'y', paste 'leader p'
 "" don't change position, only works if set before leader key
+"" problem: now uses the yank buffer which gets rewritten all the time
+"" how can I just copy a visually selected text to xclip clipboard? :(
 map <leader>p :call system('xclip -sel clipboard', @0)<CR>
 
 let mapleader ="\<Space>"

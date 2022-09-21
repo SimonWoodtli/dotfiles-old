@@ -21,3 +21,5 @@ if [ -d "$HOME/.local/go/bin" ]; then
 fi
 export QT_STYLE_OVERRIDE=kvantum
 export EDITOR=vim
+
+if [ -e /home/sero/.nix-profile/etc/profile.d/nix.sh ]; then . /home/sero/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
