@@ -41,7 +41,7 @@ sleep 2
 sudo pacman -S --needed pacman-contrib -y || exit 13
 sleep 2
 ## dev tools
-sudo pacman -S --needed git github-cli jdk-openjdk nodejs-lts-fermium -y || exit 14
+sudo pacman -S --needed git github-cli git-delta jdk-openjdk nodejs-lts-fermium -y || exit 14
 sleep 2
 sudo pacman -S --needed npm pandoc perl jq ctags python3 python-pip -y || exit 15
 sleep 2
@@ -50,7 +50,7 @@ sleep 2
 sudo pacman -S --needed corectrl -y || exit 16
 sleep 2
 ## admin tools
-sudo pacman -S --needed virtualbox bashtop htop neofetch cron tree -y || exit 17
+sudo pacman -S --needed broot virtualbox bashtop duf htop neofetch cron fd ripgrep -y || exit 17
 sleep 2
 sudo pacman -S --needed alacritty lynx tmux xclip fzf dmenu bat -y || exit 18
 sleep 2
