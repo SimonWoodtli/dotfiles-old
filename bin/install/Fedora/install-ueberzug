@@ -1,0 +1,6 @@
+#!/bin/sh
+## install dependencies
+sudo dnf install libX11-devel.x86_64 libXext-devel libXxf86vm-devel
+# sudo dnf install make automake gcc gcc-c++ kernel-devel
+## install ueberzug
+pip install --user ueberzug
