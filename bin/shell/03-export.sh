@@ -13,7 +13,7 @@ for dir in desktop documents downloads mnt music pictures private public \
 done
 
 export USER="${USER:-$(whoami)}"
-export BROWSER=/usr/sbin/librewolf
+export BROWSER=/usr/bin/brave-browser
 export VIRTUALMACHINES="$HOME/VirtualMachines"
 export TERM=xterm-256color
 export HELP_BROWSER=lynx
