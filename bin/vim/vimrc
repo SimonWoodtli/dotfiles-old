@@ -1,13 +1,13 @@
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " _    ___
 " | |  / (_)___ ___  __________
 " | | / / / __ `__ \/ ___/ ___/
 " | |/ / / / / / / / /  / /__
 " |___/_/_/ /_/ /_/_/   \___/
 "
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-""""""""""""""""""""""""""""basic settings"""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""" basic settings """"""""""""""""""""""""""""
 "" encoding
 set encoding=utf-8
 set fileencoding=utf-8
@@ -17,10 +17,11 @@ set number relativenumber   "hybrid numbers
 set ignorecase "ignore case of letters (easier to search)
 let skip_defaults_vim=1
 set nocompatible "allow vim-y things
-set linebreak "this will wrap `` for long words even if new line is started
+set linebreak "this will wrap `` for long words even if new line started
 set noshowmatch "no more little pause if you type brackets
 set foldmethod=manual " manual foldingdefault (zf/zd)
-set nofoldenable "disable folding, when paragraphs can be minimized and maximized with spacebar
+set nofoldenable "disable folding, when paragraphs can be minimized and
+"maximized with spacebar
 "set foldcolumn=0 "I had a foldcolumn on the left side this fixes it
 set ruler "ruler is on by default, just in case
 "set scrolloff=999 "keep cursor in the middle, or some big other number
@@ -28,7 +29,8 @@ set scrolloff=7 "keep cursor at border of screen
 set showcmd " shows info on bottom right
 set icon "sync terminal title with current file edited
 "set wrap linebreak nolist "soft wrap only wraps it but not formats it
-set viminfo='20,<1000,s1000 "increase yank buffer size if you want to yank from one file to another
+set viminfo='20,<1000,s1000 "increase yank buffer size if you want to
+"" yank from one file to another
 set wildmode=longest,list,full "autocompletion for ex commands with tabs
 set hlsearch "all the /searchterms get highlighted on your display
 "set nohlsearch "to turn the highligted searchterms off :noh
@@ -48,8 +50,8 @@ set nowritebackup
 set noswapfile
 
 "" write good code
-set colorcolumn=80
 set textwidth=73
+set colorcolumn=80
 highlight ColorColumn ctermbg=0 guibg=lightgrey
 
 "" makes your list characters prettier (set list)
@@ -66,7 +68,7 @@ set viminfo='20,<1000,s1000 " prevents truncated yanks, deletes, etc.
 "           | + lines saved each register (old name for <, vi6.2)
 "           + save/restore buffer list
 
-""""""""""""""""""""""""""""low level settings"""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""" low level settings """"""""""""""""""""""""""
 set formatoptions-=t   " don't auto-wrap text using text width
 set formatoptions+=c   " autowrap comments using textwidth with leader
 set formatoptions-=r   " don't auto-insert comment leader on enter in insert
@@ -85,24 +87,22 @@ set formatoptions+=M   " don't add space before or after multi-byte char
 set formatoptions-=B   " don't add space between two multi-byte chars in join
 set formatoptions+=1   " don't break a line after a one-letter word
 
-""""""""""""""""""""""""""""""""nice feats"""""""""""""""""""""""""""""""""""""
-"" Copy/Paste/Cut with system clipboard not just vim buffer
+"""""""""""""""""""""""""""""" nice feats """"""""""""""""""""""""""""""
+"" Copy/Paste/Cut with system clipboard not just vim buffer:
+"" only works if compiled with +clipboard check: `vim --version`
 if has('unnamedplus')
-  set clipboard=unnamed,unnamedplus
+  set clipboard^=unnamed,unnamedplus
 endif
 "" Vmap for maintain Visual Mode after shifting > and <
 vmap < <gv
 vmap > >gv
-"" Search mappings: These will make it so that going to the next one in a
-"" search will center on the line it's found in.
+"" Search mappings: These will make it so that going to the next one in
+"" a search will center on the line it's found in.
 nnoremap n nzzzv
 nnoremap N Nzzzv
 
 "" vertically center document when entering insert mode
 autocmd InsertEnter * norm zz
-
-"" get urlscan menu in vim
-noremap <leader>u :w<Home>silent <End> !urlscan<CR>
 
 " search and replace [foo] to [foo1] globally
 nnoremap S :%s//gI<Left><Left><Left>
@@ -135,17 +135,12 @@ noremap <Leader>gb :Gblame<CR>
 noremap <Leader>gd :Gvdiff<CR>
 noremap <Leader>gr :Gremove<CR>
 
-"" ctrlp ignores these files
-let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
-"" no cache performance fix
-let g:ctrlp_use_caching = 0
-
-"""""""""""""""""""""""""""""""syntax mandatory""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""" syntax mandatory """""""""""""""""""""""""""
 "" all settings require syntax on
 syntax on
 filetype plugin indent on "allow sensing the filetype
 
-"""""""""""""""""""""""""""""""""""plugin""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""" plugin """"""""""""""""""""""""""""""""
 if empty(glob('~/.vim/autoload/plug.vim')) " make sure plug is installed
   silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
         \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
@@ -154,77 +149,88 @@ endif
 "" look for .vim if it does not exist download&install plugins
 if filereadable(expand("~/.vim/autoload/plug.vim"))
   call plug#begin('~/.vimplugins')
+  " essentials:
   Plug 'vim-pandoc/vim-pandoc'
   Plug 'https://gitlab.com/rwxrob/vim-pandoc-syntax-simple'
-  "Plug 'vim-airline/vim-airline' "info footer
-  "Plug 'vim-airline/vim-airline-themes'
   Plug 'itchyny/lightline.vim' "info footer
+  Plug 'mengelbrecht/lightline-bufferline' "info footer with buffer tabs
   Plug 'preservim/nerdtree'
   Plug 'Xuyuanp/nerdtree-git-plugin'
-  "Plug 'ctrlpvim/ctrlp.vim' " C-p to search and open files within vim
   Plug 'tpope/vim-surround' "change single to double quotes: cs'\"
   Plug 'sheerun/vim-polyglot' " better syntax highlighting for many lang
   Plug 'preservim/nerdcommenter' " Comment your code quickly
   Plug 'puremourning/vimspector' " Debugger
+  Plug 'KabbAmine/zeavim.vim' " zeal documentation
+  Plug 'tpope/vim-fugitive' "git integration
+  " fzf
+  Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+  Plug 'junegunn/fzf.vim'
+  Plug 'airblade/vim-rooter' "helps fzf to look at git repos
   "Plug 'vim-scripts/YankRing.vim' " don't use it's still version 19
   "newest version: https://www.vim.org/scripts/script.php?script_id=1234
   "extract manually to ~/.vimplugins/yankring
   Plug '~/.vimplugins/yankring'
-  let g:lightline = {
-      \ 'colorscheme': 'wombat',
-      \ }
-  set laststatus=2
-
-  "Plug 'elzr/vim-json' "better syntax for json
-  "Plug 'tpope/vim-fugitive'
-  "Plug 'cespare/vim-toml'
-  "Plug 'fatih/vim-go'
-  "Plug 'PProvost/vim-ps1'
-
-  "autocomplete
-  "Plug 'neoclide/coc.nvim', {'branch': 'release'} "powerful autocomplete
-
-  " tags
-  "Plug 'xolox/vim-easytags' "Ctag automater
   Plug 'majutsushi/tagbar' "tags in memory
-
   "" colorschemes
   Plug 'morhetz/gruvbox' "color scheme
   Plug 'HerringtonDarkholme/yats.vim' " correct syntax hightlight for gruvbox
-  "Plug 'NLKNguyen/papercolor-theme'
-  "Plug 'tomasr/molokai' "color scheme
-  "Plug 'flazz/vim-colorschemes' "lots of colorschemes
+
+  "Plug 'elzr/vim-json' "better syntax for json
+  "Plug 'cespare/vim-toml'
+  "Plug 'fatih/vim-go'
+  "Plug 'PProvost/vim-ps1'
+  "autocomplete
+  "Plug 'neoclide/coc.nvim', {'branch': 'release'} "powerful autocomplete
+  " tags
+  "Plug 'xolox/vim-easytags' "Ctag automater
+  "
+""""""""""""""""""""""""""" plugin languages """""""""""""""""""""""""""
 
   " Javascript
   "Plug '/MaxMEllon/vim-jsx-pretty' "react syntax highlighting
   "Plug 'dense-analysis/ale' "JS linter :ALEToggle
   Plug 'moll/vim-node' " Node.js
   Plug 'godlygeek/tabular' " make quick tables, clean json data
-
   " C
   "Plug 'vim-scripts/c.vim', {'for': ['c', 'cpp']}
   "Plug 'ludwig/split-manpage.vim'
-
   " python
   "" Python Bundle
   "Plug 'davidhalter/jedi-vim'
   "Plug 'raimon49/requirements.txt.vim', {'for': 'requirements'}
   "Plug 'plytophogy/vim-virtualenv'
   " Plug 'python-mode/python-mode'
-
-  " html
+  " html/css
   "Plug 'mattn/emmet-vim'
   "Plug 'hail2u/vim-css3-syntax'
-  "Plug 'gorodinskiy/vim-coloresque'
+  Plug 'ap/vim-css-color' "css color preview
   "Plug 'tpope/vim-haml'
   "Plug 'mattn/emmet-vim'
   call plug#end()
+"""""""""""""""""""""""""""" plugins configs """""""""""""""""""""""""""
   set nocompatible "needed for vim-polygot
   colorscheme gruvbox
   set background=dark
   let g:go_fmt_fail_silently = 0 " let me out even with errors
   let g:go_fmt_command = 'goimports' " autoupdate import
   let g:go_fmt_autosave = 1
+
+  "" lightline config:
+  let g:lightline = {
+      \ 'colorscheme': 'wombat',
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ],
+      \             [ 'gitbranch', 'readonly', 'modified' ],
+      \             [ 'buffers' ] ]
+      \ },
+      \ 'component_function': {
+      \   'gitbranch': 'FugitiveHead'
+      \ },
+      \ }
+  set laststatus=2
+  autocmd BufWritePost,TextChanged,TextChangedI * call lightline#update()
+  let g:lightline.component_expand = {'buffers': 'lightline#bufferline#buffers'}
+  let g:lightline.component_type   = {'buffers': 'tabsel'}
 
   " coc autocomplete config
   " let g:coc_global_extensions = [
@@ -240,7 +246,7 @@ endif
 
 autocmd vimleavepre *.md !perl -p -i -e 's,\[([^\]]+?)\]\(\),[\1](https://duck.com/lite?q=\1),g' %
 
-"""""""""""""""""""""""""""""""""""buffer""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""" buffer """"""""""""""""""""""""""""""""
 "" help you to detect filetypes that are not automatically detected
 au bufnewfile,bufRead bashconfig set filetype=sh
 au bufnewfile,bufRead *.profile set filetype=sh
@@ -265,8 +271,7 @@ au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe
 "set omnifunc=csscomplete#CompleteCSS
 "set omnifunc=phpcomplete#CompletePHP
 "
-""""""""""""""""""""""""""""""leader, f-keys"""""""""""""""""""""""""""""""""""
-
+"""""""""""""""""""""""""""" leader, f-keys """"""""""""""""""""""""""""
 "" solution (Fedora): select 'v' + normal yank 'y', paste 'leader p'
 "" don't change position, only works if set before leader key
 "" problem: now uses the yank buffer which gets rewritten all the time
@@ -282,17 +287,47 @@ map <leader>pp mz: -1r !xclip -o -sel clip<CR>`z
 
 map <F1> :set number! relativenumber!<CR>
 nmap <F2> :call <SID>SynStack()<CR>
-set pastetoggle=<F3> " toggle autoindent+autocomment on/off (:set paste, :set nopaste)
+" toggle autoindent+autocomment on/off: (:set paste, :set nopaste)
+set pastetoggle=<F3> 
 map <F4> :set list!<CR>
 map <F5> :set cursorline! cursorcolumn!<CR>
 map <F7> :set spell!<CR>
 map <F8> :NERDTreeToggle<CR>
 map <F12> :set fdm=indent<CR>
-"nmap <silent> <F4> :TagbarToggle<CR>
-"nmap <F4> :TagbarToggle<CR>
 nmap <F9> :TagbarToggle<CR>
 let g:tagbar_autofocus = 1
 
+"" zeal documentation plugin
+nmap <leader>z <Plug>Zeavim
+vmap <leader>z <Plug>ZVVisSelection
+nmap gz <Plug>ZVOperator
+nmap <leader><leader>z <Plug>ZVKeyDocset
+
+"" fzf mappings
+" switch buffers: loads super slow (probably cause of default fzf flags
+" and stuff 
+" FIXME
+"nmap <silent> <leader>b :Buffers<cr> 
+"" alternative until :Buffers is fixed
+""switch buffers with second command :b[Num], :b1 for buffer 1
+nmap <silent> <leader>b :ls<cr>
+
+"" search vim command history:
+nmap <silent> <leader>h :History:<cr>
+"" search vim help
+nmap <silent> <leader>h :Helptags<cr>
+"" search filenames:
+nmap <silent> <leader>f :FZF<cr>
+"" search content files with ripgrep:
+nmap <silent> <leader>/ :Rg<cr>
+"" search all buffers:
+nmap <silent> <leader>b/ :Lines<cr>
+"" search current buffer:
+nmap <silent> <leader>b. :BLines<cr>
+"" Switch buffer to last edited file
+"" If I need to switch to more than just the last edited file:
+"" Install Plugin: /ton/vim-bufsurf
+nmap <silent> <leader>bn :e #<cr>
 
 "" autocomplete
 ""double space to enter auto
@@ -311,7 +346,7 @@ function! <SID>SynStack()
   echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
 endfunc
 
-"""""""""""""""""""""""""""""""""visual settings"""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""" visual settings """""""""""""""""""""""""""
 set t_Co=256 " set  256bit color mode
 "" makes visual mode highlighting blue
 highlight Visual cterm=bold ctermbg=Blue ctermfg=NONE
@@ -320,10 +355,13 @@ hi clear CursorLine
 highlight CursorLine ctermbg=Yellow guibg=#2b2b2b
 highlight CursorColumn ctermbg=Yellow guibg=#2b2b2b
 
-"" makes github colorschemes transparent - needs to be after Plugin stuff
+"" make github colorschemes transparent - needs to be after Plugin stuff
 hi Normal ctermbg=NONE
 hi! NonText ctermbg=NONE guibg=NONE
 hi! Normal ctermbg=NONE guibg=NONE
+
+"" lightline: remove yellow -- INSERT -- etc. message at bottom
+set noshowmode
 
 "" all these are about indent:
 set autoindent " you should turn it off when you are pasting
@@ -334,7 +372,7 @@ set tabstop=2 "settings for your notes and stuff, don't use to code with it
 set softtabstop=2 "related to tabstop
 set shiftwidth=2 "if you want lines to move in like with tabs `3>>` will move 3 lines in
 
-""""""""""""""""""""""""""""""""private settings"""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""" it's personal """""""""""""""""""""""""""
 "" read personal/private vim configuration (keep last to override)
 "set rtp^=~/.vimpersonal
 "set rtp^=~/.vimprivate
