@@ -3,7 +3,6 @@
 #      (use exec scripts instead, which work from vim and subprocs)
 
 unalias -a
-alias temp='cd $(mktemp -d)'
 alias more='less -R'
 alias clear='printf "\e[H\e[2J"'
 alias c="printf  $'\033[2J\033[;H'" # clear
@@ -18,10 +17,14 @@ alias df='df -h'
 alias syserrors="sudo journalctl -p 3 -xb"
 alias sysderrors="sudo systemctl --failed"
 alias chmox="chmod u+x"
+alias tree='broot'
+alias cp='cp -v'
 
 #_have pcregrep && alias grep='pcregrep' || alias grep='grep -i --colour=auto'
-_have lf && alias lf='lf-image'
+_have youtube-dl && alias yt-dl='youtube-dl'
+_have duf && alias df='duf'
 _have bat && alias bat='bat --theme gruvbox-dark'
+_have bat && alias cat='bat --theme gruvbox-dark'
 _have curl && alias curl='curl -L'
 _have dust && alias du='dust'
 _have vim && alias vi='vim'
@@ -38,6 +41,7 @@ _have browser-sync && alias browsersync='browser-sync start --server --files "*.
 _have reddio && alias ra='reddio | boxes -d dog | less'
 _have spotify && alias spotify="env LD_PRELOAD=/usr/local/lib/spotify-adblock.so spotify %U &"
 _have speedtest-cli && alias speedtest='speedtest-cli --secure'
+alias app="env APPIMAGELAUNCHER_DISABLE=1 $HOME/Applications/app"
 
 alias s=searx
 alias ?=duck
