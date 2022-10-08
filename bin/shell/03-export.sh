@@ -35,6 +35,17 @@ export QT_IM_MODULE=IBUS
 export ANSIBLE_INVENTORY="$HOME/.config/ansible/ansible_hosts"
 export DOCKER_HOST=unix:///run/user/$(id -u)/docker.sock
 
+#export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
+_have fd && export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
+_have bat && export FZF_CTRL_T_OPTS="--preview 'bat -n --color=always {}'"
+# --strip-cwd-prefix error
+#export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git --strip-cwd-prefix'
+#export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
+#export FZF_ALT_C_COMMAND='fd --type d --hidden --follow --exclude .git'
+#export FZF_CTRL_T_COMMAND='fd --type f --type d --hidden --follow --exclude .git'
+#_have tree && export FZF_ALT_C_OPTS="--preview 'tree -C {}'"
+
 _have deno && export DENO_INSTALL_ROOT="$HOME/.deno/bin"
 _have sdk && export SDKMAN_DIR="$HOME/.sdkman"
-_have fzf && export FZF_DEFAULT_OPTS="--height 30% --layout=reverse --border --info=inline"
+# ctrl-/ to toggle preview:
+_have fzf && export FZF_DEFAULT_OPTS="--height 30% --layout=reverse --border --info=inline --margin 1% --preview 'bat --plain --color=always {}' --bind ctrl-/:toggle-preview"
