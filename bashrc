@@ -9,7 +9,7 @@
 ########################################################################
 
 ## source bashrc config files
-for shell in $DOTFILES/bin/shell/*.sh; do
+for shell in $HOME/Repos/github.com/SimonWoodtli/dotfiles/bin/shell/*.sh; do
   source $shell
 done
 ##this must be at the end of bashrc for sdkman to work

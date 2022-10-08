@@ -1,57 +1,39 @@
-#!/usr/bin/env perl
+#!/bin/bash
+## adjust to your browser of choice: 
+#export BROWSER='/usr/bin/brave-browser'
+declare dependencies=( "fzf" "lynx" "git" "gh" "pandoc" )
+declare missingDependencies=""
 
-# Opens what you would expect. If there is no argument passed to it
-# checks if this is a GitHub repo and if so opens it with the gh tool in
-# your browser. Otherwise, it checks if the argument is a file in the
-# current directory and opens it with the default application
-# (xdg-open). Finally, it assumes it is a URL, ensures begins with
-# https:// and opens it in local web browser.
-#
-use v5.14;
-$_ = shift;
-$| = 1;
-
-# markdown file
-if (/\.md$/) {
-  say "markdown file detected";
-  if (not `which pandoc`) {
-    say "pandoc not found";
-    exit 1;
-  }
-  if (not `which lynx`) {
-    say "lynx not found";
-    exit 1;
-  }
-  `pandoc -s -o /tmp/index.html $_ 2>/dev/null`;
-  system 'lynx', '/tmp/index.html';
-  exit
+check_dependencies() {
+  for dependency in ${dependencies[@]} ; do
+    [[ $(type "$dependency" 2>/dev/null) ]] || missingDependencies+=" $dependency"
+  done
+  if [ "${#missingDependencies}" -gt 0 ] ; then
+    echo "Missing dependencies:$missingDependencies."
+    exit 1
+  fi
 }
+check_dependencies
 
-# file
-if (-r $_) {
-  `which xdg-open` && exec 'xdg-open', $_;
-  `which /usr/bin/open` && exec '/usr/bin/open', $_;
-  `which explorer.exe` && exec 'explorer.exe', $_;
-  say "unable to open file: $_";
-  exit 1;
-}
-
-# git repo
-if ($_) {
-  my $gh = (grep {/github/ && s,git@,, && s,:,/, && s/\.git$//} qx{git remote get-url --all origin})[0];
-  if ($gh) {
-    system 'gh', 'repo', 'view','--web';
-    exit;
-  }
-}
-
-# bare url
-m,^http, or  s,^,https://,;
-`which lynx` && exec 'lynx', $_;
-`which /usr/bin/open` && exec '/usr/bin/open', $_;
-`which explorer.exe` && exec 'explorer.exe', $_;
-`which google-chrome` && exec 'google-chrome', $_;
-my $chrome = '/System/Applications/Google\ Chrome.app';
-`which $chrome` && exec "$chrome", "$_";
-
-say "unable to determine how to open $_";
+## no arguments given:
+if [[ -z "$1" ]]; then
+  ## if github repo open url in browser
+  if [[ $(gh repo view 2>/dev/null) ]]; then
+    gh repo view #show readme in terminal
+    gh browse 2>/dev/null #open link in browser
+    gh browse -n | tr -d "\n" | xclip -sel clipboard #copy url
+  else
+    ## if no git repo use fzf
+    xdg-open "$(fd --type f | fzf)"
+  fi
+fi
+## if url open browser
+if [[ "$1" =~ ^http|^https:// ]]; then
+  lynx "$1" && $BROWSER "$1" 2>/dev/null
+fi
+## if markdown file convert and open lynx
+if [[ "$1" =~ \.md$ ]]; then
+  pandoc -s -o /tmp/index.html "$1" 2>/dev/null
+  lynx /tmp/index.html
+  echo "markdown file detected"
+fi
