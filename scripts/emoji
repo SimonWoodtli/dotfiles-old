@@ -1,11 +1,23 @@
-#!/bin/bash
+#!/usr/bin/bash
+## dependency: curl, fzf
+declare url="https://git.io/JXXO7"
+##alternative fetch this data:
+#strip_quotes() {                                                                
+#  while IFS= read -r line; do                                                   
+#    line="${line#\"}"                                                           
+#    line="${line%\"}"                                                           
+#    echo "$line"                                                                
+#  done                                                                          
+#}
+#curl -sSL https://raw.githubusercontent.com/github/gemoji/master/db/emoji.json | jq '.[] | .emoji + " " + ((.aliases + .tags) | join(" ")) ' | strip_quotes
 
-get_head() {
-  read -r line; printf "%s" "${line%%[[:space:]]*}"
-}
-
-emojidb \
-  | rofi -dmenu \
-  | get_head \
-  | xclip -i -f -selection primary \
-  | xclip -i -selection clipboard
+##if fetching fails use alternative:
+if [ ! -d $HOME/.local/share/emojidb ]; then
+  mkdir $HOME/.local/share/emojidb
+  curl -sSL "$url" > $HOME/.local/share/emojidb/emojilist
+fi
+##TODO make `emoji` command available within vim like other fzf commands
+##:Rg etc. => :emoji
+declare emoji=$(cat $HOME/.local/share/emojidb/emojilist | fzf | cut -c 1-1)
+echo $emoji
+echo $emoji | tr -d '\n' | xclip -sel clipboard
