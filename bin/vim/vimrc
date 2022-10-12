@@ -125,15 +125,6 @@ inoremap <down> <NOP>
 inoremap <left> <NOP>
 inoremap <right> <NOP>
 
-"" git
-noremap <Leader>ga :Gwrite<CR>
-noremap <Leader>gc :Gcommit<CR>
-noremap <Leader>gsh :Gpush<CR>
-noremap <Leader>gll :Gpull<CR>
-noremap <Leader>gs !!git status<CR>
-noremap <Leader>gb :Gblame<CR>
-noremap <Leader>gd :Gvdiff<CR>
-noremap <Leader>gr :Gremove<CR>
 
 """"""""""""""""""""""""""" syntax mandatory """""""""""""""""""""""""""
 "" all settings require syntax on
@@ -174,6 +165,7 @@ if filereadable(expand("~/.vim/autoload/plug.vim"))
   "" colorschemes
   Plug 'morhetz/gruvbox' "color scheme
   Plug 'HerringtonDarkholme/yats.vim' " correct syntax hightlight for gruvbox
+  Plug 'justinmk/vim-sneak' "move cursor quickly, need to test if I like
 
   "Plug 'elzr/vim-json' "better syntax for json
   "Plug 'cespare/vim-toml'
@@ -276,14 +268,13 @@ au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe
 "" don't change position, only works if set before leader key
 "" problem: now uses the yank buffer which gets rewritten all the time
 "" how can I just copy a visually selected text to xclip clipboard? :(
-map <leader>p :call system('xclip -sel clipboard', @0)<CR>
-
+map <Leader>p :call system('xclip -sel clipboard', @0)<CR>
 let mapleader ="\<Space>"
 "" needed for spacebar leader, to avoid character move with spacebar
 nnoremap <SPACE> <Nop>
 "" problem (Fedora): select 'v' + yank 'leader yy', copies whole line
-vmap <leader>yy :!xclip -f -sel clip<CR>
-map <leader>pp mz: -1r !xclip -o -sel clip<CR>`z
+vmap <Leader>yy :!xclip -f -sel clip<CR>
+map <Leader>pp mz: -1r !xclip -o -sel clip<CR>`z
 
 map <F1> :set number! relativenumber!<CR>
 nmap <F2> :call <SID>SynStack()<CR>
@@ -298,36 +289,52 @@ nmap <F9> :TagbarToggle<CR>
 let g:tagbar_autofocus = 1
 
 "" zeal documentation plugin
-nmap <leader>z <Plug>Zeavim
-vmap <leader>z <Plug>ZVVisSelection
+nmap <Leader>z <Plug>Zeavim
+vmap <Leader>z <Plug>ZVVisSelection
 nmap gz <Plug>ZVOperator
-nmap <leader><leader>z <Plug>ZVKeyDocset
+nmap <Leader><Leader>z <Plug>ZVKeyDocset
 
-"" fzf mappings
-" switch buffers: loads super slow (probably cause of default fzf flags
-" and stuff 
-" FIXME
-"nmap <silent> <leader>b :Buffers<cr> 
-"" alternative until :Buffers is fixed
+"" vim vanilla commands:
+""switch buffers with :buffer tab tab (Tried to keybind did not work)
 ""switch buffers with second command :b[Num], :b1 for buffer 1
-nmap <silent> <leader>b :ls<cr>
-
-"" search vim command history:
-nmap <silent> <leader>h :History:<cr>
-"" search vim help
-nmap <silent> <leader>h :Helptags<cr>
-"" search filenames:
-nmap <silent> <leader>f :FZF<cr>
-"" search content files with ripgrep:
-nmap <silent> <leader>/ :Rg<cr>
-"" search all buffers:
-nmap <silent> <leader>b/ :Lines<cr>
-"" search current buffer:
-nmap <silent> <leader>b. :BLines<cr>
+"nmap <silent> <Leader>b :ls<cr>
 "" Switch buffer to last edited file
 "" If I need to switch to more than just the last edited file:
 "" Install Plugin: /ton/vim-bufsurf
-nmap <silent> <leader>bn :e #<cr>
+nmap <silent> <Leader>n :e #<cr>
+
+
+"" fzf commands:
+"" switch buffers
+"" If many keybindings use <leader><leader>b.. :Buffers loads slow
+"" if <leader>b :Buffers it's also slow
+"" Solution: only use double leader for :Buffers
+nmap <silent> <leader><leader>b :Buffers<cr>
+"" search all buffers:
+nmap <silent> <Leader>b/ :Lines<cr>
+"" search current buffer:
+nmap <silent> <Leader>b. :BLines<cr>
+"" search vim command history:
+nmap <silent> <Leader>h :History:<cr>
+"" search vim help
+nmap <silent> <Leader>t :Helptags<cr>
+"" search filenames:
+nmap <silent> <Leader>O :FZF<cr>
+"" search content files with ripgrep:
+nmap <silent> <Leader>o :Rg<cr>
+
+"" git commands: vim-fugitive plugin
+noremap <Leader>ga :Gwrite<CR>
+noremap <Leader>gc :Gcommit<CR>
+noremap <Leader>gsh :Gpush<CR>
+noremap <Leader>gll :Gpull<CR>
+noremap <Leader>gs !!git status<CR>
+noremap <Leader>gb :Gblame<CR>
+noremap <Leader>gd :Gvdiff<CR>
+noremap <Leader>gr :Gremove<CR>
+"" fzf search git graph and checkout commit:
+"" Loads slow with only one leader
+nmap <Leader><Leader>g :Commits<cr>
 
 "" autocomplete
 ""double space to enter auto

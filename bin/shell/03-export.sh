@@ -35,17 +35,15 @@ export QT_IM_MODULE=IBUS
 export ANSIBLE_INVENTORY="$HOME/.config/ansible/ansible_hosts"
 export DOCKER_HOST=unix:///run/user/$(id -u)/docker.sock
 
-#export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
-_have fd && export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
-_have bat && export FZF_CTRL_T_OPTS="--preview 'bat -n --color=always {}'"
-# --strip-cwd-prefix error
-#export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git --strip-cwd-prefix'
-#export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
-#export FZF_ALT_C_COMMAND='fd --type d --hidden --follow --exclude .git'
-#export FZF_CTRL_T_COMMAND='fd --type f --type d --hidden --follow --exclude .git'
-#_have tree && export FZF_ALT_C_OPTS="--preview 'tree -C {}'"
-
+_have bat && export BAT_PAGER="less -R"
 _have deno && export DENO_INSTALL_ROOT="$HOME/.deno/bin"
 _have sdk && export SDKMAN_DIR="$HOME/.sdkman"
-# ctrl-/ to toggle preview:
-_have fzf && export FZF_DEFAULT_OPTS="--height 30% --layout=reverse --border --info=inline --margin 1% --preview 'bat --plain --color=always {}' --bind ctrl-/:toggle-preview"
+################################## fzf #################################
+#keybindingds: f2,f3,f4,.....
+##TODO add f5 key binding to open with xdg-open
+_have fzf && export FZF_DEFAULT_OPTS="--no-mouse --height 80% --layout=reverse --multi --info=inline --preview='$HOME/.vimplugins/fzf.vim/bin/preview.sh {}' --preview-window='right:60%:wrap' --bind='f2:toggle-preview,f3:execute(bat --style=numbers {} || less -f {}),f4:execute($EDITOR {}),alt-w:toggle-preview-wrap,ctrl-d:half-page-down,ctrl-u:half-page-up,ctrl-y:execute-silent(echo {+} | pbcopy),ctrl-x:execute(rm -i {+})+abort,ctrl-l:clear-query'"
+_have fd && _have fzf && export FZF_DEFAULT_COMMAND='fd --type f --type l --hidden --follow --exclude .git'
+## fzf comes with some keybindings, I don't wanna introduce bad muscle memory.
+## CTRL commands are reserved for signals and that's that. I only use CTRL-R for
+## history search since that is aready a default on many terminals. And
+## some ctrl commands within a fzf window (not sure if I like that)
