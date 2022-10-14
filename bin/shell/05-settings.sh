@@ -1,17 +1,6 @@
 
 ############################### SETTINGS ###############################
 
-
-## keychain: ssh keys with passphrase only enter once at startup
-## 20221013153534 is my current ssh key name
-if [[ $(command -v keychain) ]] && [[ -e $HOME/.ssh/20221013153534 ]]; then
-  ## --noask if you use cronjobs on your servers
-  eval `keychain --eval --quiet 20221013153534`
-else
-  echo "Either Keychain is not installed or you need to create|update your
-sshkey as well as add the new keyname to bin/shell/05-settings.sh"
-fi
-
 ## globstar: (ls **filename includes subdirectories):
 #set -o noclobber            # paranoid? use >| for everything
 shopt -s expand_aliases
