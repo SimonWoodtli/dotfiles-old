@@ -32,7 +32,7 @@ sleep 2
 sudo pacman -S wqy-zenhei wqy-bitmapfont || exit 10
 sleep 2
 ## office
-sudo pacman -S --needed mupdf p7zip unrar -y || exit 11
+sudo pacman -S --needed fbreader mupdf p7zip unrar -y || exit 11
 sleep 2
 ## internet tools: youtube-dl is slow use yt-dlp
 sudo pacman -S --needed screenkey anki yt-dlp qbittorrent -y || exit 12

@@ -1,5 +1,6 @@
 #!/bin/sh
-## git-delta:
+## git-delta
 nix-env -iA nixpkgs.delta
-## tree replacement
 nix-env -iA nixpkgs.broot
+nix-env -iA nixpkgs.glow
+nix-env -iA nixpkgs.vscode

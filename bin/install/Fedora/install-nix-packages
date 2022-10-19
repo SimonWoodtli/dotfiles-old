@@ -2,4 +2,5 @@
 ## Install broot tree replacement (until I find something less bloated)
 #
 nix-env -iA nixpkgs.broot
-
+nix-env -iA nixpkgs.glow
+nix-env -iA nixpkgs.vscode
