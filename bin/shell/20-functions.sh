@@ -1,6 +1,17 @@
 
 ############################### FUNCTIONS ##############################
 
+############################# zet commands #############################
+
+ze() {
+  zet edit "$1"
+}
+zc() {
+  zet create "$1"
+}
+zu() {
+  zet use "$1"
+}
 ########################## fzf ctrl-r history ##########################
 __fzfcmd() {                                                                    
   [[ -n "$TMUX_PANE" ]] && { [[ "${FZF_TMUX:-0}" != 0 ]] || [[ -n "$FZF_TMUX_OPTS" ]]; } &&
@@ -166,6 +177,10 @@ miniprompt() {
   PS1="\[\e[38;5;168m\]$ \[\e[0m\]"
 }
 ################################## git #################################
+#
+gcr() {
+  echo 'gh repo create nameOfProject --description "🌍 a brief description example" --public --source=. --remote=upstream --push' | tr -d "\n" | xclip -sel clip
+}
 
 gvi() {
   ## $1 is an URL to an issue like https://github.com/cli/cli/issues/1055

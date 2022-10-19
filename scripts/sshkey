@@ -1,18 +1,22 @@
-#!/bin/bash
 #!/bin/sh
 set -e
 
-typ=ed25519
-confd="$HOME/.ssh"
-cmds="gen pub list ls"
+declare confd="$HOME/.ssh"
+declare cmds="gen genYubi pub list ls"
 
 gen() {
-  name=${1:-$(date -u +%Y%m%d%H%M%S)}
-  ssh-keygen -t "${typ}" -f "${confd}/$name"
+  local typ=ed25519
+  local name=${1:-$(date -u +%Y%m%d%H%M%S)}
+  ssh-keygen -t "${typ}" -C "xnasero@posteo.net" -f "${confd}/$name"
+}
+genYubi() {
+  local typ=ed25519-sk
+  local name=${1:-$(date -u +%Y%m%d%H%M%S)}
+  ssh-keygen -t "${typ}" -C "xnasero@posteo.net" -f "${confd}/$name"
 }
 
 pub() {
-  name="${1:-id_ed25519}"
+  local name="${1:-id_ed25519}"
   test -e "${confd}/${name}.pub" || return 1
   cat "${confd}/${name}.pub"
 }
@@ -46,6 +50,7 @@ test $# -gt 0 && shift
 case "$cmd" in
 pub) pub "$@" ;;
 gen) gen "$@" ;;
+genYubi) genYubi "$@" ;;
 ls | list) list "$@" ;;
 *) pub "$@" ;;
 esac

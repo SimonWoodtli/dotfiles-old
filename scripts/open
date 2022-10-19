@@ -24,6 +24,7 @@ _open() {
   local FZF_DEFAULT_COMMAND='fd --max-depth 2 --type f --type l --hidden --follow --exclude .git'
   if [[ -z "$1" ]]; then
     ## if github repo open url in browser
+    echo "no parameters"
     if [[ $(gh repo view 2>/dev/null) ]]; then
       gh repo view #show readme in terminal
       gh browse 2>/dev/null #open link in browser
@@ -47,7 +48,7 @@ _open() {
   fi
   ##  any other file opens with xdg-open
   if [[ ! "$1" =~ ^http|^https://|\.md$ ]]; then
-    xdg-open "$1"
+    xdg-open "$1" &
   fi
 }
-_open
+_open "$1"

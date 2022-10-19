@@ -25,6 +25,7 @@ _have youtube-dl && alias yt-dl='youtube-dl'
 _have duf && alias df='duf'
 _have bat && alias bat='bat --theme gruvbox-dark'
 _have bat && alias cat='bat --theme gruvbox-dark'
+_have rg && alias rg='rg --ignore-case --column --line-number --no-heading --color=always'
 _have curl && alias curl='curl -L'
 _have dust && alias du='dust'
 _have vim && alias vi='vim'
@@ -63,6 +64,7 @@ alias gbigfiles='git rev-list --all | xargs -rL1 git ls-tree -r --long | sort -u
 alias gd='git diff'
 alias gsu='git stash && git pull && git stash pop'
 alias gdl='git log --diff-filter=D --summary | grep delete'
+alias fgck='git branch | fzf | xargs git checkout'
 
 ############################## ALIAS LS #######################################
 alias ls='ls -h --color=auto'

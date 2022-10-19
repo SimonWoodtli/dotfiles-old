@@ -1,4 +1,6 @@
-#!/usr/bin/env bash
+
+################################ forgit ################################
+
 #https://github.com/wfxr/forgit
 # MIT (c) Wenxuan Zhang
 forgit::warn() { printf "%b[Warn]%b %s\n" '\e[0;33m' '\e[0m' "$@" >&2; }

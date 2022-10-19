@@ -5,7 +5,7 @@ sudo dnf install vim tmux gh alacritty lynx gnome-tweaks imwheel htop btop jq \
   vlc xclip ImageMagick tree mupdf ShellCheck neofetch asciinema \
   nmap netcat sxiv pip python-devel golang pcre-tools coreutils pandoc geary \
   hyperfine dmenu bat fzf cronie cronie-anacron weechat corectrl speedtest-cli \
-  zeal pdfgrep fd-find ripgrep duf git-delta
+  zeal pdfgrep fd-find ripgrep duf git-delta fbreader
 
 echo 'Checkout Zet "Customize Gnome Desktop"'
 
