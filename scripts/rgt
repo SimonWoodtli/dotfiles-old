@@ -1,8 +1,15 @@
 #!/bin/bash
+#TODO: implement the multi tag search with min 1 tag output.
+#the idea is to have either multi tag search that explicitly needs all
+#arguments or multi tag search that is allowing only 1 tag to be found
+#1. use some --flags to achieve this
+#2. the command structure is `rg '#foo|#foo2'`
 declare -a arg=("$@") 
 declare arg_num=${#arg[@]}
 declare array_num=$(( "${#arg[@]}"-1 ))
-declare rg_opt='--column --line-number --no-heading --color=always'
+#declare rg_opt='--column --line-number --no-heading --color=always'
+declare rg_opt='--no-heading --color=always'
+
 #declare rg_opt=''
 declare cmd=()
 ## need \# in front of element => hence loop
@@ -35,7 +42,12 @@ done
 # #echo $i
 # done
 
-## I think cause of the | in the $cmd I cannot directly execute the
+##TODO new idea: this version does not work because the command I created
+## is tored in a variable. Hence I would need to use `eval $cmd` and not
+## `exec $cmd`
+## see: https://github.com/SimonWoodtli/zet/tree/main/20221013180831
+
+## old idea: I think cause of the | in the $cmd I cannot directly execute the
 ## command from within a child process
 ## solution create temp file:
 # temp=`mktemp /tmp/example.XXXXXXXXXX` || exit 1
