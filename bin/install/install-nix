@@ -1,0 +1,8 @@
+#!/bin/sh
+## if on systemd and SELinux is disabled choose multi user install,
+## otherwise only single user install is possible
+
+## Multi User: Recommended
+#$ sh <(curl -L https://nixos.org/nix/install) --daemon
+## Single User: Not recommended
+#$ sh <(curl -L https://nixos.org/nix/install) --no-daemon
