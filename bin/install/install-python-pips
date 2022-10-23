@@ -2,7 +2,9 @@
 read -p "Which package do you want to install?sdk install java 8.0.275.open-adpt
 
 1) html5validator: run install-java script first!
-2) jupyter notebook" input
+2) jupyter notebook
+3) open AI whisper
+" input
 
 case $input in
   1) pip install --user --upgrade html5validator ;;
@@ -11,5 +13,6 @@ case $input in
   2) ## start notebook-server: `jupyter notebook`
     pip3 install --user --upgrade jupyterlab
     pip3 install --user --upgrade notebook ;;
+  3) pip3 install git+https://github.com/openai/whisper.git ;;
   *) ;;
 esac
