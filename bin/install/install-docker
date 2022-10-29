@@ -6,3 +6,4 @@ dockerd-rootless-setuptool.sh install
 
 ## 2nd Method:
 ## Use old install-docker script in unwanted/
+## Uninstall rootless: https://github.com/docker/docker-install/issues/166
