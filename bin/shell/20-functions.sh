@@ -77,6 +77,11 @@ fcat() {
 #    [ "$key" = ctrl-o ] && open "$file" || ${EDITOR:-vim} "$file"
 #  fi
 #}
+fvi() {
+  ## if you want to open all the files related to a project in different
+  ## vim buffers, fuzzy search them and tab to mark files
+  vim $(fzf)
+}
 
 fo() {
   ## fuzzy open only from current dir in vim
