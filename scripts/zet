@@ -96,7 +96,9 @@ x.category() {
 }
 
 x.screenshot() {
-  local dir="${CONF[screenshot.directory]}"
+  ## original variable for me doesn't work
+  #local dir="${CONF[screenshot.directory]}"
+  local dir="$PICTURES/Screenshots"
   printf "Take and save a screenshot to $dir. Then press enter."
   read whatever
   _add_figure "$(_newest "$dir")"
