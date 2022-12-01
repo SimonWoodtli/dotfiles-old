@@ -11,6 +11,8 @@ paru -S dxvk-bin
 paru -S spotify-adblock-git
 ## virtualbox extension pack
 paru -S virtualbox-ext-oracle
+paru -S task-spooler
+paru -S netdiscover
 
 ## Additional stuff:
 #paru -S visual-studio-code-bin

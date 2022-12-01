@@ -38,7 +38,7 @@ _open() {
   fi
   ## if url open browsers: lynx and default GUI
   if [[ "$1" =~ ^http|^https:// ]]; then
-    lynx "$1" && $BROWSER "$1" 2>/dev/null
+    $BROWSER "$1" 2>/dev/null && lynx "$1" #opens both simultaneously  
   fi
   ## if markdown file convert and open lynx
   if [[ "$1" =~ \.md$ ]]; then

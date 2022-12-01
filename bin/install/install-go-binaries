@@ -1,0 +1,5 @@
+#!/bin/sh
+## install yq
+go install github.com/mikefarah/yq/v4@latest
+## get bash completion for yq
+yq shell-completion bash | sudo tee -a /etc/bash_completion.d/yq 

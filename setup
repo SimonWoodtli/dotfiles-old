@@ -8,6 +8,8 @@ if [[ ! ($major == 4 || $major == 5) ]]; then
   exit 1
 fi
 
+ln -sf $PWD/Xresources $HOME/.Xresources
+ls -l $HOME/.Xresources
 ln -sf $PWD/bashrc $HOME/.bashrc
 ls -l $HOME/.bashrc
 ln -sf $PWD/dircolors/dircolors $HOME/.dircolors

@@ -1,4 +1,10 @@
 ! some settings: https://github.com/prakash2033/dotfiles_v2/blob/master/normal_user/xresources/.Xresources
+! reload after changes: `xrdb -load ~/.Xresources`
+! SXIV settings:
+Sxiv.background: #282828
+Sxiv.foreground: #d79921
+Sxiv.font: UbuntuMono Nerd Font Mono
+! xterm settings:
 ! Turn on Fullscren
 XTerm*fullscreen: always
 ! Turn off Scrollbar

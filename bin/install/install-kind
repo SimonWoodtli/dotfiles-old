@@ -1,0 +1,3 @@
+#!/bin/sh
+## dependencies: go, docker
+go install sigs.k8s.io/kind@latest
