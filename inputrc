@@ -8,6 +8,7 @@
 #    \|__|\|__| \|__|\|__|     \|_______|    \|__|  \|__|\|__|\|_______|
 #
 ##########################################################################
+## GNU READLINE config file
 #
 ## Very useful for the tab completion
 set completion-ignore-case On

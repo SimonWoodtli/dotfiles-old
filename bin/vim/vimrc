@@ -247,7 +247,6 @@ au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe
 "" todo: add this function to an F key
 "autocmd BufWritePre * %s/\s\+$//e
 
-
 " might be needed for C-x/C-o autocomplete
 "set omnifunc=javascriptcomplete#CompleteJS
 "set omnifunc=htmlcomplete#CompleteTags
@@ -257,16 +256,20 @@ au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe
 "########################### leader, f-keys ############################
 
 " solution (Fedora): select 'v' + normal yank 'y', paste 'leader p'
-" don't change position, only works if set before leader key
-" problem: now uses the yank buffer which gets rewritten all the time
-" how can I just copy a visually selected text to xclip clipboard? :(
-map <Leader>p :call system('xclip -sel clipboard', @0)<CR>
+" current copy only allows to copy whole line or multiple lines but not
+" only the visually selected text
+"map <Leader>p :call system('xclip -sel clipboard', @0)<CR>
 let mapleader ="\<Space>"
-"" needed for spacebar leader, to avoid character move with spacebar
+" needed for spacebar leader, to avoid character move with spacebar
 nnoremap <SPACE> <Nop>
-"" problem (Fedora): select 'v' + yank 'leader yy', copies whole line
+" yank 1line: `v leader yy`
+" yank 10line: `v 10j leader yy`
+" problem: select 'v' + yank 'leader yy', copies whole line
+" requires 'xclip' but still better than installing bloated 'gvim' to get +clipboard
 vmap <Leader>yy :!xclip -f -sel clip<CR>
-map <Leader>pp mz: -1r !xclip -o -sel clip<CR>`z
+"map <Leader>pp mz: -1r !xclip -o -sel clip<CR>`z
+noremap <Leader>p :r !xclip -o -sel clip<CR>
+
 
 map <F1> :set number! relativenumber!<CR>
 nmap <F2> :call <SID>SynStack()<CR>
@@ -274,6 +277,9 @@ nmap <F2> :call <SID>SynStack()<CR>
 set pastetoggle=<F3> 
 map <F4> :set list!<CR>
 map <F5> :set cursorline! cursorcolumn!<CR>
+" hover over tag press F6 to see all files with tag
+" https://vim.fandom.com/wiki/Find_in_files_within_Vim
+map <F6> :execute "vimgrep /" . expand("<cword>") . "/j **" <Bar> cw<CR>
 map <F7> :set spell!<CR>
 map <F8> :NERDTreeToggle<CR>
 map <F12> :set fdm=indent<CR>

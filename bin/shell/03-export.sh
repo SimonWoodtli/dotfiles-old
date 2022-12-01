@@ -14,6 +14,7 @@ done
 
 export USER="${USER:-$(whoami)}"
 export BROWSER=/usr/bin/brave-browser
+export WWW_HOME=https://lite.duckduckgo.com/lite # ~ for w3m
 export VIRTUALMACHINES="$HOME/VirtualMachines"
 export TERM=xterm-256color
 export HELP_BROWSER=lynx

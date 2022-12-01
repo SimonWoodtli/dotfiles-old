@@ -1,7 +1,11 @@
-# Simon's dotfiles
+![dotfiles](assets/dotfiles.png)
+
+# Hey there! :octocat:
 
 [![WIP](https://img.shields.io/badge/status-wip-red)](https://img.shields.io/badge/status-wip-red)
 [![wakatime](https://wakatime.com/badge/user/173067c8-7ded-4cfb-8605-b3032659c00c/project/06d88565-a3f0-4342-a7ef-5983a58842f2.svg)](https://wakatime.com/badge/user/173067c8-7ded-4cfb-8605-b3032659c00c/project/06d88565-a3f0-4342-a7ef-5983a58842f2)
+
+These are my dotfiles that I use daily. I hope you find something useful here. :wink:
 
 ## Installation
 

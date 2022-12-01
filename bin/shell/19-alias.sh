@@ -35,7 +35,7 @@ _have neomutt && alias mutt='neomutt'
 _have libreoffice && alias doc='libreoffice'
 _have mupdf && alias mupdf='mupdf -I'
 _have vlc && alias vlc='/usr/bin/vlc'
-_have neo && alias neo='neo -D -c gold'
+_have neo && alias neo='neo -a -D -c green'
 _have bashtop && alias top='bashtop'
 _have browser-sync && alias browsersync='browser-sync start --server --files "*.html, \
   css/*.css"'
