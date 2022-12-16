@@ -2,6 +2,7 @@
 ############################### FUNCTIONS ##############################
 
 ############################# zet commands #############################
+cdz () { cd "$(zet get "$@")"; }
 zb() {
   cd "$GHREPOS/zet"
   #local file="$(git log | fzf | sed 's/^ *//')"
@@ -184,8 +185,6 @@ cpr() { rsync --progress -auv "$1" "$2"; }
 ##TODO make a case so you can select what kind of comment you want to
 ##remove
 rmc() { sed 's|\s*#.*||g; /^$/ d' "$1" > "$2"; } #rm hashtag comment and empty line
-################################## zet #################################
-cdz () { cd "$(zet get "$@")"; }
 ################################ prompt ################################
 miniprompt() {
   unset PROMPT_COMMAND
@@ -195,15 +194,6 @@ miniprompt() {
 #
 gcr() {
   echo 'gh repo create nameOfProject --description "🌍 a brief description example" --public --source=. --remote=upstream --push' | tr -d "\n" | xclip -sel clip
-}
-bmw() {
-  sed '/^#.*#$/d' "$HOME/Private/bookmarks/bookmarksWork" | grep -v '^#' | fzf --no-preview | cut -d' ' -f1 | tr -d '\n' | xclip -sel clipboard && open $(xclip -o -sel clip)
-}
-bmp() {
-  sed '/^#.*#$/d' "$HOME/Private/bookmarks/bookmarksPrivate" | grep -v '^#' | fzf --no-preview | cut -d' ' -f1 | tr -d '\n' | xclip -sel clipboard && open $(xclip -o -sel clip)
-}
-bmc() {
-  sed '/^#.*#$/d' "$HOME/Private/bookmarks/bookmarksCrypto" | grep -v '^#' | fzf --no-preview | cut -d' ' -f1 | tr -d '\n' | xclip -sel clipboard && open $(xclip -o -sel clip)
 }
 
 gvi() {
