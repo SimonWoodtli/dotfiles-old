@@ -15,13 +15,13 @@ declare zetdir="$ZETDIR" #if zpc = zet private create, switch to private dir
 #set -e                                                                          
 shopt -s extglob
 
-_isosec() { date -u +%Y%m%d%H%M%S; }
+_isoSec() { date -u +%Y%m%d%H%M%S; }
 
 
 __create() {
   ## create file
-  local dir="$zetdir/$(_isosec)" #absolute path
-  #dir="$(x.dir)/$(x.isosec)" #TODO initial confifile that stores public/private zet dir
+  local dir="$zetdir/$(_isoSec)" #absolute path
+  #dir="$(x.dir)/$(x.isoSec)" #TODO initial confifile that stores public/private zet dir
   local readme="$dir/README.md" #absolute path
   local title="$*" 
   ##TODO WHY not just use title, whats the point of line variable???J
@@ -30,34 +30,30 @@ __create() {
   ## edit file
   _createEditFile
   ## push file to remote git repo
-  _createAddGit
+  _createPushGit
 } 
 
 _createEditFile() { "$EDITOR" "$readme" ; }
-_createAddGit() {
-  local listCreatedReadme="$(git ls-files --others --exclude-standard)"
-  ## check if readme exists, if not abort git commands
-  [[ "$readme" =~ "$listCreatedReadme" ]] || return 1
-  ## check if readme is empty, if so abort git commands
+_createPushGit() {
+  ## check if readme.md is empty, if so abort git commands
   [[ -s "$readme" ]] || return 1
-  exit
   cd "$dir" &>/dev/null
-  local line=$(head -1 "$readme" | sed 's|#\+ *||')
-  test -n "$line"
+  ## check if title has changed after editing if so reassign it
+  local newTitle="$(head -1 "$readme" | sed 's|#\+ *||')"
+  [[ "$title" == "$newTitle" ]] || title="$newTitle"
+  ## check if title string is not empty or exit
+  test -n "$title"
   git pull -q
-  echo "${green}Committing:$reset ${bold}$line${reset}"
+  echo "${green}Committing:$reset ${bold}$title${reset}"
   git add -A "$dir" &>/dev/null
-  git commit -m "$line" &>/dev/null
+  git commit -m "$title" &>/dev/null
   git push &>/dev/null
 }
 
-
+######################## fzf dependent functions #######################
 
 ## fzf functions to edit files
-##TODO after edit push files to git
-##TODO check if `git status` shows changes if so auto commit them with
-#title as commit msg
-__edit() {
+__fzfSelect() {
   ## filter and merge lines
   local -a mergeTitleTag=()
   local -i i=0
@@ -72,48 +68,70 @@ __edit() {
     i+=1
   done
   ## fzf select title with tags at the end of title
-  _editSelectTitle
-}
-_editSelectTitle() {
-  local selectTitle="$(for element in "${mergeTitleTag[@]}"; do               \
+  ##TODO make this an array so multiple files can be selected
+  ##IMPORTANT!!creating this feature with array will cost a lot of overhead many
+  ## loops will be needed for the other edit and delete functions that
+  #want to utilize this??
+  local selectTitleLine="$(for element in "${mergeTitleTag[@]}"; do           \
     echo "$element"; done                                                     \
-    | fzf --no-preview      `#pipe each Title and possible Taline into fzf` \
+    | fzf --no-preview      `#pipe each Title and possible Tagline into fzf`  \
     | sed -r 's|[[:blank:]]{4}#[a-z].*$||g')" `#remove the tags from string`
-  #echo "$selectTitle"
+  ## case for arguments passed into it from first layer case, hardcoded
+  case  "$1" in
   ## edit file from fzf selection
-  _editEditFile
+    edit) _edit ;;
+    delete) _delete;;
+    *)
+  esac
 }
-_editEditFile() {
-  local dir="$(rg --no-heading -N "^""$selectTitle""$" "$zetdir" | sed 's|/README.md:.*||g')"
+
+_delete() {
+  local dir="$(rg --no-heading -N "^""$selectTitleLine""$" "$zetdir" | head -n1 | sed 's|/README.md:.*||g')"
+  rm -rf "$dir"
+  _deletePushGit
+}
+_deletePushGit() {
+  ## TODO create an array from all the selected files
+  #local -a deletedZet=( "$( git ls-files --deleted )" )
+  cd "$zetdir" &>/dev/null
+  local dirIsoSec="$(echo $dir | sed 's|.*/||')"
+  local title="Deleted $dirIsoSec"
+  ## check if dirIsoSec string is empty if so exit
+  test -n "$dirIsoSec"
+  git pull -q
+  echo "${green}Committing:$reset ${bold}$title${reset}"
+  git add -A "$dir" &>/dev/null
+  git commit -m "$title" &>/dev/null
+  git push &>/dev/null
+
+}
+_edit() {
+  local dir="$(rg --no-heading -N "^""$selectTitleLine""$" "$zetdir" | head -n1 | sed 's|/README.md:.*||g')"
   local readme="$dir/README.md" #absolute path
   #echo "$readme"
   "$EDITOR" "$readme"
-  _editAddGit
-  
-  #_editAddGit
+  exit
+  _editPushGit
 }
 
-_editAddGit() {
-  ## check if readme modified if not abort git commands
-  local listModifiedReadme="$(git ls-files --modified)"
-  #echo $listModifiedReadme
-  #echo $readme
-  [[ "$readme" =~ "$listModifiedReadme" ]] || return 1
+_editPushGit() {
   cd "$dir" &>/dev/null
-
-  local line=$(head -1 "$readme" | sed 's|#\+ *||')
-  echo $line
-  exit 2
-  test -n "$line"
+  ## TODO check if any changes where made, if not abort git
+  #??
+  ## assign title
+  local title="$(head -1 "$readme" | sed 's|#\+ *||')"
+  ## check if title string is empty if so exit
+  test -n "$title"
   git pull -q
-  echo "${green}Committing:$reset ${bold}$line${reset}"
+  echo "${green}Committing:$reset ${bold}$title${reset}"
   git add -A "$dir" &>/dev/null
-  git commit -m "$line" &>/dev/null
+  git commit -m "$title" &>/dev/null
   git push &>/dev/null
 }
-
+## first layer case: for arguments the user passes into zet, dynamic
 case "$1" in
   create) __create "${@:2}";; #pass all parameters except $0,$1
-  edit) __edit;;
+  edit) __fzfSelect edit;;
+  delete) __fzfSelect delete;;
   *)
 esac
