@@ -1,0 +1,8 @@
+#!/bin/sh
+#[[ ]] || 
+mkdir -p "$HOME/.config/wofi"
+ln -sf "$PWD/config" "$HOME/.config/wofi/config"
+ln -sf "$PWD/colors" "$HOME/.config/wofi/colors"
+ln -sf "$PWD/style.css" "$HOME/.config/wofi/style.css"
+
+
