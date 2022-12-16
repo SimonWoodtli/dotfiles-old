@@ -2,9 +2,11 @@
 ## Install broot tree replacement (until I find something less bloated)
 #
 nix-env -iA nixpkgs.broot
-nix-env -iA nixpkgs.glow
+#nix-env -iA nixpkgs.glow #markdown reader
 nix-env -iA nixpkgs.vscode
 nix-env -iA nixpkgs.netdiscover
+nix-env -iA nixpkgs.onlyoffice-bin #compatible with office 365 programs
+
 
 ## To get desktop files at usual location:
 ln -s /home/$USER/.nix-profile/share/applications/* /home/$USER/.local/share/applications/

@@ -1,0 +1,11 @@
+#!/bin/sh
+##wayland doesn't do xdotool
+## tried wtype, ydotool, but out of the box only dotool worked on Fedora
+## dependencies: golang
+cd /tmp
+git clone https://git.sr.ht/~geb/dotool
+cd /tmp/dotool
+# compile go binary:
+sudo ./install.sh
+## add current user to input group, this way you don't need root to use `dotool`
+sudo usermod -a -G input "$(whoami)"

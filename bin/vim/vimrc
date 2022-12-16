@@ -37,7 +37,8 @@ set hlsearch "all the /searchterms get highlighted on your display
 set incsearch "to loop through all the searched elements with `n/N`
 set history=100 "memory management (x history (: history))
 set hidden "stops complaining when switching from buffer with changes
-
+"default is 1s, make keys like j,k that have jj,kk mapped for escaping be written with less delay
+set timeoutlen=200 
 
 " set both german and english to spellcheck
 " to download german dictonary run within vim:
@@ -118,6 +119,9 @@ inoremap <up> <NOP>
 inoremap <down> <NOP>
 inoremap <left> <NOP>
 inoremap <right> <NOP>
+" insert new line without going into insert-mode
+nmap oo m`o<Esc>``
+nmap OO m`O<Esc>``
 "########################## syntax mandatory ###########################
 " all settings require syntax on
 syntax on

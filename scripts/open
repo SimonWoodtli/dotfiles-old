@@ -1,11 +1,11 @@
 #!/bin/bash
 ## main purpose of script: open files that require GUI from CLI,
-## additional features: read markdown in lynx, open URLs
+## additional features: read markdown in w3m, open URLs
 ## in browsers and open git repos README.md
 #
 ## adjust to your browser of choice: 
 #export BROWSER='/usr/bin/brave-browser'
-declare dependencies=( "fzf" "fd" "xclip" "lynx" "git" "gh" "pandoc" )
+declare dependencies=( "fzf" "fd" "xclip" "w3m" "git" "gh" "pandoc" )
 declare missingDependencies=""
 
 _check_dependencies() {
@@ -36,14 +36,15 @@ _open() {
       exit
     fi
   fi
-  ## if url open browsers: lynx and default GUI
+  ## if url open browsers: w3m and default GUI
   if [[ "$1" =~ ^http|^https:// ]]; then
-    $BROWSER "$1" 2>/dev/null && lynx "$1" #opens both simultaneously  
+    #$BROWSER "$1" 2>/dev/null && w3m "$1" #opens both TUI and GUI browser simultaneously  
+    w3m "$1"
   fi
-  ## if markdown file convert and open lynx
+  ## if markdown file convert and open w3m
   if [[ "$1" =~ \.md$ ]]; then
     pandoc -s -o /tmp/index.html "$1" 2>/dev/null
-    lynx /tmp/index.html
+    w3m /tmp/index.html
     echo "markdown file detected"
   fi
   ##  any other file opens with xdg-open

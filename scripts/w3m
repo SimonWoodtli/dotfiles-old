@@ -1,20 +1,7 @@
 #!/bin/bash
-
-# see ../lynx/README.md for configs
 declare w3mpath=/usr/bin/w3m
 
 [[ ! -x "$w3mpath" ]] && w3mpath=/usr/local/bin/w3m
-
-## set useragent in ~/.w3m/config
-#useragent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_0) AppleWebKit/537.1 (KHTML, like Gecko) Chrome/21.0.1180.79 Safari/537.1"
-
-#if [ -e "$HOME/.config/lynx/lynx.cfg" ];then
-  #export LYNX_CFG="$HOME/.config/lynx/lynx.cfg"
-#fi
-
-#if [ -e "$HOME/.config/lynx/lynx.lss" ];then
-  #export LYNX_LSS="$HOME/.config/lynx/lynx.lss"
-#fi
 
 if [ ! -x "$w3mpath" ]; then
   echo "Doesn't look like w3m is installed."
@@ -28,8 +15,10 @@ if [[ $(tmux list-panes | wc -l) -lt 2 ]]; then
   #tmux swap-pane -D; tmux select-pane -R #starts w3m on right pane
   tmux select-pane -L
 fi
-#exec "$w3mpath" -header User-Agent:"$useragent" "$@"
-exec "$w3mpath" "$@"
+exec "$w3mpath" "$@" &
+## after w3m gets closed also kill the created pane
+wait
+tmux kill-pane
+#declare pid=$!
 ## problem this won't let me exec key words with spaces when duck script `?` used
 #tmux send-keys -t"$session_uuid:" ""$w3mpath" "$@"" Enter
-#exec "$w3mpath" --useragent="$useragent" "$@"
