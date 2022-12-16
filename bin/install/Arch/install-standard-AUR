@@ -13,6 +13,7 @@ paru -S spotify-adblock-git
 paru -S virtualbox-ext-oracle
 paru -S task-spooler
 paru -S netdiscover
+paru -S onlyoffice-bin
 
 ## Additional stuff:
 #paru -S visual-studio-code-bin
