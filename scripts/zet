@@ -1,5 +1,8 @@
 #!/bin/sh
 ## my own `zet` command in the making
+#set -e                                                                          
+shopt -s extglob
+
 declare red=$'\033[31m'                                                         
 declare black=$'\033[30m'                                                       
 declare green=$'\033[32m'                                                       
@@ -10,17 +13,74 @@ declare cyan=$'\033[36m'
 declare white=$'\033[37m'                                                       
 declare reset=$'\033[0m'                                                        
 declare bold=$'\033[1m'  
-declare zetdir="$ZETDIR" #if zpc = zet private create, switch to private dir
 
-#set -e                                                                          
-shopt -s extglob
+##TODO only declare the ones you really need
+#declare EDITOR=vi
+#declare PRIVATE="$HOME/Private"
+#declare DOWNLOADS="$HOME/Downloads"
+#declare PICTURES="$HOME/Pictures"
+#declare GITUSER="$USER"
+#declare GHREPOS="$HOME/Repos/github.com/$GITUSER"
 
+##not sure if i need them
+#declare PAGER=more
+#declare HELP_BROWSER=
+#declare EXE="${0##*/}"
+#declare GITBRANCH=main
+#declare VIDEOS="$HOME/Videos"
+
+declare configFile="$HOME/.config/zet/config"
+source "$configFile"
+declare zetDir
+declare -A HELP
+## read config file if current is set to public set zetDir to path of public zet. 
+## Else set it to path of private zet.
+[[ "$current" == public ]] && zetDir="$zetPublicDir" || zetDir="$zetPrivateDir"
+##TODO test if configfile exits if not run the initialize command
+
+__configInit() {
+  _configData | sort > "$configFile"
+}
+__configGetCurrent() { echo "$current" ; }
+__configUseZet() { 
+  case "$1" in
+    public|Public) sed -i 's|current=.*|current=public|' "$configFile" ;;
+    private|Private) sed -i 's|current=.*|current=private|' "$configFile" ;;
+    *) echo "${yellow}Warning:$reset only values accepted: private, public"
+  esac
+}
+_configData() {
+  ## if you change settings here run `zet initialize` to write them into
+  ## config
+  #CONF[current]="public"
+  #CONF[zet.private]="$PRIVATE/zet"
+  #CONF[zet.public]="$GHREPOS/zet"
+  #CONF[download.directory]="$DOWNLOADS" #not sure if I need that
+  #CONF[screenshot.directory]="$PICTURES"
+  #CONF[editor]="$EDITOR"
+  cat <<EOF
+editor=vim
+current=public
+zetPublicDir=$HOME/Repos/github.com/SimonWoodtli/zet
+zetPrivateDir=$HOME/Private/zet
+downloadDir=$HOME/Downloads
+screenshotDir=$HOME/Pictures/Screenshots
+EOF
+  #: "${CONF[current]:=public}"
+  #echo "${CONF[current]}"
+  #echo "${CONF[zet.private]}"
+  #echo "$EXE"
+  exit
+}
+
+
+############################### utilities ##############################
 _isoSec() { date -u +%Y%m%d%H%M%S; }
 
-
+################################ create ################################
 __create() {
   ## create file
-  local dir="$zetdir/$(_isoSec)" #absolute path
+  local dir="$zetDir/$(_isoSec)" #absolute path
   #dir="$(x.dir)/$(x.isoSec)" #TODO initial confifile that stores public/private zet dir
   local readme="$dir/README.md" #absolute path
   local title="$*" 
@@ -32,7 +92,6 @@ __create() {
   ## push file to remote git repo
   _createPushGit
 } 
-
 _createEditFile() { "$EDITOR" "$readme" ; }
 _createPushGit() {
   ## check if readme.md is empty, if so abort git commands
@@ -57,7 +116,7 @@ __fzfSelect() {
   ## filter and merge lines
   local -a mergeTitleTag=()
   local -i i=0
-  for f in "$zetdir"/*; do 
+  for f in "$zetDir"/*; do 
     filterLastLine="$(tail -n 1 "$f"/README.md 2>/dev/null)"
     filterFirstLine="$(head -n1 "$f"/README.md 2>/dev/null)"
     #echo "$(tail -n 1 "$f"/README.md 2>/dev/null)"
@@ -86,14 +145,14 @@ __fzfSelect() {
 }
 
 _delete() {
-  local dir="$(rg --no-heading -N "^""$selectTitleLine""$" "$zetdir" | head -n1 | sed 's|/README.md:.*||g')"
+  local dir="$(rg --no-heading -N "^""$selectTitleLine""$" "$zetDir" | head -n1 | sed 's|/README.md:.*||g')"
   rm -rf "$dir"
   _deletePushGit
 }
 _deletePushGit() {
   ## TODO create an array from all the selected files
   #local -a deletedZet=( "$( git ls-files --deleted )" )
-  cd "$zetdir" &>/dev/null
+  cd "$zetDir" &>/dev/null
   local dirIsoSec="$(echo $dir | sed 's|.*/||')"
   local title="Deleted $dirIsoSec"
   ## check if dirIsoSec string is empty if so exit
@@ -106,7 +165,7 @@ _deletePushGit() {
 
 }
 _edit() {
-  local dir="$(rg --no-heading -N "^""$selectTitleLine""$" "$zetdir" | head -n1 | sed 's|/README.md:.*||g')"
+  local dir="$(rg --no-heading -N "^""$selectTitleLine""$" "$zetDir" | head -n1 | sed 's|/README.md:.*||g')"
   local readme="$dir/README.md" #absolute path
   #echo "$readme"
   "$EDITOR" "$readme"
@@ -131,7 +190,11 @@ _editPushGit() {
 ## first layer case: for arguments the user passes into zet, dynamic
 case "$1" in
   create) __create "${@:2}";; #pass all parameters except $0,$1
-  edit) __fzfSelect edit;;
   delete) __fzfSelect delete;;
-  *)
+  edit) __fzfSelect edit;;
+  init) __configInit;;
+  current) __configGetCurrent;;
+  use) __configUseZet "$2";;
+
+  *) echo error;;
 esac
