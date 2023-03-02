@@ -11,6 +11,10 @@ zb() {
   #vi "$(rg -l "$(git log | fzf | sed 's/^ *//')")"
 }
 
+kill9() {
+  ps -ef | sed 1d | fzf -m | awk '{print $2}' | xargs kill -${1:-9}
+}
+
 ze() {
   zet edit "$1"
 }
@@ -194,6 +198,7 @@ miniprompt() {
 #
 gcr() {
   echo 'gh repo create nameOfProject --description "🌍 a brief description example" --public --source=. --remote=upstream --push' | tr -d "\n" | xclip -sel clip
+  echo 'gh repo create nameOfProject --description "🌍 a brief description example" --public --source=. --remote=upstream --push'
 }
 
 gvi() {
