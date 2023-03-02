@@ -6,6 +6,9 @@ nix-env -iA nixpkgs.broot
 nix-env -iA nixpkgs.vscode
 nix-env -iA nixpkgs.netdiscover
 nix-env -iA nixpkgs.onlyoffice-bin #compatible with office 365 programs
+nix-env -iA nixpkgs.rustdesk
+nix-env -iA nixpkgs.act #run github action on local machine
+nix-env -iA nixpkgs.ripgrep-all #ripgrep in pdfs and ebooks too!
 
 
 ## To get desktop files at usual location:

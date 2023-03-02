@@ -4,6 +4,7 @@ read -p "Which package do you want to install?sdk install java 8.0.275.open-adpt
 1) html5validator: run install-java script first!
 2) jupyter notebook
 3) open AI whisper
+4) epy CLI ebook reader
 " input
 
 case $input in
@@ -14,5 +15,6 @@ case $input in
     pip3 install --user --upgrade jupyterlab
     pip3 install --user --upgrade notebook ;;
   3) pip3 install git+https://github.com/openai/whisper.git ;;
+  4) pip3 install epy-reader;;
   *) ;;
 esac

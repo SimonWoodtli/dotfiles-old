@@ -50,7 +50,7 @@ sleep 2
 sudo pacman -S --needed corectrl -y || exit 16
 sleep 2
 ## admin tools
-sudo pacman -S --needed broot virtualbox bashtop duf htop neofetch cron fd ripgrep -y || exit 17
+sudo pacman -S --needed broot virtualbox bashtop duf htop neofetch cron fd ripgrep ripgrep-all -y || exit 17
 sleep 2
 sudo pacman -S --needed alacritty lynx tmux xclip fzf wofi bat -y || exit 18
 sleep 2
@@ -71,7 +71,7 @@ sleep 2
 sudo pacman -S --needed s-nail mtr nmap -y || exit 23
 sleep 2
 ## network
-sudo pacman -S --needed dnsutils net-tools curl wget -y || exit 24
+sudo pacman -S --needed dnsutils net-tools curl wget httpie -y || exit 24
 sleep 2
 # sudo pacman -S bind vsftpd
 ## fonts

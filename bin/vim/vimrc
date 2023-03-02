@@ -22,7 +22,6 @@ set noshowmatch "no more little pause if you type brackets
 set foldmethod=manual " manual foldingdefault (zf/zd)
 set nofoldenable "disable folding, when paragraphs can be minimized and
 "maximized with spacebar
-"set foldcolumn=0 I had a foldcolumn on the left side this fixes it
 set ruler "ruler is on by default, just in case
 "set scrolloff=999 keep cursor in the middle, or some big other number
 set scrolloff=7 "keep cursor at border of screen
@@ -195,6 +194,9 @@ if filereadable(expand("~/.vim/autoload/plug.vim"))
   "Plug 'mattn/emmet-vim'
   call plug#end()
 "########################### plugins configs ###########################
+  " set foldcolumn=0 does not work however disable the folding module from 
+  " 'git-pandoc' will
+  let g:pandoc#modules#disabled = ["folding"]
   set nocompatible "needed for vim-polygot
   colorscheme gruvbox
   set background=dark
@@ -246,17 +248,20 @@ au bufnewfile,bufRead *.muttrc set filetype=muttrc
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 "normal! g'\"" | endif "remember where you were and puts you back to it
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe
-"" Automatically delets all trailing whitespace on save.
-"
-"" todo: add this function to an F key
-"autocmd BufWritePre * %s/\s\+$//e
 
 " might be needed for C-x/C-o autocomplete
 "set omnifunc=javascriptcomplete#CompleteJS
 "set omnifunc=htmlcomplete#CompleteTags
 "set omnifunc=csscomplete#CompleteCSS
 "set omnifunc=phpcomplete#CompletePHP
-"
+
+"########################## custom functions ###########################
+" Removes trailing spaces
+" e flag: supress error message
+function TrimWhiteSpace()
+  %s/\s\+$//e
+  ''
+endfunction
 "########################### leader, f-keys ############################
 
 " solution (Fedora): select 'v' + normal yank 'y', paste 'leader p'
@@ -286,8 +291,11 @@ map <F5> :set cursorline! cursorcolumn!<CR>
 map <F6> :execute "vimgrep /" . expand("<cword>") . "/j **" <Bar> cw<CR>
 map <F7> :set spell!<CR>
 map <F8> :NERDTreeToggle<CR>
-map <F12> :set fdm=indent<CR>
 nmap <F9> :TagbarToggle<CR>
+" Automatically delets all trailing whitespace on save.
+map <F10> :call TrimWhiteSpace()<CR>
+map! <F10> :call TrimWhiteSpace()<CR>
+map <F12> :set fdm=indent<CR>
 let g:tagbar_autofocus = 1
 
 nnoremap <Leader><Leader>s :%s//g <Left><Left><Left>
@@ -380,6 +388,7 @@ set smarttab
 set tabstop=2 "settings for your notes and stuff, don't use to code with it
 set softtabstop=2 "related to tabstop
 set shiftwidth=2 "if you want lines to move in like with tabs `3>>` will move 3 lines in
+
 
 "########################### 🏡 it's personal ###########################
 " read personal/private vim configuration (keep last to override)

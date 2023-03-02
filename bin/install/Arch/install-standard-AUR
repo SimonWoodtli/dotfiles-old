@@ -2,7 +2,7 @@
 ## admin
 paru -S downgrade dust
 ## basic apps
-paru -S brave-bin librewolf-bin appimagelauncher ferdium-bin
+paru -S brave-bin librewolf-bin appimagelauncher
 ## fonts
 paru -S nerd-fonts-ubuntu-mono ttf-ms-fonts
 ## graphics
@@ -14,6 +14,8 @@ paru -S virtualbox-ext-oracle
 paru -S task-spooler
 paru -S netdiscover
 paru -S onlyoffice-bin
+## 'screenkey' alternative for wayland
+paru -s showmethekey
 
 ## Additional stuff:
 #paru -S visual-studio-code-bin
