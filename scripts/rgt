@@ -1,27 +1,43 @@
 #!/bin/bash
-#TODO: implement the multi tag search with min 1 tag output.
-#the idea is to have either multi tag search that explicitly needs all
-#arguments or multi tag search that is allowing only 1 tag to be found
-#1. use some --flags to achieve this
-#2. the command structure is `rg '#foo|#foo2'`
-declare -a arg=("$@") 
-declare arg_num=${#arg[@]}
-declare array_num=$(( "${#arg[@]}"-1 ))
+## dependencies: rg
+__printSearchedTag() {
+  local keywords="$@"
+  local keywordRgLine
+  for keyword in $keywords; do
+    keywordRgLine+="rg -i --no-heading --color=always \#$keyword|"
+  done
+  eval "${keywordRgLine%|}"
+}
+__printSearchedTag "$@"
+
+################################## old #################################
+#declare -a arg=("$@") 
+#declare arg_num=${#arg[@]}
+#declare array_num=$(( "${#arg[@]}"-1 ))
 #declare rg_opt='--column --line-number --no-heading --color=always'
-declare rg_opt='--no-heading --color=always'
+#declare rg_opt='--no-heading --color=always'
 
 #declare rg_opt=''
-declare cmd=()
+#declare cmd=()
 ## need \# in front of element => hence loop
-arg=()
-for i in "$@"; do
-  arg+=("\#$i")
-done
+#arg=()
+#for i in "$@"; do
+#  arg+=("\#$i")
+#done
 
 ## append each cmd with argument to cmd array
-for (( i=0; i<$arg_num; i++ )); do                                            
-  cmd+=("rg $rg_opt "${arg[$i]}"")
-done 
+#for (( i=0; i<$arg_num; i++ )); do                                            
+#  cmd+=("rg $rg_opt "${arg[$i]}"")
+#done 
+
+#case "${#arg[@]}" in
+#  1) ${cmd[0]};;#already dealt with in if statement
+#  2) ${cmd[0]} | ${cmd[1]} ;;
+#  3) ${cmd[0]} | ${cmd[1]} | ${cmd[2]};;
+#  4) ${cmd[0]} | ${cmd[1]} | ${cmd[2]} | ${cmd[3]} ;;
+#  5) ${cmd[0]} | ${cmd[1]} | ${cmd[2]} | ${cmd[3]} | ${cmd[4]} ;;
+#  *) echo 'only 5 arguments accepted. If you need more `vic rgt`';;
+#esac
 
 ################################## old #################################
 # if only one argument is given:
@@ -65,14 +81,3 @@ done
 #done
 #echo ${cmd[1]}
 
-## check element number of array and execute this line:
-##TODO find a way not to hardcode element numbers
-##TODO make code less repetitive
-case "${#arg[@]}" in
-  1) ${cmd[0]};;#already dealt with in if statement
-  2) ${cmd[0]} | ${cmd[1]} ;;
-  3) ${cmd[0]} | ${cmd[1]} | ${cmd[2]};;
-  4) ${cmd[0]} | ${cmd[1]} | ${cmd[2]} | ${cmd[3]} ;;
-  5) ${cmd[0]} | ${cmd[1]} | ${cmd[2]} | ${cmd[3]} | ${cmd[4]} ;;
-  *) echo 'only 5 arguments accepted. If you need more `vic rgt`';;
-esac
