@@ -1,5 +1,10 @@
 #!/bin/sh
 
+## Flatpaks are quite isolated from the rest of your OS, that makes it
+## perfect package manager for things that are of privacy concern to
+## install them like this.
+
+flatpak install flathub com.github.tchx84.Flatseal
 flatpak install flathub com.mattjakeman.ExtensionManager
 flatpak install flathub io.gitlab.librewolf-community
 flatpak install flathub org.gimp.GIMP
@@ -12,6 +17,14 @@ flatpak install flathub com.uploadedlobster.peek
 flatpak install flathub com.github.xournalpp.xournalpp
 flatpak install flathub net.ankiweb.Anki
 flatpak install flathub com.calibre_ebook.calibre
+flatpak install flathub no.mifi.losslesscut
+flatpak install flathub org.js.nuclear.Nuclear
+flatpak install flathub fr.romainvigier.MetadataCleaner
+flatpak install flathub re.sonny.Workbench
+#flatpak install flathub org.ferdium.Ferdium                                    
+## Tangram ferdium alternative                                                  
+flatpak install flathub re.sonny.Tangram                                           
+flatpak install flathub org.gustavoperedo.FontDownloader 
 
 ## to consider
 #flatpak install flathub com.obsproject.Studio

@@ -5,7 +5,7 @@ sudo dnf install vim tmux gh alacritty lynx gnome-tweaks imwheel htop btop jq \
   vlc xclip ImageMagick tree mupdf ShellCheck neofetch asciinema \
   nmap netcat sxiv pip python-devel golang pcre-tools coreutils pandoc geary \
   hyperfine wofi bat fzf cronie cronie-anacron weechat corectrl speedtest-cli \
-  zeal pdfgrep fd-find ripgrep duf git-delta fbreader task-spooler
+  zeal pdfgrep fd-find ripgrep duf git-delta fbreader task-spooler httpie
 
 echo 'Checkout Zet "Customize Gnome Desktop"'
 
@@ -22,7 +22,8 @@ echo 'Checkout Zet "Customize Gnome Desktop"'
 #sudo dnf install fzf
 
 ## Extras Streaming
-#sudo dnf install screenkey
+## 'screenkey' only works on x11
+## wayland alternative: https://github.com/AlynxZhou/showmethekey
 
 ## NOT sure if needed
 #scdaemon uidmap

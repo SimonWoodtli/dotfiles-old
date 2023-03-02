@@ -27,7 +27,7 @@ sudo apt install vim tmux lynx jq vlc xclip imagemagick mupdf mpv htop \
   universal-ctags asciinema nmap sxiv imwheel fzf steam streamlink alacritty \
   scdaemon pcscd bashtop pcregrep uidmap python-is-python3 netcat coreutils \
   screenkey golang wofi suckless-tools pandoc speedtest-cli zeal pdfgrep fd-find \
-  ripgrep duf fbreader task-spooler
+  ripgrep duf fbreader task-spooler httpie
 
 echo "${green}Done:$reset Installled all essential, official packages successfully.
 
@@ -35,3 +35,7 @@ echo "${green}Done:$reset Installled all essential, official packages successful
 echo "${blue}Checkout:$reset Zet 'Customize Gnome Desktop'"
 echo "${blue}Hint:$reset Only install Pandoc via official Repo if you are on Debian-SID. 
 Otherwise it's too outdated use unwanted/install-pandoc script to get the latest."
+
+## Extras Streaming
+## 'screenkey' only works on x11
+## wayland alternative: https://github.com/AlynxZhou/showmethekey
