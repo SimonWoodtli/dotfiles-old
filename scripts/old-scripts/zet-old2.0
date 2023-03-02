@@ -14,7 +14,7 @@ shopt -s extglob
 : "${GHREPOS:="$HOME/Repos/github.com/$GITUSER"}"
 : "${PRIVATE:="$HOME/Private"}"
 : "${VIDEOS:="$HOME/Videos"}"
-: "${PICTURES:="$HOME/Pictures"}"
+: "${PICTURES:="$HOME/Pictures/Screenshots"}"
 : "${DOWNLOADS:="$HOME/Downloads"}"
 
 declare -A HELP
