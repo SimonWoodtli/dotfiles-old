@@ -19,6 +19,7 @@ alias sysderrors="sudo systemctl --failed"
 alias chmox="chmod u+x"
 alias tree='broot'
 alias cp='cp -v'
+alias ip='ip -c'
 
 #_have pcregrep && alias grep='pcregrep' || alias grep='grep -i --colour=auto'
 _have youtube-dl && alias yt-dl='youtube-dl'
