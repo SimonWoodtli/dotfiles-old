@@ -115,6 +115,10 @@ Any suggestions/improvements are [welcome]
 
 * my mentor rwxrob and his [dotfiles repository] and the rwx community
 
+## Stats
+
+![Alt](https://repobeats.axiom.co/api/embed/8e281b4fde7d8d552576290facb760bd4ebc02bb.svg "Repobeats analytics image")
+
 Tags:
 
     #linux #dotfiles #bash #terminal
