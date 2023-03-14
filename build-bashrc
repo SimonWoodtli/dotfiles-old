@@ -1,26 +1,36 @@
 #!/bin/sh
+echo '########################################################################
+#______  ___   _____ _   _ ______  _____
+#| ___ \/ _ \ /  ___| | | || ___ \/  __ \
+#| |_/ / /_\ \\ `--.| |_| || |_/ /| /  \/
+#| ___ \  _  | `--. \  _  ||    / | |
+#| |_/ / | | |/\__/ / | | || |\ \ | \__/\
+#\____/\_| |_/\____/\_| |_/\_| \_| \____/
+#
+########################################################################' \
+> bashrc.bak
 
 cat \
-  bin/shell/disclaimer.sh    \
-  bin/shell/detection.sh    \
-  bin/shell/utility-functions.sh  \
-  bin/shell/export.sh    \
-  bin/shell/path.sh    \
-  bin/shell/settings.sh    \
-  bin/shell/pager.sh    \
-  bin/shell/cmd-prompt.sh   \
-  bin/shell/vim.sh    \
-  bin/shell/subprocs-suck.sh    \
-  bin/shell/dircolors.sh    \
-  bin/shell/completion.sh    \
-  bin/shell/gruvbox-colors.sh    \
-  bin/shell/colors-basic.sh    \
-  bin/shell/ansi-escapes.sh    \
-  bin/shell/termcap-colors.sh    \
-  bin/shell/tldr-colors.sh   \
-  bin/shell/python.sh    \
-  bin/shell/golang.sh    \
-  bin/shell/alias.sh    \
-  bin/shell/functions.sh    \
-  bin/shell/personal.sh    \
->| bashrc.bak
+  bin/shell/01-detection.sh		\
+  bin/shell/02-utility-functions.sh	\
+  bin/shell/03-export.sh		\
+  bin/shell/04-path.sh			\
+  bin/shell/05-settings.sh		\
+  bin/shell/06-pager.sh			\
+  bin/shell/07-cmd-prompt.sh		\
+  bin/shell/08-vim.sh			\
+  bin/shell/09-subprocs-suck.sh		\
+  bin/shell/10-dircolors.sh		\
+  bin/shell/11-completion.sh		\
+  bin/shell/12-gruvbox-colors.sh	\
+  bin/shell/13-colors-basic.sh		\
+  bin/shell/14-ansi-escapes.sh		\
+  bin/shell/15-termcap-colors.sh	\
+  bin/shell/16-tldr-colors.sh		\
+  bin/shell/17-python.sh		\
+  bin/shell/18-golang.sh		\
+  bin/shell/19-alias.sh			\
+  bin/shell/20-functions.sh		\
+  bin/shell/21-forgit.sh		\
+  bin/shell/22-personal.sh		\
+>> bashrc.bak
