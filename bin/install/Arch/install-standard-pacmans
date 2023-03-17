@@ -84,6 +84,7 @@ sleep 2
 sudo pacman -S --needed papirus-icon-theme -y || exit 28
 ## security
 # pacman -S ufw bleachbit
+sudo pacman -S --needed age -y || exit 28
 
 #######################################################
 ## interesting packages: dhcpcd = networkmanager alternative

@@ -27,7 +27,7 @@ sudo apt install vim tmux lynx jq vlc xclip imagemagick mupdf mpv htop \
   universal-ctags asciinema nmap sxiv imwheel fzf steam streamlink alacritty \
   scdaemon pcscd bashtop pcregrep uidmap python-is-python3 netcat coreutils \
   screenkey golang wofi suckless-tools pandoc speedtest-cli zeal pdfgrep fd-find \
-  ripgrep duf fbreader task-spooler httpie
+  ripgrep duf fbreader task-spooler httpie when ncal age
 
 echo "${green}Done:$reset Installled all essential, official packages successfully.
 

@@ -33,4 +33,3 @@ The consequence of this is that nano gets started in this instance. A quick fix 
 Related:
 
 * <https://github.com/LukeSmithxyz/mutt-wizard>
-* <xdg link>
