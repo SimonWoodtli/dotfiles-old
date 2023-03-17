@@ -16,6 +16,7 @@ paru -S netdiscover
 paru -S onlyoffice-bin
 ## 'screenkey' alternative for wayland
 paru -s showmethekey
+paru -s when
 
 ## Additional stuff:
 #paru -S visual-studio-code-bin
