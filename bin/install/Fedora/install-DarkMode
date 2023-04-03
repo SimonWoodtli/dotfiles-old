@@ -5,17 +5,18 @@
 
 read -p "Which Programs do you want darkmode to apply?
 
-1) Geary
+1) Geary/Libreoffice
 2) KDE QT Apps (VirtualBox)
 3) QBittorrent" input
 
 case $input in
-    1) ## Effects: Geary 
+    1) ## Effects: Geary, Libreoffice
         echo "On Gnome 42 you can just use Gnome Tweaks, Appearance, Legacy App
         -> adw-gtk3"
         #https://github.com/lassekongo83/adw-gtk3
-        sudo dnf copr enable nickavem/adw-gtk3
-        sudo dnf install adw-gtk3
+        /usr/bin/flatpak install --user --noninteractive flathub org.gtk.Gtk3theme.adw-gtk3 org.gtk.Gtk3theme.adw-gtk3-dark
+        #sudo dnf copr enable nickavem/adw-gtk3
+        #sudo dnf install adw-gtk3
 
         ## Fix to make really everything dark :)
         touch $HOME/.config/geary/user-style.css
