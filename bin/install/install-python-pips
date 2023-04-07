@@ -5,6 +5,7 @@ read -p "Which package do you want to install?sdk install java 8.0.275.open-adpt
 2) jupyter notebook
 3) open AI whisper
 4) epy CLI ebook reader
+5) wik CLI wikipedia search
 " input
 
 case $input in
@@ -16,5 +17,6 @@ case $input in
     pip3 install --user --upgrade notebook ;;
   3) pip3 install git+https://github.com/openai/whisper.git ;;
   4) pip3 install epy-reader;;
+  5) pip3 install wik;;
   *) ;;
 esac
