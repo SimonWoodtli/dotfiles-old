@@ -1,7 +1,6 @@
 #!/bin/sh
 ## git-delta
 nix-env -iA nixpkgs.delta
-nix-env -iA nixpkgs.broot
 nix-env -iA nixpkgs.glow #markdown reader
 nix-env -iA nixpkgs.vscode
 nix-env -iA nixpkgs.netdiscover
